@@ -1,2 +1,2 @@
 # faceclone
-<img src="/images/home.jpg">
+![faceclone_home](public\images\home.JPG)
