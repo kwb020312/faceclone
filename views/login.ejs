@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>Facebook - 로그인 또는 가입</title>
+    <style>
+      body {
+        padding:0;
+        margin:0;
+      }
+      /* 상단라인 */
+      #Top_Line {
+        background: linear-gradient(to top,rgba(59,89,152),rgb(70, 103, 175));
+        height:85px;
+      }
+      .top_whiteFont {
+        color:white;
+        font-size: 2.5rem;
+        font-weight: bolder;
+        display: inline-block;
+        margin-top: 20px;
+        letter-spacing: -1px;
+      }
+      /* 전체화면 */
+      @media all and (min-width:1500px) {
+        .top_whiteFont {
+          margin-left: 465px;
+        }
+        .user_name {
+          left:55.5%;
+          top:1.4%;
+        }
+        .user_pw {
+          left:63.2%;
+          top:1.4%;
+        }
+        .input_box {
+          position:fixed;
+          right:26.7%;
+          font-size: 10px;
+          top:3.7%;
+        }
+        #missing {
+          left:63.3%;
+          top:6.5%;
+        }
+      }
+      /* 반화면 */
+      @media all and (min-width:500px) and (max-width:1300px) and (min-height:900px){
+        .user_name {
+          left:64%;
+          top:1.4%;
+        }
+        .user_pw {
+          left:80%;
+          top:1.4%;
+        }
+        .input_box {
+          position:fixed;
+          right:0%;
+          font-size: 10px;
+          top:3.7%;
+        }
+        #missing {
+          left:80%;
+          top:6.5%;
+        }
+      }
+      /* 대각선축소 */
+      @media all and (max-width:999px) and (max-height:420px) {
+        .user_name {
+          left:60%;
+          top:3%;
+        }
+        .user_pw {
+          left:76%;
+          top:3%;
+        }
+        .input_box {
+          position:fixed;
+          right:4%;
+          font-size: 10px;
+          top:8.6%;
+        } 
+        #missing {
+          left:75.8%;
+          top:15%;
+        }
+      }
+      .user_write {
+        color:white;
+        display: inline-block;
+        font-size: 12px;
+        position: fixed;
+      }
+      .users {
+        display: inline-block;
+      }
+
+      #name {
+        margin-right: 9px;
+      }
+      #login {
+        border:0.3px solid rgb(61, 93, 158);
+        background-color:rgba(66,103,178);
+        color:white;
+      }
+      #login:hover {
+        background-color: rgb(49, 75, 128);
+        cursor: pointer;
+      }
+      #missing {
+        color:#9CB4D8;
+      }
+      #missing:hover{
+        border-bottom:0.5px solid #9CB4D8;
+        cursor: pointer;
+      }
+      /* 중간라인 */
+      /* 백그라운드 배경 */
+      #Mid_Line {
+        background-color: rgba(233,235,238);
+      }
+      /* 중간라인 컨텐츠박스 */
+      .mid_contents_box {
+        width:51.5%;
+        display: inline-block;
+        height:607px;
+      }
+      /* 중간라인 왼쪽 컨텐츠 */
+      .mid_contents_left {
+        display: inline-block;
+      }
+      /* 중간라인 오른쪽 컨텐츠 */
+      .mid_contents_right {
+        display: inline-block;
+      }
+      /* 전체화면 */
+      @media all and (min-width:1500px) {
+        #Mid_Line {
+          height:607px;
+        }
+        .mid_recent_login {
+          left:24.2%;
+          top:8%;
+          font-weight: 1000;
+          letter-spacing: -1px;
+        }
+        .mid_create_account {
+          left:54.3%;
+          top:8%;
+          letter-spacing: -1px;
+        }
+        .mid_quick_easy {
+          left:54.5%;
+          top:13.7%;
+          font-size: 19px;
+          position: fixed;
+        }
+        .mid_photo_account {
+          position: fixed;
+          left:24.2%;
+          top:13.7%;
+          font-size: 19px;
+        }
+        .in_first {
+          width:175px;
+          height:22px;
+          left:54.3%;
+          top:20.7%;
+          font-size: 18px;
+          padding:8px;
+        }
+        .in_second {
+          width:175px;
+          height:22px;
+          left:65%;
+          top:20.7%;
+          font-size: 18px;
+          padding:8px;
+        }
+        .in_third {
+          height:22px;
+          font-size: 18px;
+          width:381px;
+          left:54.3%;
+          top:26%;
+          padding:8px;
+        }
+        .in_fourth {
+          height:22px;
+          font-size: 18px;
+          width:381px;
+          left:54.3%;
+          top:31.2%;
+          padding:8px;
+        }
+        #birth_font {
+          left:54.3%;
+          top:35.7%;
+        }
+        .mid_font_question {
+          display: inline-block;
+          position: fixed; 
+          color:rgb(228, 225, 225);
+          background-color: rgb(90, 89, 89);
+          border-radius: 16px;
+          width:16px;
+          height:16px;
+          font-size: 14px;
+          line-height: 16px;
+          text-align: center;
+          cursor: pointer;
+        }
+        #mid_birth_question {
+          left:64%;
+          top:39.7%;
+        }
+        #mid_right_birth_year {
+          position: fixed;
+          left:54.3%;
+          top:40.3%;
+          padding:5px;
+        }
+        #mid_right_birth_month {
+          position: fixed;
+          left:57.6%;
+          top:40.3%;
+          padding:5px;
+        }
+        #mid_right_birth_day {
+          position: fixed;
+          left:60.9%;
+          top:40.3%;
+          padding:5px;
+        }
+        #mid_right_font_gender {
+          left:54.3%;
+          top:42.8%;
+        }
+        #gender_box {
+          position: fixed;
+          top:46%;
+          left:54.3%;
+        }
+        #mid_gender_question {
+          top:46.5%;
+          left:68.7%;
+        }
+        .mid_right_desc {
+          transform: translateX(510px) translateY(345px);
+        }
+        .mid_right_join {
+          transform: translateX(510px) translateY(350px);
+          padding: 6px;
+          width:190px;
+          font-size: 18px;
+          font-weight: 600;
+          border-top-left-radius: 4px;
+          border-top-right-radius: 4px;
+          border-bottom-left-radius: 4px;
+          border-bottom-right-radius: 4px;
+          border: 1px solid green;
+        }
+        .mid_right_bottom_line {
+          transform: translateX(510px) translateY(362px);
+          opacity: 0.2;
+          width:390px;
+        }
+        .mid_right_bottom_band {
+          font-size: 13.5px;
+          letter-spacing: -0.5px;
+          transform: translateX(510px) translateY(361px);
+        }
+        #bottom {
+          height: 245px;
+          display: inline-block;
+          width:985px;
+          transform: translateX(460px);
+        }
+        .bottom_first_line {
+          font-size: 12px;
+          transform: translateY(25px);
+        }
+        .bottom_first_line p{
+          padding:3.4px;
+          padding-bottom: 0;
+        }
+        .bottom_second_line p{
+          margin:7px;
+          margin-top: 3px;
+          font-size: 12px;
+          transform: translateX(-5px) translateY(10px);
+        }
+        #more_language {
+          font-weight: 400px;
+          font-size: 20px;
+          padding:0;
+          width:30px;
+          height:20px;
+          line-height: 14px;
+          transform: translateY(2.5px);
+          text-shadow: none;
+          border:1px solid rgb(204, 204, 204);
+          outline: none;
+        }
+        #bottom_mid_line {
+          width:970px;
+          transform: translateX(-5px) translateY(14px);
+        }
+        .bottom_third_line p {
+          transform: translateX(-6px) translateY(0px);
+          margin:7px;
+          font-size: 12px;
+        }
+        .bottom_last_font {
+          font-size: 11px;
+          font-weight: bold;
+          color:gray;
+          transform: translateX(1px) translateY(2px);
+        }
+        .mid_users_box {
+          transform: translateX(465px) translateY(-20px);
+          width:530px;
+          height:440px;
+        }
+        .user_name_bar {
+          border-bottom-left-radius: 5px;
+          border-bottom-right-radius: 5px;
+          width:160px;
+          height:45px;
+          text-align: center;
+          line-height: 13px;
+          font-size: 18px;
+          font-weight:lighter;
+        }
+        .img_picture {
+          width:160px;
+          height:160px;
+          border-top-left-radius: 6px;
+          border-top-right-radius: 6px;
+        }
+        .first_user {
+          transform: translateX(0px) translateY(130px);
+        }
+        .mid_left_profile_image {
+          background-size: cover;
+          width:161px;
+          border-top-left-radius: 5px;
+          border-top-right-radius: 5px;
+        }
+      }
+      /* 중간라인 상단 h1 */
+      .mid_top_h1 {
+        font-size: 36px;
+        position: fixed;
+      }
+      /* 중간라인 input */
+      .mid_right_input {
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        border:1px solid silver;
+        position: fixed;
+      }
+      /* 중간라인 오른쪽 생일 글씨 */
+      .mid_right_font {
+        color:rgb(146, 146, 146);
+        position: fixed;
+        font-size: 16px;
+        font-weight: bold;
+      }
+      /* 중간라인 성별 글씨 */
+      .mid_right_gender_font {
+        display: inline-block;
+        font-size: 18px;
+      }
+      /* 중간라인 오른쪽 약관 설명 */
+      .mid_right_desc {
+        width:300px;
+        font-size: 11px;
+        letter-spacing: -0.5px;
+        color:gray;
+      }
+      /* 약관설명 밑줄 */
+      .mid_right_desc_font_underline {
+        color:rgba(59,89,152);
+      }
+      .mid_right_desc_font_underline:hover {
+        border-bottom: 1px solid rgba(59,89,152);
+        cursor:pointer;
+      }
+      .mid_right_join {
+        background:linear-gradient(to top,rgb(79, 128, 64),rgb(94, 182, 68)) ;
+        color: white;
+      }
+      .mid_right_join:hover {
+        background:linear-gradient(to top,rgb(95, 155, 77),rgb(101, 194, 73)) ;
+        cursor: pointer;
+      }
+      .mid_right_bottom_band {
+        font-weight: bolder;
+        color:gray;
+      }
+      .bottom_first_line p {
+        display: inline-block;
+      }
+      .bottom_second_line p {
+        display: inline-block;
+      }
+      .bottom_third_line p {
+        display: inline-block;
+      }
+      #more_language {
+        color:rgb(70, 70, 70);
+        cursor: pointer;
+      }
+      .bold {
+        font-weight:500;
+      }
+      #bottom_mid_line {
+        opacity: 0.3;
+      }
+      .mid_users_box {
+        display: inline-block;
+      }
+      .user_one {
+        color:black;
+      }
+      .user_name_bar {
+        background-color: white;
+        display: inline-block;
+      }
+      .img_picture {
+        background-color: rgba(210,213,218);
+      }
+      .first_user {
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="Top_Line">
+      <span class="top_whiteFont">
+        facebook
+      </span>
+      <div class="users">
+        <span class="user_write user_name">이메일 또는 휴대폰</span>
+        <span class="user_write user_pw">비밀번호</span>
+      </div>
+      <div class="input_box">
+        <form action="/login" method="POST">
+          <input style="outline: none;" size="15" id="name" type="text" name="user_name" autocomplete="off" required>
+          <input style="outline: none;" size="15" type="password" name="user_pw" autocomplete="off" required>
+          <input type="submit" value="로그인" id="login"></input>
+        </form>
+      </div>
+      <span id="missing" class="user_write">계정을 잊으셨나요?</span>
+    </div>
+    <div id="Mid_Line">
+      <div class="mid_contents_box">
+        <div class="mid_contents_left">
+          <h1 class="mid_top_h1 mid_recent_login">최근 로그인 기록</h1>
+          <p class="mid_photo_account">사진을 클릭하거나 계정을 추가하세요.</p>
+          <div class="mid_users_box">
+            <div class="mid_users_first_line">
+              <% for(let i = 0 ; i < users.length ; i++) { %>
+                <div class="first_user">
+                  <div class="img_picture">
+                    <% if(users[i].gender === 'man') { %>
+                      <img class="mid_left_profile_image" src="images/profile_man.jpg" alt="This user Is Man">
+                    <% } else { %>
+                      <img class="mid_left_profile_image" src="images/profile_woman.jpg" alt="This user Is Man">
+                    <% } %>
+                  </div>
+                  <div class="user_name_bar">
+                    <p class="user_one"><%= users[i].name %></p>
+                  </div>
+                </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+        <div class="mid_contents_right">
+          <form action="/register" method="POST">
+            <h1 class="mid_top_h1 mid_create_account">새 계정 만들기</h1>
+            <p class="mid_quick_easy">빠르고 쉽습니다.</p>
+            <input class="mid_right_input in_first" name="first_name" type="text" placeholder="성(姓)" required autocomplete="off"/>
+            <input class="mid_right_input in_second" name="last_name" type="text" placeholder="이름(성은 제외)" required autocomplete="off"/>
+            <input class="mid_right_input in_third" name="phone_or_email" type="text" placeholder="휴대폰 번호 또는 이메일" required autocomplete="off"/>
+            <input class="mid_right_input in_fourth" name="pw" type="password" placeholder="새 비밀번호" required autocomplete="off"/>
+            <p id="birth_font" class="mid_right_font">생일</p>
+            <select name="birth_year" id="mid_right_birth_year" class="mid_right_birth" required>
+              <option value="">연도</option>
+              <% for(var i = 2020 ; i >= 1905; i --) { %>
+                <option value="<%= i %>"><%= i %></option>
+              <% } %>
+            </select>
+            <select name="birth_month" id="mid_right_birth_month" class="mid_right_birth" required>
+              <option value="">월</option>
+              <% for(let i = 1 ; i <= 12; i ++) { %>
+                <option value="<%= i %>"><%= i %>월</option>
+              <% } %>
+            </select>
+            <select name="birth_day" id="mid_right_birth_day" class="mid_right_birth" required>
+              <option value="">일</option>
+              <% for(let i = 1 ; i <= 31; i ++) { %>
+                <option value="<%= i %>"><%= i %></option>
+              <% } %>
+            </select>
+            <p title="더 자세한 정보를 원하시면 여기를 클릭하세요." id="mid_birth_question" class="mid_font_question">?</p>
+            <p id="mid_right_font_gender" class="mid_right_font">성별</p>
+            <div id="gender_box">
+              <input type="radio" name="gender" value="woman">
+              <p class="mid_right_gender_font">여성</p>
+              <input type="radio" name="gender" value="man">
+              <p class="mid_right_gender_font">남성</p>
+              <input type="radio" name="gender" value="other">
+              <p class="mid_right_gender_font">직접 지정</p>
+            </div>
+            <p title="더 자세한 정보를 원하시면 여기를 클릭하세요." id="mid_gender_question" class="mid_font_question">?</p>
+            <div class="mid_right_desc">
+              <p class="mid_right_desc_font">
+                가입하기 버튼을 클릭하면 Facebook의 <span class="mid_right_desc_font_underline">약관</span>, <span class="mid_right_desc_font_underline">데이터 정책</span> 및 <span class="mid_right_desc_font_underline">쿠키 정책</span>에 동의하게 됩니다.
+                Facebook으로부터 SMS 알림을 받을 수 있으며 알림은 언제든지 옵트 아웃할 수 있습니다.
+              </p>
+            </div>
+            <input class="mid_right_join" type="submit" value="가입하기">
+          </form>
+          <hr class="mid_right_bottom_line">
+          <p class="mid_right_bottom_band">유명인, 밴드, 비즈니스를 위한 <span class="mid_right_desc_font_underline">페이지 만들기</span></p>
+        </div>
+      </div>
+    </div>
+    <div id="bottom">
+      <div class="bottom_first_line">
+        <p style="color:gray;">한국어</p>
+        <p class="mid_right_desc_font_underline bold">English (US)</p>
+        <p class="mid_right_desc_font_underline bold">Tiếng Việt</p>
+        <p class="mid_right_desc_font_underline">Bahasa Indonesia</p>
+        <p class="mid_right_desc_font_underline">ภาษาไทย</p>
+        <p class="mid_right_desc_font_underline">Español</p>
+        <p class="mid_right_desc_font_underline">中文(简体)</p>
+        <p class="mid_right_desc_font_underline">日本語</p>
+        <p class="mid_right_desc_font_underline">Português (Brasil)</p>
+        <p class="mid_right_desc_font_underline">Français (France)</p>
+        <p class="mid_right_desc_font_underline">Deutsch</p>
+        <button id="more_language" title="더 많은 언어 표시하기" value="+">+</button>
+      </div>
+      <hr id="bottom_mid_line">
+      <div class="bottom_second_line">
+        <p id="bottom_second_first" class="mid_right_desc_font_underline">가입하기</p>
+        <p class="mid_right_desc_font_underline">로그인</p>
+        <p class="mid_right_desc_font_underline">Messenger</p>
+        <p class="mid_right_desc_font_underline">Facebook Lite</p>
+        <p class="mid_right_desc_font_underline">Watch</p>
+        <p class="mid_right_desc_font_underline">사람</p>
+        <p class="mid_right_desc_font_underline">페이지</p>
+        <p class="mid_right_desc_font_underline">페이지 카테고리</p>
+        <p class="mid_right_desc_font_underline">장소</p>
+        <p class="mid_right_desc_font_underline">게임</p>
+        <p class="mid_right_desc_font_underline">위치</p>
+        <p class="mid_right_desc_font_underline">Marketplace</p>
+        <p class="mid_right_desc_font_underline">그룹</p>
+        <p class="mid_right_desc_font_underline">Instagram</p>
+        <p class="mid_right_desc_font_underline">지역</p>
+      </div>
+      <div class="bottom_third_line">
+        <p class="mid_right_desc_font_underline">기부 캠페인</p>
+        <p class="mid_right_desc_font_underline">서비스</p>
+        <p class="mid_right_desc_font_underline">회사소개</p>
+        <p class="mid_right_desc_font_underline">광고 만들기</p>
+        <p class="mid_right_desc_font_underline">페이지 만들기</p>
+        <p class="mid_right_desc_font_underline">개발자</p>
+        <p class="mid_right_desc_font_underline">채용 정보</p>
+        <p class="mid_right_desc_font_underline">개인정보처리방침</p>
+        <p class="mid_right_desc_font_underline">쿠키</p>
+        <p class="mid_right_desc_font_underline">AdChocies</p>
+        <p class="mid_right_desc_font_underline">이용 약관</p>
+        <p class="mid_right_desc_font_underline">고객 센터</p>
+      </div>
+      <p class="bottom_last_font">
+        Facebook © 2020
+      </p>
+    </div>
+    <script>
+      let user_one = document.getElementsByClassName('user_one');
+      let users = [];
+      let user_count = Number("<%= users.length %>");
+      if(user_count !== 0) {
+        for(let i = 0 ; i < user_count ; i++) {
+          
+        }
+      } else {
+        console.log('no users');
+      }
+      
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/b0389b4cac.js" crossorigin="anonymous"></script>
+    <title>Facebook</title>
+    <style>
+        body {
+            padding:0;
+            margin:0;
+            background-color: rgba(233,235,238);
+        }
+        @media all and (min-width: 1500px) {
+            .top_line {
+                background-color: rgba(66,103,178);
+                width:100%;
+                height:43px;
+                position: fixed;
+                z-index: 10;
+            }
+            .top_line_left_logo {
+                width:24px;
+                position: fixed;
+                left:23.25%;
+                top:1%;
+                border-top-left-radius: 1px;
+                border-top-right-radius: 1px;
+                border-bottom-left-radius: 1px;
+                border-bottom-right-radius: 1px;
+            }
+            .top_line_left_recent_search {
+                position: fixed;
+                border-top-left-radius: 3px;
+                border-bottom-left-radius: 3px;
+                left:24.8%;
+                top:0.9%;
+                width:383px;
+                border:1px solid rgb(99, 97, 97);
+                border-right: none;
+                height: 8px;
+                font-size: 13.5px;
+                padding:8px;
+            }
+            .top_line_left_search_image {
+                width:15px;
+
+            }
+            .top_line_left_search_button {
+                position: fixed;
+                left:45.55%;
+                top:1%;
+                width:47.2px;
+                border-left: none;
+                border-top-right-radius: 3px;
+                border-bottom-right-radius: 3px;
+                outline: none;
+                border: 0;
+                height:23.5px;
+                background-color: rgba(245,246,247);
+            }
+            .top_line_right {
+                width:500px;
+                height:30px;
+                position: fixed;
+                left:56.8%;
+                display: inline-block;
+            }
+            .top_line_right_user_userProfile_image {
+                width:24px;
+                border-radius: 100%;
+                transform: translateX(-1px);
+            }
+            .top_line_right_user_userProfile_username {
+                display: inline-block;
+                color: white;
+                font-size: 12px;
+                font-weight: bolder;
+                transform: translateX(-1px) translateY(-7.8px);
+            }
+            .top_line_right_user_userProfile {
+                width:75px;
+                display: inline-block;
+                border-right: 1px solid rgb(65, 65, 65,0.2);
+                height:25px;
+                transform: translateY(8px);
+            }
+            .top_line_right_user_userProfile:hover {
+                background-color: rgba(59,92,160);
+                cursor: pointer;
+            }
+            .top_line_right_home {
+                display: inline-block;
+                width:38px;
+                text-align: center;
+                border-right: 1px solid rgb(65, 65, 65,0.2);
+                height:25px;
+                transform: translateX(-5px) translateY(8px);
+            }
+            .top_line_right_home:hover {
+                background-color: rgba(59,92,160);
+                cursor: pointer;
+            }
+            .top_line_right_home_button {
+                display: inline-block;
+                color: white;
+                font-size: 12px;
+                font-weight: bolder;
+                transform: translateY(-7.8px);
+            }
+            .top_line_right_make {
+                display: inline-block;
+                width:59px;
+                text-align: center;
+                border-right: 1px solid rgb(65, 65, 65,0.2);
+                height:25px;
+                transform: translateX(-11px) translateY(8px);
+            }
+            .top_line_right_make:hover {
+                background-color: rgba(59,92,160);
+                cursor: pointer;
+            }
+            .top_line_right_make_button {
+                display: inline-block;
+                color: white;
+                font-size: 12px;
+                font-weight: bolder;
+                transform: translateY(-7.8px);
+            }
+            .top_line_right_side_icons {
+                display: inline-block;
+                width:115px;
+                border-right: 1px solid rgb(65, 65, 65,0.2);
+                height:25px;
+                transform: translateX(-15px) translateY(0px);
+            }
+            .top_line_right_side_icons_friend {
+                font-size: 19px;
+                transform: translateX(10px) translateY(3px);
+            }
+            .top_line_right_side_icons_messenger {
+                font-size: 20px;
+                transform: translateX(18px) translateY(3px);
+            }
+            .top_line_right_side_icons_bell {
+                font-size: 21px;
+                transform: translateX(28px) translateY(3px);
+            }
+            .top_line_right_last_right_question {
+                font-size: 20px;
+                transform: translateX(-10px) translateY(4px);
+            }
+            .top_line_right_last_right {
+                display: inline-block;
+            }
+            .top_line_right_last_right_menu {
+                font-size: 16px;
+                transform: translateX(5px) translateY(2px);
+            }
+            .left_nav {
+                position: fixed;
+                left:23%;
+                top:6%;
+                width:195px;
+                height:780px;
+            }
+            .left_nav_img {
+                width:20px;
+                border-radius: 100%;
+                transform: translateX(4px) translateY(-4px);
+            }
+            .left_nav_name {
+                display: inline-block;
+                font-size: 13px;
+                transform: translateX(4px) translateY(-10px);
+            }
+            #left_nav_user_menu {
+                color:rgb(148, 147, 147);
+                transform: translateX(93px) translateY(-8px);
+                font-size: 14px;
+                display: none;
+            }
+            .left_nav_user {
+                position: fixed;
+                height:30px;
+                width:186px;
+            }
+            .left_nav_user:hover {
+                background-color: rgba(245,246,247);
+                border:0.1px solid rgb(226, 225, 225);
+                cursor: pointer;
+            }
+            .left_nav_newspeed {
+                width:186px;
+                position: fixed;
+                height:30px;
+                transform: translateX(-1px) translateY(37px);
+                background-color: rgba(245,246,247);
+                border:0.1px solid rgb(226, 225, 225);
+            }
+            .left_nav_newspeed:hover {
+                cursor: pointer;
+            }
+            .left_nav_newspeed_icon {
+                color:rgb(1, 165, 255);
+                font-size: 20px;
+                transform: translateX(7px) translateY(-5px);
+            }
+            .left_nav_newspeed_p {
+                display: inline-block;
+                font-size: 13px;
+                font-weight: bolder;
+                transform: translateX(5px) translateY(-8px);
+            }
+            #left_nav_newspeed_menu {
+                color:rgb(148, 147, 147);
+                transform: translateX(80px) translateY(-8px);
+                font-size: 14px;
+            }
+            .left_nav_messenger {
+                width:186px;
+                position: fixed;
+                height:30px;
+                transform: translateX(-1px) translateY(66px);
+            }
+            .left_nav_messenger:hover {
+                background-color: rgba(245,246,247);
+                border:0.1px solid rgb(226, 225, 225);
+                cursor: pointer;
+            }
+            .left_nav_messenger_p {
+                display: inline-block;
+                font-size: 13px;
+                transform: translateX(4px) translateY(-10px);
+            }
+            .left_nav_messenger_icon {
+                color:rgb(1, 165, 255);
+                font-size: 21px;
+                transform: translateX(5px) translateY(-6px);
+            }
+            .left_nav_watch {
+                width:186px;
+                position: fixed;
+                height:30px;
+                transform: translateX(-1px) translateY(96px);
+            }
+            .left_nav_watch_p {
+                display: inline-block;
+                font-size: 13px;
+                transform: translateX(3px) translateY(-10px);
+            }
+            .left_nav_watch_icon {
+                color:rgb(1, 165, 255);
+                font-size: 20px;
+                transform: translateX(5px) translateY(-6px);
+            }
+            .left_nav_watch:hover {
+                background-color: rgba(245,246,247);
+                border:0.1px solid rgb(226, 225, 225);
+                cursor: pointer;
+            }
+            .mid_nav_top {
+                width:500px;
+                height:120px;
+                background-color: white;
+                transform: translateX(638px) translateY(56px);
+                border-top-right-radius: 5px;
+                border-top-left-radius: 5px;
+                border-bottom-right-radius: 5px;
+                border-bottom-left-radius: 5px;
+                border:0.5px solid rgb(218, 218, 218);
+            }
+            .mid_top_nav_img {
+                width:40px;
+                border-radius: 100%;
+                transform: translateX(11px) translateY(11px);
+            }
+            .mid_top_nav_img:hover {
+                cursor: pointer;
+            }
+            .mid_top_nav_input {
+                width:400px;
+                transform: translateX(17px) translateY(-4px);
+                border:none;
+                font-size: 14px;
+                height:60px;
+                outline: none;
+                z-index: 2;
+            }
+            .mid_top_nav_hr {
+                width:94.6%;
+                opacity: 0.2;
+                transform: translateY(-4px);
+            }
+            .mid_top_nav_pic {
+                background-color: rgba(245,246,247);
+                display: inline-block;
+                width:114px;
+                height:32px;
+                transform: translateX(10px) translateY(-5px);
+                border-top-right-radius: 50px;
+                border-bottom-right-radius: 50px;
+                border-top-left-radius: 50px;
+                border-bottom-left-radius: 50px;
+            }
+            .mid_top_nav_pic:hover {
+                background-color: rgba(235,237,240);
+                cursor: pointer;
+            }
+            .mid_top_nav_pic_icon {
+                color:rgb(255, 196, 0);
+                font-size: 20px;
+                transform: translateX(11px) translateY(0px);
+            }
+            .mid_top_nav_pic_p {
+                font-size: 11.5px;
+                font-weight: bold;
+                transform: translateX(10px) translateY(-3px);
+                display: inline-block;
+            }
+            .mid_top_nav_tagFriend {
+                background-color: rgba(245,246,247);
+                display: inline-block;
+                width:126px;
+                height:32px;
+                transform: translateX(10px) translateY(-5px);
+                border-top-right-radius: 50px;
+                border-bottom-right-radius: 50px;
+                border-top-left-radius: 50px;
+                border-bottom-left-radius: 50px;
+            }
+            .mid_top_nav_tagFriend:hover {
+                background-color: rgba(235,237,240);
+                cursor: pointer;
+            }
+            .mid_top_nav_tagFriend_p {
+                font-size: 11.5px;
+                font-weight: bold;
+                transform: translateX(8px) translateY(-4px);
+                letter-spacing: 0.5px;
+                display: inline-block;
+
+            }
+            .mid_top_nav_tagFriend_icon {
+                color:skyblue;
+                font-size: 18px;
+                transform: translateX(11px) translateY(0px);
+            }
+            .mid_top_nav_feel {
+                background-color: rgba(245,246,247);
+                display: inline-block;
+                width:102px;
+                height:32px;
+                transform: translateX(10px) translateY(-5px);
+                border-top-right-radius: 50px;
+                border-bottom-right-radius: 50px;
+                border-top-left-radius: 50px;
+                border-bottom-left-radius: 50px;
+            }
+            .mid_top_nav_feel:hover {
+                background-color: rgba(235,237,240);
+                cursor: pointer;
+            }
+            .mid_top_nav_feel_icon {
+                color:rgb(255, 196, 0);
+                font-size: 20px;
+                transform: translateX(11px) translateY(0px);
+            }
+            .mid_top_nav_feel_p {
+                font-size: 11.5px;
+                font-weight: bold;
+                transform: translateX(8px) translateY(-4px);
+                letter-spacing: 0.5px;
+                display: inline-block;
+            }
+            .mid_top_nav_more {
+                background-color: rgba(245,246,247);
+                display: inline-block;
+                width:45px;
+                height:32px;
+                transform: translateX(10px) translateY(-12px);
+                border-top-right-radius: 50px;
+                border-bottom-right-radius: 50px;
+                border-top-left-radius: 50px;
+                border-bottom-left-radius: 50px;
+                text-align: center;
+            }
+            .mid_top_nav_more:hover {
+                background-color: rgba(235,237,240);
+                cursor: pointer;
+            }
+            .mid_top_nav_more_menu {
+                font-size: 16px;
+                font-weight: bold;
+                transform: translateX(0.5px) translateY(5px);
+                letter-spacing: 0.5px;
+                display: inline-block;
+                color: rgb(158, 158, 158);
+            }
+            .mid_nav_story {
+                width:500px;
+                height:254px;
+                background-color: white;
+                transform: translateX(638px) translateY(66px);
+                border-top-right-radius: 5px;
+                border-top-left-radius: 5px;
+                border-bottom-right-radius: 5px;
+                border-bottom-left-radius: 5px;
+                border:0.5px solid rgb(218, 218, 218);
+            }
+            .mid_nav_title {
+                display: inline-block;
+                font-size: 13px;
+                color:rgb(0, 0, 61);
+                transform: translateX(11px) translateY(7px);
+                font-weight: bold;
+                padding:0;
+                margin:0;
+            }
+            .mid_nav_title:hover {
+                border-bottom:0.1px solid black ;
+                cursor: pointer;
+            }
+            .mid_nav_all {
+                display: inline-block;
+                font-size: 12px;
+                color: rgb(1, 59, 82);
+                transform: translateX(390px) translateY(7px);
+                padding:0;
+                margin:0;
+                letter-spacing: 0px;
+            }
+            .mid_nav_all:hover {
+                border-bottom:0.1px solid rgb(1, 59, 82);
+                cursor: pointer;
+            }
+            .mid_nav_story_firstStory {
+                width:115px;
+                height:200px;
+                transform: translateX(10px) translateY(20px);
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                border-bottom-left-radius: 10px;
+                border-bottom-right-radius: 10px;
+                background-size: cover;
+                background-position: center center;
+                z-index: 0;
+                overflow: hidden;
+            }
+            .mid_nav_story_firstStory_gradient {
+                width:115px;
+                height:100px;
+                transform: translateX(0px) translateY(-105px);
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                border-bottom-left-radius: 10px;
+                border-bottom-right-radius: 10px;
+                z-index: 1;
+                background:linear-gradient(to top,black,rgb(255, 255, 255));
+                opacity: 0.2;
+                display: inline-block;
+            }
+            .mid_nav_story_firstStory_name {
+                color:white;
+                font-size: 13px;
+                transform: translateY(0px);
+                font-weight: bolder;
+                display: inline-block;
+                z-index: 2;
+                transform: translateX(8px) translateY(-198px);
+            }
+            .mid_nav_story_firstStory_image {
+                background-image: url('images/profile_man.jpg');
+                background-size: cover;
+                background-position: center center;
+                width:115px;
+                height:200px;
+                display: inline-block;
+                z-index:1;
+                transform: scale(1);
+                transition: all 0.2s;
+            }
+            .mid_nav_story_firstStory_more {
+                width:39px;
+                height:39px;
+                display: inline-block;
+                background-color: rgb(245, 246, 247);
+                z-index: 3;
+                transform: translateY(-300px) translateX(8px);
+                border-radius: 100%;
+                text-align: center;
+                line-height: 1px;
+                border: 0.5px solid rgb(218, 218, 218);
+            }
+            .mid_nav_story_firstStory_more_plus {
+                color:rgb(0, 132, 255);
+                z-index: 4;
+                font-size: 33px;
+                transform: translateX(1px) translateY(-17px);
+                display: inline-block;
+            }
+            .darkness {
+                background-color: black;
+                width:115px;
+                height:200px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                border-bottom-left-radius: 10px;
+                border-bottom-right-radius: 10px;
+                transform: translateY(-403px);
+                opacity: 0;
+                transition: all 0.5s;
+            }
+            .mid_nav_desc {
+                width:500px;
+                height: auto;
+                background-color: white;
+                /* transform: translateX(638px) translateY(76px); */
+                transform: translateX(638px);
+                border-top-right-radius: 5px;
+                border-top-left-radius: 5px;
+                border-bottom-right-radius: 5px;
+                border-bottom-left-radius: 5px;
+                border:0.5px solid rgb(218, 218, 218);
+            }
+            .body_black {
+                position: fixed;
+                left:0%;
+                width:100%;
+                height:100vh;
+                top:0%;
+                background-color: black;
+                opacity: 0.6;
+                z-index: 1;
+                display: none;
+            }
+            .posting {
+                position: fixed;
+                z-index: 2;
+                width:500px;
+                height:310px;
+                left:33.25%;
+                top:6%;
+                display: none;
+                background-color: white;
+                border-top-right-radius: 5px;
+                border-top-left-radius: 5px;
+                border-bottom-right-radius: 5px;
+                border-bottom-left-radius: 5px;
+                border:0.5px solid rgb(218, 218, 218);
+            }
+            .posting_input_think {
+                width:390px;
+                outline: none;
+                border: none;
+                font-size: 26.5px;
+                transform: translateX(15px) translateY(13px);
+                overflow: hidden;
+                resize: none;
+            }
+            .posting_input_think::placeholder {
+                color: rgb(207, 207, 207);
+                font-weight: 500;
+                letter-spacing: -3px;
+                word-spacing: -5px;
+                line-height: 25px;
+            }
+            .posting_input_img {
+                width:40px;
+                border-radius: 100%;
+                transform: translateX(11px) translateY(-15px);
+            }
+            .posting_input_img:hover {
+                cursor: pointer;
+            }
+            .posting_input_backcolor {
+                background-color: rgba(245,246,247);
+                display: inline-block;
+                width:108px;
+                height:36px;
+                transform: translateX(11px) translateY(-5px);
+                border-top-right-radius: 50px;
+                border-bottom-right-radius: 50px;
+                border-top-left-radius: 50px;
+                border-bottom-left-radius: 50px;
+            }
+            .posting_input_backcolor:hover {
+                cursor: pointer;
+            }
+            .posting_input_backcolor_icon {
+                color:rgb(255, 196, 0);
+                font-size: 20px;
+                transform: translateX(11px) translateY(0px);
+            }
+            .posting_input_backcolor_p {
+                font-size: 12px;
+                font-weight: 600;
+                transform: translateX(12px) translateY(-3px);
+                letter-spacing: -0.5px;
+                display: inline-block;
+            }
+            .posting_smile_icon {
+                font-size: 24px;
+                float: right;
+                transform: translateX(-8px) translateY(-3px);
+            }
+            .posting_close {
+                float: right;
+                font-size: 20px;
+                color: rgb(187, 187, 187);
+                transform: translateX(-10px) translateY(5px);
+            }
+            .posting_close:hover {
+                cursor: pointer;
+            }
+            .posting_line {
+                opacity: 0.2;
+                width:94.5%;
+                transform: translateX(0px) translateY(-8px);
+            }
+            .posting_mid_contents {
+                transform: translateX(1px) translateY(-4px);
+            }
+            .posting_bottom_line {
+                opacity:0.2;
+                transform: translateY(-16px);
+            }
+            .posting_bottom {
+                transform: translateX(-1px) translateY(-24.5px);
+                background-color: rgba(245,246,247);
+                width:501px;
+                height:153px;
+                border-bottom-left-radius: 5px;
+                border-bottom-right-radius: 5px;
+                text-align: center;
+            }
+            .posting_bottom_newspeed {
+                width:490px;
+                height:52px;
+                transform: translateX(6px) translateY(6px);
+            }
+            .posting_bottom_newspeed:hover {
+                background-color: rgba(235,237,240);
+                cursor: pointer;
+            }
+            .posting_bottom_newspeed_checkbox {
+                display: none;
+            }
+            .circle_no_check {
+                width:16px;
+                border-radius: 100%;
+                height:16px;
+                border:2px solid rgb(99, 99, 99);
+                transform: translateX(7px) translateY(8px);
+                display: inline-block;
+            }
+            .circle_check {
+                width:20px;
+                border-radius: 100%;
+                height:20px;
+                background-color: rgba(66,103,178);
+                transform: translateX(7px) translateY(8px);
+                display: inline-block;
+            }
+            .checking {
+                display: none;
+                width:10px;
+                height:4px;
+                border: solid white;
+                border-width: 0px 0px 2px 2px;
+                transform: rotate(-45deg) translateX(-2px) translateY(7px);
+            }
+            .posting_bottom_newspeed_icon_box {
+                width:36px;
+                height:36px;
+                border-radius: 100%;
+                transform: translateX(9px) translateY(-3px);
+                background-color: white;
+                border:1px solid rgb(218, 217, 217);
+                display: inline-block;
+                text-align: center;
+            }
+            .posting_bottom_newspeed_icon {
+                color:skyblue;
+                font-size: 15px;
+                transform: translateY(5px);
+            }
+            .posting_bottom_newspeed_p {
+                display: inline-block;
+                font-size: 13px;
+                font-weight: bold;
+                transform: translateX(11px) translateY(1px);
+            }
+            .posting_bottom_newspeed_public {
+                width:102px;
+                height:22.8px;
+                float:right;
+                transform: translateX(-13px) translateY(-34px);
+                border:0.5px solid rgb(189, 189, 189);
+                color: rgb(82, 82, 82);
+            }
+            .posting_bottom_newspeed_public:hover {
+                background-color: rgba(235,237,240);
+            }
+            .posting_bottom_newspeed_public_icon {
+                font-size: 14px;
+            }
+            .posting_bottom_newspeed_public_p {
+                display: inline-block;
+                font-size: 12px;
+                font-weight: bold;
+            }
+            .posting_bottom_newspeed_public_div {
+                transform: translateX(0px) translateY(-10px);
+            }
+            .circle_no_check2 {
+                width:16px;
+                border-radius: 100%;
+                height:16px;
+                border:2px solid rgb(99, 99, 99);
+                transform: translateX(7px) translateY(7px);
+                display: inline-block;
+            }
+            #posting {
+                transform: translateX(-2.5px);
+            }
+            #displaying_checkbox2 {
+                transform: translateX(7px) translateY(-54px);
+            }
+            .posting_bottom_newspeed_icon_box_plus {
+                width:18px;
+                height:18px;
+                background-color: rgba(66,103,178);
+                display: inline-block;
+                border-radius: 100%;
+                transform: translateX(12px) translateY(-23.5px);
+                border:1px solid white;
+                text-align: center;
+            }
+            .posting_bottom_newspeed_icon_box_plus_p {
+                display: inline-block;
+                color:white;
+                font-size: 20px;
+                transform: translateX(0px) translateY(-27px);
+                font-weight: bold;
+            }
+            #mystory_icon_box {
+                transform:translateX(10px) translateY(5px);
+            }
+            #mystory_p {
+                transform: translateX(10px) translateY(-60px);
+            }
+            .posting_admit {
+                width:95%;
+                background-color: rgba(156,180,216);
+                transform: translateX(12px) translateY(-2px);
+                height: 28px;
+                border-top-left-radius: 2px;
+                border-top-right-radius: 2px;
+                border-bottom-left-radius: 2px;
+                border-bottom-right-radius: 2px;
+                transition: all 0.1s;
+            }
+            .posting_admit_p {
+                color: white;
+                font-size: 12px;
+                font-weight: bold;
+                transform: translateY(4.5px);
+            }
+            .newspeed_left {
+                transform: translateX(-184px);
+            }
+            #mystory_left {
+                transform: translateX(-129px);
+            }
+            #mystory_public {
+                transform: translateX(-13px) translateY(-94px);
+            }
+            form {
+                display: inline-block;
+                padding: 0;
+                margin:0;
+            }
+            #faceclone_user_name {
+                display: none;
+            }
+            .mid_nav_desc_profile {
+                width:35px;
+                height:35px;
+                border-radius: 100%;
+                background-color: black;
+                margin-left: 13px;
+                margin-top: 13px;
+                display: inline-block;
+            }
+            .mid_nav_desc_name {
+                display: inline-block;
+                color: rgba(66,103,178);
+                font-weight: bold;
+                font-size: 14px;
+                margin:0;
+                transform: translateX(6px) translateY(-21px);
+            }
+            .mid_nav_desc_time {
+                color: gray;
+                font-size: 11px;
+                display: inline-block;
+                transform: translateX(-40px) translateY(-3px);
+            }
+            .mid_nav_desc_option {
+                float:right;
+                font-size: 15px;
+                color: gray;
+                transform: translateX(-10px) translateY(11px);
+            }
+            .mid_nav_desc_description {
+                margin-left: 15px;
+                margin-top: 0;
+            }
+            .mid_nav_desc_feeling {
+                width:100%;
+                height:auto;
+            }
+            .mid_nav_desc_feeling_thumbup {
+                background-color: rgb(79, 145, 245);
+                width:20px;
+                height:20px;
+                color: white;
+                border-radius: 100%;
+                text-align: center;
+                margin-left: 16px;
+            }
+            .mid_nav_desc_feeling_thumb_count {
+                display: inline-block;
+                font-size: 12px;
+            }
+            .mid_nav_desc_feeling_comment {
+                font-size: 13px;
+                color: gray;
+                float: right;
+                margin-right: 15px;
+                transform: translateY(0px);
+            }
+            .mid_nav_desc_feeling_comment:hover {
+                cursor: pointer;
+            }
+            .mid_nav_desc_comment_line {
+                width: 95%;
+                color: rgb(182, 181, 181);
+                opacity: 0.3;
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+            .mid_nav_desc_good {
+                display: inline-block;
+                margin-left: 12px;
+                transform: translateY(-1px);
+                width:152px;
+                height:32px;
+                text-align: center;
+            }
+            .mid_nav_desc_write_comment {
+                display: inline-block;
+                transform: translateY(-5px);
+                margin-left: 5px;
+                width:152px;
+                height:32px;
+                text-align: center;
+            }
+            .mid_nav_desc_share {
+                display: inline-block;
+                margin-left: 5px;
+                width:152px;
+                height:32px;
+                text-align: center;
+                transform: translateY(-5px);
+            }
+            .mid_nav_desc_good:hover,.mid_nav_desc_write_comment:hover,.mid_nav_desc_share:hover {
+                background-color: rgba(242,242,242);
+            }
+            .mid_nav_desc_good_icon {
+                color: gray;
+                font-size: 18px;
+                /* margin-top: 3px; */
+            }
+            .mid_nav_desc_comment_icon {
+                color: gray;
+                font-size: 18px;
+                transform: translateY(6px);
+            }
+            .mid_nav_desc_good_p {
+                display: inline-block;
+                margin:0;
+                font-size: 14px;
+                font-weight: bold;
+                margin-top: 6px;
+            }
+            .mid_nav_desc_comment_p {
+                display: inline-block;
+                margin:0;
+                font-size: 14px;
+                font-weight: bold;
+                transform: translateY(4px);
+            }
+            .mid_nav_desc_share_icon {
+                color: gray;
+                font-size: 18px;
+                transform: translateY(6px);
+            }
+            .mid_nav_desc_share_p {
+                display: inline-block;
+                margin:0;
+                font-size: 14px;
+                font-weight: bold;
+                transform: translateY(4px);
+            }
+            .mid_nav_start_comment {
+                opacity: 0.3;
+            }
+            .no_space {
+                width:100%;
+                height:75px;
+            }
+            .small_space {
+                width:100%;
+                height:8px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="body_black"></div>
+    <div class="top_line">
+        <div class="top_line_left">
+            <img class="top_line_left_logo" src="/images/facebook.png" alt="">
+            <div class="top_line_left_search">
+                <input placeholder="검색" style="outline: none;" class="top_line_left_recent_search" type="text">
+                <button class="top_line_left_search_button"><img class="top_line_left_search_image" src="/images/facebook_search.webp" alt="searching"></button>
+            </div>
+        </div>
+        <div class="top_line_right">
+            <div class="top_line_right_user">
+                <div class="top_line_right_user_userProfile">
+                    <% if(user[0].gender === 'man') { %>
+                        <img class="top_line_right_user_userProfile_image" src="/images/profile_man.jpg" alt="Who is">
+                    <% } else { %>
+                        <img class="top_line_right_user_userProfile_image" src="/images/profile_woman.jpg" alt="Who is">
+                    <% } %>
+                    <p class="top_line_right_user_userProfile_username"><%= user[0].first_name %><%= user[0].last_name %></p>
+                </div>
+                <div class="top_line_right_home">
+                    <p class="top_line_right_home_button">홈</p>
+                </div>
+                <div class="top_line_right_make">
+                    <p class="top_line_right_make_button">만들기</p>
+                </div>
+                <div class="top_line_right_side_icons">
+                    <i id="top_line_friend" class="fas fa-user-friends top_line_right_side_icons_friend"></i>
+                    <i id="top_line_messenger" class="fab fa-facebook-messenger top_line_right_side_icons_messenger"></i>
+                    <i id="top_line_bell" class="fas fa-bell top_line_right_side_icons_bell"></i>
+                </div>
+                <div class="top_line_right_last_right">
+                    <i id="top_line_question" class="fas fa-question-circle top_line_right_last_right_question"></i>
+                    <i id="top_line_menu" class="fas fa-caret-down top_line_right_last_right_menu"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <article>
+        <nav class="left_nav">
+            <div class="left_nav_user">
+                <% if(user[0].gender === 'man') { %>
+                    <img class="left_nav_img" src="/images/profile_man.jpg" alt="Who is">
+                <% } else { %>
+                    <img class="left_nav_img" src="/images/profile_woman.jpg" alt="Who is">
+                <% } %>
+                <p class="left_nav_name"><%= user[0].first_name %><%= user[0].last_name %></p>
+                <i id="left_nav_user_menu" class="left_nav_menu fas fa-ellipsis-h"></i>
+            </div>
+            <div class="left_nav_newspeed">
+                <i class="left_nav_newspeed_icon fas fa-image"></i>
+                <p class="left_nav_newspeed_p">뉴스피드</p>
+                <i id="left_nav_newspeed_menu" class="left_nav_menu fas fa-ellipsis-h"></i>
+            </div>
+            <div class="left_nav_messenger">
+                <i class="left_nav_messenger_icon fab fa-facebook-messenger"></i>
+                <p class="left_nav_messenger_p">Messenger</p>
+            </div>
+            <div class="left_nav_watch">
+                <i class="left_nav_watch_icon fas fa-desktop"></i>
+                <p class="left_nav_watch_p">Watch</p>
+            </div>
+        </nav>
+        <nav class="mid_nav_top">
+            <% if(user[0].gender === 'man') { %>
+                <img class="mid_top_nav_img" src="/images/profile_man.jpg" alt="Who is">
+            <% } else { %>
+                <img class="mid_top_nav_img" src="/images/profile_woman.jpg" alt="Who is">
+            <% } %>
+            <input class="mid_top_nav_input" type="text" placeholder="<%= user[0].first_name %><%= user[0].last_name %>님, 무슨 생각을 하고 계신가요?">
+            <hr class="mid_top_nav_hr">
+            <div class="mid_top_nav_pic">
+                <i class="mid_top_nav_pic_icon fas fa-image"></i>
+                <p class="mid_top_nav_pic_p">사진/동영상</p>
+            </div>
+            <div class="mid_top_nav_tagFriend">
+                <i class="mid_top_nav_tagFriend_icon fas fa-user-tag"></i>
+                <p class="mid_top_nav_tagFriend_p">친구 태그하기</p>
+            </div>
+            <div class="mid_top_nav_feel">
+                <i class="mid_top_nav_feel_icon far fa-laugh"></i>
+                <p class="mid_top_nav_feel_p">기분/활동</p>
+            </div>
+            <div class="mid_top_nav_more">
+                <i id="mid_top_nav_more_menu" class="mid_top_nav_more_menu fas fa-ellipsis-h"></i>
+            </div>
+        </nav>
+        
+        <div class="posting">
+            <form id="user_post" method="POST" action="/posting">
+                <input id="faceclone_user_name" type="text" name="faceclone_user_name" value="<%= user[0].first_name %><%= user[0].last_name %>"/>
+            <% if(user[0].gender === 'man') { %>
+                <img class="posting_input_img" src="/images/profile_man.jpg" alt="Who is">
+            <% } else { %>
+                <img class="posting_input_img" src="/images/profile_woman.jpg" alt="Who is">
+            <% } %>
+                <textarea name="desc" id="user_posting" class="posting_input_think" type="text" placeholder="<%= user[0].first_name %><%= user[0].last_name %>님, 무슨 생각을 하고 계신가요?"></textarea>
+                <i class="posting_close fas fa-times"></i>
+                <div class="posting_input_backcolor">
+                    <i class="posting_input_backcolor_icon fas fa-palette"></i>
+                    <p class="posting_input_backcolor_p">배경 색상 ></p>
+                </div>
+                <i class="posting_smile_icon far fa-smile"></i>
+                <hr class="posting_line">
+                <div class="posting_mid_contents">
+                    <div class="mid_top_nav_pic">
+                        <i class="mid_top_nav_pic_icon fas fa-image"></i>
+                        <p class="mid_top_nav_pic_p">사진/동영상</p>
+                    </div>
+                    <div class="mid_top_nav_tagFriend">
+                        <i class="mid_top_nav_tagFriend_icon fas fa-user-tag"></i>
+                        <p class="mid_top_nav_tagFriend_p">친구 태그하기</p>
+                    </div>
+                    <div class="mid_top_nav_feel">
+                        <i class="mid_top_nav_feel_icon far fa-laugh"></i>
+                        <p class="mid_top_nav_feel_p">기분/활동</p>
+                    </div>
+                    <div class="mid_top_nav_more">
+                        <i id="mid_top_nav_more_menu" class="mid_top_nav_more_menu fas fa-ellipsis-h"></i>
+                    </div>
+                </div>
+                <hr class="posting_bottom_line">
+                <div class="posting_bottom">
+                    <div class="posting_bottom_newspeed">
+                        <div class="newspeed_left">
+                            <div id="displaying_checkbox" class="circle_no_check">
+                                <div class="checking"></div>
+                            </div>
+                            <input id="newspeed_checkbox" class="posting_bottom_newspeed_checkbox" type="checkbox">
+                            <div class="posting_bottom_newspeed_icon_box">
+                                <i class="posting_bottom_newspeed_icon fas fa-image"></i>
+                            </div>
+                            <p class="posting_bottom_newspeed_p">뉴스피드</p>
+                        </div>
+                        <div class="posting_bottom_newspeed_public">
+                            <div class="posting_bottom_newspeed_public_div">
+                                <i class="posting_bottom_newspeed_public_icon fas fa-lock"></i>
+                                <p class="posting_bottom_newspeed_public_p">나만 보기</p>
+                                <i class="posting_bottom_newspeed_public_icon fas fa-caret-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="posting_bottom_newspeed">
+                        <div id="mystory_left" class="newspeed_left">
+                            <div id="displaying_checkbox2" class="circle_no_check">
+                                <div class="checking"></div>
+                            </div>
+                            <input id="newspeed_checkbox" class="posting_bottom_newspeed_checkbox" type="checkbox">
+                            <div id="mystory_icon_box" class="posting_bottom_newspeed_icon_box">
+                                <% if(user[0].gender === 'man') { %>
+                                    <img id="posting" class="posting_input_img" src="/images/profile_man.jpg" alt="Who is">
+                                <% } else { %>
+                                    <img id="posting" class="posting_input_img" src="/images/profile_woman.jpg" alt="Who is">
+                                <% } %>
+                                <div class="posting_bottom_newspeed_icon_box_plus">
+                                    <p class="posting_bottom_newspeed_icon_box_plus_p">+</p>
+                                </div>
+                            </div>
+                            <p id="mystory_p" class="posting_bottom_newspeed_p">내 스토리</p>
+                        </div>
+                        <div id="mystory_public" class="posting_bottom_newspeed_public">
+                            <div class="posting_bottom_newspeed_public_div">
+                                <i class="posting_bottom_newspeed_public_icon fas fa-lock"></i>
+                                <p class="posting_bottom_newspeed_public_p">나만 보기</p>
+                                <i class="posting_bottom_newspeed_public_icon fas fa-caret-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="posting_admit">
+                        <p class="posting_admit_p">게시</p>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <nav class="mid_nav_story">
+            <p class="mid_nav_title">스토리</p>
+            <p class="mid_nav_all">모두 보기</p>
+            <div id="first_story" class="mid_nav_story_firstStory">
+                <div class="mid_nav_story_firstStory_image" ></div>
+                <div class="mid_nav_story_firstStory_gradient"></div>
+                <div class="mid_nav_story_firstStory_more">
+                    <p class="mid_nav_story_firstStory_more_plus">+</p>
+                </div>
+                <p class="mid_nav_story_firstStory_name">스토리에 추가</p>
+                <div class="darkness"></div>
+            </div>
+        </nav>
+            <div class="no_space"></div>
+        <% for(let i = 0 ; i < post.length; i++) { %>
+            <nav class="mid_nav_desc">
+                <div class="mid_nav_desc_profile">
+    
+                </div>
+                <p class="mid_nav_desc_name"><%= post[i].user_name %></p>
+                <% var now_date = new Date(); %>
+                <% if(now_date.getFullYear() > new Date(post[i].date).getFullYear()) { %>
+                    <p class="mid_nav_desc_time"><%= now_date.getFullYear() - new Date(post[i].date).getFullYear() %>년</p>
+                <% } else if(now_date.getMonth() > new Date(post[i].date).getMonth()) {%>
+                    <p class="mid_nav_desc_time"><%= now_date.getMonth() - new Date(post[i].date).getMonth() %>달</p>
+                <% } else if(now_date.getDate() > new Date(post[i].date).getDate()) {%>
+                    <p class="mid_nav_desc_time"><%= now_date.getDate() - new Date(post[i].date).getDate() %>일</p>
+                <% } else if(now_date.getHours() > new Date(post[i].date).getHours()) {%>
+                    <p class="mid_nav_desc_time"><%= now_date.getHours() - new Date(post[i].date).getHours() %>시간</p>
+                <% } else if(now_date.getMinutes() > new Date(post[i].date).getMinutes()) { %>
+                    <p class="mid_nav_desc_time"><%= now_date.getMinutes() - new Date(post[i].date).getMinutes() %>분</p>
+                <% } else {%>
+                    <p class="mid_nav_desc_time">방금 전</p>
+                <% } %>
+                <i class="mid_nav_desc_option fas fa-ellipsis-h"></i>
+                <p class="mid_nav_desc_description"><%= post[i].description %></p>
+                <div class="mid_nav_desc_feeling">
+                    <i class="mid_nav_desc_feeling_thumbup far fa-thumbs-up"></i>
+                    <p class="mid_nav_desc_feeling_thumb_count"><%= post[i].like %></p>
+                    <% var com_count = []; %>
+                    <% for(let j = 0 ; j < comment.length ; j ++) { %>
+                        <% if(comment[j].post_id === post[i].id) { %>
+                            <% com_count.push(comment[j].user_comment)%>
+                        <% }%>
+                    <% } %>
+                    <p class="mid_nav_desc_feeling_comment">댓글 <%= com_count.length %>개</p>
+                </div>
+                <hr class="mid_nav_desc_comment_line">
+                <div class="mid_nav_desc_good">
+                    <i class="mid_nav_desc_good_icon far fa-thumbs-up"></i>
+                    <p class="mid_nav_desc_good_p">좋아요</p>
+                </div>
+                <div class="mid_nav_desc_write_comment">
+                    <i class="mid_nav_desc_comment_icon far fa-comment-alt"></i>
+                    <p class="mid_nav_desc_comment_p">댓글</p>
+                </div>
+                <div class="mid_nav_desc_share">
+                    <i class="mid_nav_desc_share_icon fas fa-share"></i>
+                    <p class="mid_nav_desc_share_p">공유하기</p>
+                </div>
+                <hr class="mid_nav_start_comment">
+            </nav>
+            <div class="small_space"></div>
+            <% com_count = []; %>
+        <% } %>
+    </article>
+    <script>
+        var top_line_friend = document.getElementById('top_line_friend');
+        var top_line_messenger = document.getElementById('top_line_messenger');
+        var top_line_bell = document.getElementById('top_line_bell');
+        var top_line_question = document.getElementById('top_line_question');
+        var top_line_menu = document.getElementById('top_line_menu');
+        var left_nav_user = document.getElementsByClassName('left_nav_user')[0];
+        var left_nav_user_menu = document.getElementById('left_nav_user_menu');
+        const first_story = document.getElementById('first_story');
+        const darkness = document.getElementsByClassName('darkness')[0];
+        const mid_nav_story_firstStory_image = document.getElementsByClassName('mid_nav_story_firstStory_image')[0];
+        const mid_top_nav_input = document.getElementsByClassName('mid_top_nav_input')[0];
+        const body_black = document.getElementsByClassName('body_black')[0];
+        const posting = document.getElementsByClassName('posting')[0];
+        const posting_bottom_newspeed = document.getElementsByClassName('posting_bottom_newspeed')[0];
+        const posting_bottom_mystory = document.getElementsByClassName('posting_bottom_newspeed')[1];
+        const displaying_checkbox = document.getElementById('displaying_checkbox');
+        const displaying_checkbox2 = document.getElementById('displaying_checkbox2');
+        const checking = document.getElementsByClassName('checking')[0];
+        const checking2 = document.getElementsByClassName('checking')[1];
+        const user_posting = document.getElementById('user_posting');
+        const posting_admit = document.getElementsByClassName('posting_admit')[0];
+        const user_post = document.getElementById('user_post');
+        const mid_nav_story = document.getElementsByClassName('mid_nav_story')[0];
+        const mid_nav_desc = document.getElementsByClassName('mid_nav_desc')[0];
+        let time_now = new Date();
+        const post1_date = new Date(`<%= post[1].date %>`);
+        let comments = document.getElementsByClassName('mid_nav_desc_feeling_comment');
+
+        for(let i = 0 ; i < comments.length ; i ++) {
+            comments[i].addEventListener('click',() => {
+                alert('clicked!');
+            })
+        }
+
+
+        posting_admit.addEventListener('click',() => {
+            user_post.submit();
+        })
+
+        user_posting.addEventListener('keyup',(e) => {
+            if(e.target.value.length !== 0) {
+                posting_admit.style.backgroundColor= 'rgba(57,92,159)';
+            } else {
+                posting_admit.style.backgroundColor= 'rgba(156,180,216)';
+            }
+        });
+
+        posting_bottom_newspeed.addEventListener('click',() => {
+            if(displaying_checkbox.className === 'circle_no_check') {
+                displaying_checkbox.className = 'circle_check';
+                checking.style.display = 'block';
+            } else {
+                displaying_checkbox.className = 'circle_no_check';
+                checking.style.display = 'none';
+            }
+        });
+
+        posting_bottom_mystory.addEventListener('click',() => {
+            if(displaying_checkbox2.className === 'circle_no_check') {
+                displaying_checkbox2.className = 'circle_check';
+                checking2.style.display = 'block';
+            } else {
+                displaying_checkbox2.className = 'circle_no_check';
+                checking2.style.display = 'none';
+            }
+        });
+
+
+        top_line_friend.addEventListener('click',() => {
+            top_line_friend.style.color= 'white';
+        });
+        top_line_messenger.addEventListener('click',() => {
+            top_line_messenger.style.color= 'white';
+        });
+        top_line_bell.addEventListener('click',() => {
+            top_line_bell.style.color= 'white';
+        });
+        top_line_question.addEventListener('click',() => {
+            top_line_question.style.color= 'white';
+        });
+        top_line_menu.addEventListener('click',() => {
+            top_line_menu.style.color= 'white';
+        });
+        left_nav_user.addEventListener('mouseover',() => {
+            left_nav_user_menu.style.display='inline-block';
+        })
+        left_nav_user.addEventListener('mouseout',() => {
+            left_nav_user_menu.style.display='none';
+        })
+        first_story.addEventListener('mouseover',() => {
+            darkness.style.opacity = '0.1';
+            mid_nav_story_firstStory_image.style.transform = 'scale(1.05)';
+        });
+        first_story.addEventListener('mouseout',() => {
+            darkness.style.opacity = '0';
+            mid_nav_story_firstStory_image.style.transform = 'scale(1)';
+        });
+        mid_top_nav_input.addEventListener('click',() => {
+            body_black.style.display = 'block';
+            posting.style.display = 'block';
+            mid_nav_story.style.transform = 'translateX(638px) translateY(255px)';
+            mid_nav_desc.style.transform = 'translateX(638px) translateY(265px)';
+        });
+        body_black.addEventListener('click',() => {
+            body_black.style.display = 'none';
+            posting.style.display = 'none';
+            mid_nav_story.style.transform = 'translateX(638px) translateY(66px)';
+            mid_nav_desc.style.transform = 'translateX(638px) translateY(76px)';
+        })
+    </script>
+</body>
+</html>
