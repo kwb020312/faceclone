@@ -1,2 +1,2 @@
 # faceclone
-<img src="/public/images/home.jpg">
+<img src="/images/home.jpg">
