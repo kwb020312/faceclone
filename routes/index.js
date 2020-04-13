@@ -37,8 +37,8 @@ router.post('/login',(req,res) => {
                 return;
               }
             });
-            res.render('home',{user:rows,post:row1,comment:row2});
-          } else {
+          
+            res.render('home',{user:rows,post:row1,comment:row2});} else {
             res.render('location');
           }
         } else {
