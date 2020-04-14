@@ -916,6 +916,8 @@
             }
             .mid_nav_start_comment {
                 opacity: 0.3;
+                margin:0;
+                transform: translateY(-5px);
             }
             .no_space {
                 width:100%;
@@ -924,6 +926,124 @@
             .small_space {
                 width:100%;
                 height:8px;
+            }
+            .mid_nav_comment_box {
+                width:100%;
+                height:auto;
+            }
+            .mid_nav_desc_blank {
+                width:100%;
+                height:4px;
+            }
+            .mid_nav_comment_profile {
+                width:35px;
+                height:35px;
+                border-radius: 100%;
+                background-color: black;
+                margin-left: 13px;
+                display: inline-block;
+            }
+            .mid_nav_comment_chatbox {
+                width:auto;
+                height:auto;
+                background-color: rgba(242,243,245);
+                display: inline-block;
+                border-top-left-radius: 20px;
+                border-top-right-radius: 20px;
+                border-bottom-left-radius: 20px;
+                border-bottom-right-radius: 20px;
+                font-size: 13px;
+                padding:8px 10px;
+                transform: translateY(-12px);
+            }
+            .mid_nav_comment_chat {
+                margin:0;
+            }
+            .right {
+                width:308px;
+                height:770px;
+                position: fixed;
+                z-index: 10;
+                right:23.45%;
+                top:5.9%;
+            }
+            .right_birthbox {
+                width:285px;
+                height:18px;
+                background-color: #ffffff;
+                padding: 12px;
+                border-radius: 3px;
+                border:0.5px solid rgb(218, 218, 218);
+            }
+            .right_birthbox_icon {
+                color: rgb(224, 75, 16);
+                font-size: 15px;
+            }
+            .right_birthbox_iconbox {
+                display: inline-block;
+                transform: translateX(4px) translateY(-10px);
+            }
+            .right_birthbox_today {
+                display: inline-block;
+                color: #90949C;
+                font-size: 13px;
+                transform: translateX(3px) translateY(-10px);
+                word-spacing: -1px;
+            }
+            .right_birthbox_hover {
+                height:25px;
+                transform:translateX(-3px) translateY(-4px);
+                width:292px;
+            }
+            .right_birthbox_hover:hover {
+                background-color: rgba(245,246,247);
+                cursor: pointer;
+            }
+            .right_adbox {
+                width:285px;
+                height:auto;
+                background-color: #ffffff;
+                padding: 12px;
+                border-radius: 3px;
+                border:0.5px solid rgb(218, 218, 218);
+            }
+            .blank_box {
+                width: 100%;
+                height:12px;
+            }
+            .right_adbox_spone {
+                color:#616770;
+                font-size:13px;
+                text-decoration: none;
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: bold;
+            }
+            .right_adbox_sponebox {
+                display: inline-block;
+                transform: translateY(-6px);
+            }
+            .right_adbox_makeAD {
+                color: #4267B2;
+                text-decoration: none;
+                font-size: 13px;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            .right_adbox_makeADbox {
+                float: right;
+                transform: translateY(-7px);
+                margin-right: 1px;
+            }
+            .right_adbox_ADimgbox {
+                width:100%;
+                height:153px;
+            }
+            .right_adbox_startad_blank {
+                padding-bottom: 5px;
+            }
+            .right_adbox_ADimg {
+                background-size: cover;
+                width:100%;
+                height:148px;
             }
         }
 
@@ -1152,6 +1272,9 @@
                     <p class="mid_nav_desc_feeling_comment">댓글 <%= com_count.length %>개</p>
                 </div>
                 <hr class="mid_nav_desc_comment_line">
+                <div class="mid_nav_desc_blank">
+
+                </div>
                 <div class="mid_nav_desc_good">
                     <i class="mid_nav_desc_good_icon far fa-thumbs-up"></i>
                     <p class="mid_nav_desc_good_p">좋아요</p>
@@ -1164,11 +1287,45 @@
                     <i class="mid_nav_desc_share_icon fas fa-share"></i>
                     <p class="mid_nav_desc_share_p">공유하기</p>
                 </div>
+                <div class="mid_nav_desc_blank">
+
+                </div>
                 <hr class="mid_nav_start_comment">
+                <div class="mid_nav_comment_box">
+                    <div class="mid_nav_comment_profile">
+
+                    </div>
+                    <div class="mid_nav_comment_chatbox">
+                        <p class="mid_nav_comment_chat">123</p>
+                    </div>
+                </div>
             </nav>
             <div class="small_space"></div>
             <% com_count = []; %>
         <% } %>
+        <nav class="right">
+            <div class="right_birthbox">
+                <div class="right_birthbox_hover">
+                    <div class="right_birthbox_iconbox">
+                        <i class="right_birthbox_icon fas fa-gift"></i>
+                    </div>
+                    <p class="right_birthbox_today">오늘은 <strong style="color:#365899">신은지</strong>님의 생일입니다.</p>
+                </div>
+            </div>
+            <div class="blank_box"></div>
+            <div class="right_adbox">
+                <div class="right_adbox_sponebox">
+                    <a href="" class="right_adbox_spone">Sponsored</a>
+                </div>
+                <div class="right_adbox_makeADbox">
+                    <a href="" class="right_adbox_makeAD">광고 만들기</a>
+                </div>
+                <div class="right_adbox_startad_blank"></div>
+                <div class="right_adbox_ADimgbox">
+                    <img src="https://www.playauto.co.kr/_emp/image/emp00_subicon01.png" alt="playauto" class="right_adbox_ADimg">
+                </div>
+            </div>
+        </nav>
     </article>
     <script>
         var top_line_friend = document.getElementById('top_line_friend');
