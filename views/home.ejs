@@ -877,6 +877,7 @@
             }
             .mid_nav_desc_good:hover,.mid_nav_desc_write_comment:hover,.mid_nav_desc_share:hover {
                 background-color: rgba(242,242,242);
+                cursor: pointer;
             }
             .mid_nav_desc_good_icon {
                 color: gray;
@@ -941,6 +942,7 @@
                 border-radius: 100%;
                 background-color: black;
                 margin-left: 13px;
+                margin-top: 8px;
                 display: inline-block;
             }
             .mid_nav_comment_chatbox {
@@ -963,7 +965,7 @@
                 width:308px;
                 height:770px;
                 position: fixed;
-                z-index: 10;
+                z-index: 0;
                 right:23.45%;
                 top:5.9%;
             }
@@ -1045,6 +1047,159 @@
                 width:100%;
                 height:148px;
             }
+            .right_adbox_firstAD {
+                color:#3B5998;
+                font-size: 13px;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            .right_adbox_first_blank {
+                padding-top: 4px;
+            }
+            .right_adbox_firstAD_link {
+                color:#3B5998;
+                font-size: 13px;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            .right_adbox_firstAD:hover , .right_adbox_firstAD_link:hover {
+                cursor: pointer;
+            }
+            .right_adbox_firstAD_desc {
+                color:#616770;
+                font-size: 13px;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            .right_adbox_firstAD_desc_p {
+                margin:0;
+            }
+            .right_adbox_second_blank {
+                padding-top: 12px;
+            }
+            .right_adbox_second_ADimg {
+                background-size: cover;
+                width:100%;
+                height:150px;
+            }
+            .right_adbox_second_img_blank {
+                padding-top: 5px;
+            }
+            .right_adbox_bottom_padding {
+                padding-top:20px;
+            }
+            .right_selectLanguage {
+                margin-bottom: 4px;
+                width:285px;
+                height:auto;
+                background-color: #ffffff;
+                padding: 12px;
+                border-radius: 3px;
+                border:0.5px solid rgb(218, 218, 218);
+            }
+            .right_blank {
+                padding:6px;
+            }
+            .right_select_korea {
+                color:#90949C;
+                font-size: 13px;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            .right_select_other {
+                font-size: 13px;
+                font-family: Arial, Helvetica, sans-serif;
+                color:#385898;
+            }
+            .right_select_plus_button {
+                padding-left: 12px;
+                float:right;
+                margin-top: 11px;
+            }
+            .right_select_plus {
+                background-color: #f5f6f7;
+                padding:0px 10px;
+                border:0.5px solid rgb(209, 209, 209);
+                display: inline-block;
+                height:25px;
+                width:13px;
+                text-align: center;
+                border-radius: 2px;
+            }
+            .right_select_plus:hover {
+                background-color: #f0f0f0;
+            }
+            .right_select_plus_icon {
+                font-size: 11px;
+                color:gray;
+            }
+            .movingbox {
+                transform: translateY(-4px);
+            }
+            .right_select_others {
+                padding:0px 12px 2px;
+                letter-spacing: -0.5px;
+            }
+            .right_select_others_menu_b {
+                color: #90949C;
+                text-decoration: none;
+                font-size: 13px;
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: bold;
+            }
+            .right_select_others_menu {
+                color: #90949C;
+                text-decoration: none;
+                font-size: 13px;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            .right_select_others_blank {
+                margin:5;
+            }
+            #right_select_black {
+                color: #616770;
+            }
+            .mid_nav_comment_box_option {
+                color:#444950;
+                font-size: 13px;
+                font-family: Arial, Helvetica, sans-serif;
+                text-decoration: none;
+                margin-left: 12px;
+            }
+            .box_option_icon {
+                padding-bottom: 10px;
+                transform: translateY(-3px);
+            }
+            .me {
+                background-image: url('/images/profile_man.JPG');
+                background-size: cover;
+                background-position: center center;
+                display: inline-block;
+            }
+            .comment_chat_box {
+                padding: 8px 12px;
+                display: inline-block;
+                transform: translateY(-9px);
+                border-radius: 25px;
+                border:0.5px solid rgb(207, 207, 207);
+                background-color: rgba(242,243,245);
+                width:400px;
+            }
+            .comment_chat_box_input::placeholder {
+                font-size: 13px;
+                color:rgb(151, 151, 151);
+            }
+            .comment_chat_box_input {
+                border:none;
+                background-color: rgba(242,243,245);
+                outline: none;
+                transform: translateY(-2px);
+            }
+            .comment_chat_box_input:focus::placeholder {
+                color:rgb(194, 194, 194);
+            }
+            .comment_chat_box_icon {
+                float:right;
+                padding-left:5px;
+                padding-right: 5px;
+                color:rgb(151, 151, 151);
+            }
         }
 
     </style>
@@ -1076,9 +1231,9 @@
                     <p class="top_line_right_make_button">만들기</p>
                 </div>
                 <div class="top_line_right_side_icons">
-                    <i id="top_line_friend" class="fas fa-user-friends top_line_right_side_icons_friend"></i>
-                    <i id="top_line_messenger" class="fab fa-facebook-messenger top_line_right_side_icons_messenger"></i>
                     <i id="top_line_bell" class="fas fa-bell top_line_right_side_icons_bell"></i>
+                    <i id="top_line_messenger" class="fab fa-facebook-messenger top_line_right_side_icons_messenger"></i>
+                    <i id="top_line_friend" class="fas fa-user-friends top_line_right_side_icons_friend"></i>
                 </div>
                 <div class="top_line_right_last_right">
                     <i id="top_line_question" class="fas fa-question-circle top_line_right_last_right_question"></i>
@@ -1237,7 +1392,9 @@
                 <div class="darkness"></div>
             </div>
         </nav>
-            <div class="no_space"></div>
+        <div class="no_space"></div>
+        <iframe name="iframe_posting_num" style="display: none;"></iframe>
+        <iframe name="iframe_posting_num2" style="display: none;"></iframe>
         <% for(let i = 0 ; i < post.length; i++) { %>
             <nav class="mid_nav_desc">
                 <div class="mid_nav_desc_profile">
@@ -1262,7 +1419,7 @@
                 <p class="mid_nav_desc_description"><%= post[i].description %></p>
                 <div class="mid_nav_desc_feeling">
                     <i class="mid_nav_desc_feeling_thumbup far fa-thumbs-up"></i>
-                    <p class="mid_nav_desc_feeling_thumb_count"><%= post[i].like %></p>
+                    <p class="mid_nav_desc_feeling_thumb_count"><%= post[i].like_count %></p>
                     <% var com_count = []; %>
                     <% for(let j = 0 ; j < comment.length ; j ++) { %>
                         <% if(comment[j].post_id === post[i].id) { %>
@@ -1275,10 +1432,16 @@
                 <div class="mid_nav_desc_blank">
 
                 </div>
-                <div class="mid_nav_desc_good">
-                    <i class="mid_nav_desc_good_icon far fa-thumbs-up"></i>
-                    <p class="mid_nav_desc_good_p">좋아요</p>
-                </div>
+                <form class="like_count" method="POST" action="/like" target="iframe_posting_num">
+                    <input type="text" value="<%= post[i].id %>" name="posting_num" style="display: none;">
+                    <div class="mid_nav_desc_good">
+                        <i class="mid_nav_desc_good_icon far fa-thumbs-up"></i>
+                        <p class="mid_nav_desc_good_p">좋아요</p>
+                    </div>
+                </form>
+                <form class="un_like_count" method="POST" action="/unlike" target="iframe_posting_num2">
+                    <input type="text" value="<%= post[i].id %>" name="posting_num" style="display: none;">
+                </form>
                 <div class="mid_nav_desc_write_comment">
                     <i class="mid_nav_desc_comment_icon far fa-comment-alt"></i>
                     <p class="mid_nav_desc_comment_p">댓글</p>
@@ -1291,12 +1454,26 @@
 
                 </div>
                 <hr class="mid_nav_start_comment">
+                <a href="" class="mid_nav_comment_box_option">관련성 높은 댓글 <i class="box_option_icon fas fa-sort-down"></i></a>
                 <div class="mid_nav_comment_box">
-                    <div class="mid_nav_comment_profile">
+                    <div class="mid_nav_comment_box_eachbox">
+                        <div class="mid_nav_comment_profile me">
 
+                        </div>
+                        <div class="comment_chat_box">
+                            <input type="text" class="comment_chat_box_input" placeholder="댓글을 입력하세요...">
+                            <i class="comment_chat_box_icon far fa-smile"></i>
+                            <i class="comment_chat_box_icon far fa-file-video"></i>
+                            <i class="comment_chat_box_icon far fa-sticky-note"></i>
+                        </div>
                     </div>
-                    <div class="mid_nav_comment_chatbox">
-                        <p class="mid_nav_comment_chat">123</p>
+                    <div class="mid_nav_comment_box_eachbox">
+                        <div class="mid_nav_comment_profile">
+
+                        </div>
+                        <div class="mid_nav_comment_chatbox">
+                            <p class="mid_nav_comment_chat">123</p>
+                        </div>
                     </div>
                 </div>
             </nav>
@@ -1324,6 +1501,54 @@
                 <div class="right_adbox_ADimgbox">
                     <img src="https://www.playauto.co.kr/_emp/image/emp00_subicon01.png" alt="playauto" class="right_adbox_ADimg">
                 </div>
+                <div class="right_adbox_first_blank"></div>
+                <strong class="right_adbox_firstAD" title="EMP 2.0">플레이오토 2.0</strong>
+                <div class="right_adbox_firstAD_link" title="홈페이지로 이동">www.playauto.co.kr</div>
+                <span class="right_adbox_firstAD_desc"><p class="right_adbox_firstAD_desc_p">혹시 쇼핑몰 통합관리 솔루션이 필요하신가요? 온라인 동종업계 최고를 보장해드립니다. 타사의 동일목적 프로그램이 더 만족스러우실 경우...</p></span>
+                <div class="right_adbox_second_blank"></div>
+                <div class="right_adbox_ADimgbox">
+                    <img src="data:image/png;base64,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" alt="playauto" class="right_adbox_second_ADimg">
+                </div>
+                <div class="right_adbox_second_img_blank"></div>
+                <strong class="right_adbox_firstAD" title="EMP 2.0">플레이오토 가입하기</strong>
+                <div class="right_adbox_firstAD_link" title="홈페이지로 이동">www.playauto.co.kr</div>
+                <span class="right_adbox_firstAD_desc"><p class="right_adbox_firstAD_desc_p">혹시 쇼핑몰 통합관리 솔루션이 필요하신가요? 온라인 동종업계 최고를 보장해드립니다. 타사의 동일목적 프로그램이 더 만족스러우실 경우...</p></span>
+                <div class="right_adbox_bottom_padding"></div>
+            </div>
+            <div class="right_blank"></div>
+            <div class="right_selectLanguage">
+                <div class="movingbox">
+                    <span class="right_select_korea">한국어</span>
+                    <span class="right_select_korea"> · </span>
+                    <span class="right_select_other">English (US)</span>
+                    <span class="right_select_korea"> · </span>
+                    <span class="right_select_other">Tiếng Việt</span>
+                    <span class="right_select_korea"> · </span>
+                    <div class="right_select_plus_button">
+                        <a href="" class="right_select_plus">
+                            <i class="right_select_plus_icon fas fa-plus"></i>
+                        </a>
+                    </div>
+                    <span class="right_select_other">Bahasa Indonesia</span>
+                    <span class="right_select_korea"> · </span>
+                    <span class="right_select_other">Español</span>
+                </div>
+            </div>
+            <div class="right_select_others">
+                <a href="" class="right_select_others_menu_b">개인정보처리방침</a>
+                <span class="right_select_korea"> · </span>
+                <a href="" class="right_select_others_menu">이용 약관</a>
+                <span class="right_select_korea"> · </span>
+                <a href="" class="right_select_others_menu">광고</a>
+                <span class="right_select_korea"> · </span>
+                <br>
+                <a href="" class="right_select_others_menu">AdChoices <i class="fas fa-play"></i></a>
+                <span class="right_select_korea"> · </span>
+                <a href="" class="right_select_others_menu">쿠키</a>
+                <span class="right_select_korea"> · </span>
+                <a href="" class="right_select_others_menu">더보기 <i class="fas fa-sort-down"></i></a>
+                <br>
+                <a href="" id="right_select_black" class="right_select_others_menu">Facebook © 2020</a>
             </div>
         </nav>
     </article>
@@ -1355,11 +1580,42 @@
         let time_now = new Date();
         const post1_date = new Date(`<%= post[1].date %>`);
         let comments = document.getElementsByClassName('mid_nav_desc_feeling_comment');
+        const no_space = document.getElementsByClassName('no_space')[0];
+        let mid_nav_desc_good = document.getElementsByClassName('mid_nav_desc_good');
+        const like_count = document.getElementsByClassName('like_count');
+        // 좋아요 아이콘
+        var mid_nav_desc_good_icon = document.getElementsByClassName('mid_nav_desc_good_icon');
+        var mid_nav_desc_good_p = document.getElementsByClassName('mid_nav_desc_good_p');
+        // N 개의 좋아요
+        var mid_nav_desc_feeling_thumb_count = document.getElementsByClassName('mid_nav_desc_feeling_thumb_count');
+        // 좋아요 취소 form
+        var un_like_count = document.getElementsByClassName('un_like_count');
+
 
         for(let i = 0 ; i < comments.length ; i ++) {
             comments[i].addEventListener('click',() => {
                 alert('clicked!');
             })
+        }
+
+        for(let i = 0 ; i < mid_nav_desc_good.length ; i ++) {
+            mid_nav_desc_good[i].addEventListener('click',() => {
+                // 좋아요버튼 색이 칠해져있지 않다면,
+                if(mid_nav_desc_good_icon[i].style.color !== 'rgb(32, 120, 244)') {
+                    // 좋아요 처리
+                    mid_nav_desc_good_icon[i].style.color= 'rgb(32, 120, 244)';
+                    mid_nav_desc_good_p[i].style.color= 'rgb(32, 120, 244)';
+                        // 좋아요 수 에 ~ 님 외 N명 의 값을 넣음
+                    mid_nav_desc_feeling_thumb_count[i].innerText = '회원님, 외 '+mid_nav_desc_feeling_thumb_count[i].innerText+'명';   
+                    like_count[i].submit();
+                } else {
+                    // 이미 좋아요 누른 게시물은 꾸미도 다시 클릭시 좋아요취소 처리
+                    mid_nav_desc_good_icon[i].style.color= 'gray';
+                    mid_nav_desc_good_p[i].style.color= 'black';
+                    mid_nav_desc_feeling_thumb_count[i].innerText = mid_nav_desc_feeling_thumb_count[i].innerText.substring(7,mid_nav_desc_feeling_thumb_count[i].innerText.length - 1);
+                    un_like_count[i].submit();
+                }
+            });
         }
 
 
@@ -1429,13 +1685,15 @@
             body_black.style.display = 'block';
             posting.style.display = 'block';
             mid_nav_story.style.transform = 'translateX(638px) translateY(255px)';
-            mid_nav_desc.style.transform = 'translateX(638px) translateY(265px)';
+            mid_nav_desc.style.marginTop = '190px';
+            no_space.style.transform = 'translateY(265px)';
         });
         body_black.addEventListener('click',() => {
             body_black.style.display = 'none';
             posting.style.display = 'none';
             mid_nav_story.style.transform = 'translateX(638px) translateY(66px)';
-            mid_nav_desc.style.transform = 'translateX(638px) translateY(76px)';
+            mid_nav_desc.style.marginTop = '0px';
+            no_space.style.transform = 'translateY(0px)';
         })
     </script>
 </body>
