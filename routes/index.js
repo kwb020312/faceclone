@@ -19,7 +19,6 @@ router.get('/', function(req, res, next) {
   if(req.session.user_session_id) {
     res.redirect('/login');
   } else {
-    req.session.comment_link = 1;
     connection.query('SELECT * FROM faceclone_recent_login ORDER BY date DESC LIMIT 3;',(err , rows , fields) => {
       if(!err) {
         res.render('login',{users:rows});
@@ -108,7 +107,7 @@ router.post('/unlike',(req,res) => {
 // 댓글 작성 처리
 router.post('/comment',(req,res) => {
   connection.query(`INSERT INTO faceclone_comment (user_name,user_comment,post_id) VALUES ('${req.body.user_name}','${req.body.writing_comment}','${req.body.post_num}')`,(err , rows , fields) => {
-    req.session.comment_link = req.body.post_num;
+    
   });
   res.redirect('/login');
 })

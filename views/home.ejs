@@ -1200,6 +1200,33 @@
                 padding-right: 5px;
                 color:rgb(151, 151, 151);
             }
+            .chat_box_margin_left {
+                margin-left: 5px;
+            }
+            .comment_big_box {
+                display: none;
+            }
+            .go_home:hover {
+                cursor: pointer;
+            }
+            /* 친구 창 */
+            .friend_div {
+                position: fixed;
+                border:1px solid black;
+            }
+            /* 친구 창 상단 삼각형 */
+            .friend_div_top_triangle {
+                width: 0px;
+                height: 0px;
+                border-top: 15px solid transparent;
+                border-right: 15px solid red;
+                transform: rotate(225deg);
+            }
+            /* 친구요청 라인div */
+            .friend_div_req {
+                padding:8px 12px 6px;
+                width:430px;
+            }
         }
 
     </style>
@@ -1208,7 +1235,7 @@
     <div class="body_black"></div>
     <div class="top_line">
         <div class="top_line_left">
-            <img class="top_line_left_logo" src="/images/facebook.png" alt="">
+            <img class="top_line_left_logo go_home" src="/images/facebook.png" alt="">
             <div class="top_line_left_search">
                 <input placeholder="검색" style="outline: none;" class="top_line_left_recent_search" type="text">
                 <button class="top_line_left_search_button"><img class="top_line_left_search_image" src="/images/facebook_search.webp" alt="searching"></button>
@@ -1224,16 +1251,24 @@
                     <% } %>
                     <p class="top_line_right_user_userProfile_username"><%= user[0].first_name %><%= user[0].last_name %></p>
                 </div>
-                <div class="top_line_right_home">
+                <div class="top_line_right_home go_home">
                     <p class="top_line_right_home_button">홈</p>
                 </div>
                 <div class="top_line_right_make">
                     <p class="top_line_right_make_button">만들기</p>
                 </div>
                 <div class="top_line_right_side_icons">
-                    <i id="top_line_bell" class="fas fa-bell top_line_right_side_icons_bell"></i>
-                    <i id="top_line_messenger" class="fab fa-facebook-messenger top_line_right_side_icons_messenger"></i>
                     <i id="top_line_friend" class="fas fa-user-friends top_line_right_side_icons_friend"></i>
+                    <div class="friend_div">
+                        <div class="friend_div_top_triangle">
+
+                        </div>
+                        <div class="friend_div_req">
+
+                        </div>
+                    </div>
+                    <i id="top_line_messenger" class="fab fa-facebook-messenger top_line_right_side_icons_messenger"></i>
+                    <i id="top_line_bell" class="fas fa-bell top_line_right_side_icons_bell"></i>
                 </div>
                 <div class="top_line_right_last_right">
                     <i id="top_line_question" class="fas fa-question-circle top_line_right_last_right_question"></i>
@@ -1450,40 +1485,43 @@
                     <i class="mid_nav_desc_share_icon fas fa-share"></i>
                     <p class="mid_nav_desc_share_p">공유하기</p>
                 </div>
-                <div class="mid_nav_desc_blank">
+                <div class="comment_big_box">
+                    <div class="mid_nav_desc_blank">
 
-                </div>
-                <hr class="mid_nav_start_comment">
-                <a href="" class="mid_nav_comment_box_option">관련성 높은 댓글 <i class="box_option_icon fas fa-sort-down"></i></a>
-                <div class="mid_nav_comment_box">
-                    <div class="mid_nav_comment_box_eachbox">
-                        <div class="mid_nav_comment_profile me">
-
-                        </div>
-                        <div class="comment_chat_box">
-                            <form class="comment_form" action="/comment" method="POST">
-                                <input autocomplete="off" name="writing_comment" type="text" class="comment_chat_box_input" placeholder="댓글을 입력하세요...">
-                                <input name="post_num" type="text" value="<%= post[i].id %>" style="display: none;">
-                                <input name="user_name" type="text" value="<%= user[0].first_name %><%= user[0].last_name %>" style="display: none;">
-                            </form>
-                            <i class="comment_chat_box_icon far fa-smile"></i>
-                            <i class="comment_chat_box_icon far fa-file-video"></i>
-                            <i class="comment_chat_box_icon far fa-sticky-note"></i>
-                            <i class="comment_chat_box_icon fas fa-camera"></i>
-                        </div>
                     </div>
-                    <% for(let c = 0 ; c < comment.length ; c ++) {%>
-                        <% if(comment[c].post_id === post[i].id) { %>
-                            <div class="mid_nav_comment_box_eachbox">
-                                <div class="mid_nav_comment_profile">
-
-                                </div>
-                                <div class="mid_nav_comment_chatbox">
-                                    <p class="mid_nav_comment_chat"><%=comment[c].user_comment %></p>
-                                </div>
+                    <hr class="mid_nav_start_comment">
+                    <a href="" class="mid_nav_comment_box_option">관련성 높은 댓글 <i class="box_option_icon fas fa-sort-down"></i></a>
+                    <div class="mid_nav_comment_box">
+                        <div class="mid_nav_comment_box_eachbox">
+                            <div class="mid_nav_comment_profile me">
+    
                             </div>
+                            <div class="comment_chat_box">
+                                <form class="comment_form" action="/comment" target="comment_iframe" method="POST">
+                                    <input autocomplete="off" name="writing_comment" type="text" class="comment_chat_box_input" placeholder="댓글을 입력하세요...">
+                                    <input name="post_num" type="text" value="<%= post[i].id %>" style="display: none;">
+                                    <input name="user_name" type="text" value="<%= user[0].first_name %><%= user[0].last_name %>" style="display: none;">
+                                </form>
+                                <i class="comment_chat_box_icon far fa-smile"></i>
+                                <i class="comment_chat_box_icon far fa-file-video"></i>
+                                <i class="comment_chat_box_icon far fa-sticky-note"></i>
+                                <i class="comment_chat_box_icon fas fa-camera"></i>
+                            </div>
+                        </div>
+                        <iframe style="display: none;" name="comment_iframe"></iframe>
+                        <% for(let c = 0 ; c < comment.length ; c ++) {%>
+                            <% if(comment[c].post_id === post[i].id) { %>
+                                <div class="mid_nav_comment_box_eachbox">
+                                    <div class="mid_nav_comment_profile">
+    
+                                    </div>
+                                    <div class="mid_nav_comment_chatbox">
+                                        <p class="mid_nav_comment_chat"><%=comment[c].user_comment %></p>
+                                    </div>
+                                </div>
+                            <% } %>
                         <% } %>
-                    <% } %>
+                    </div>
                 </div>
             </nav>
             <div class="small_space"></div>
@@ -1604,12 +1642,60 @@
         var comment_chat_box_input = document.getElementsByClassName('comment_chat_box_input');
         // 댓글작성 form
         var comment_form = document.getElementsByClassName('comment_form');
+        // 댓글 범위 box
+        var mid_nav_comment_box = document.getElementsByClassName('mid_nav_comment_box');
+        // 댓글버튼 누를경우 댓글 div 보이기
+        var mid_nav_desc_write_comment = document.getElementsByClassName('mid_nav_desc_write_comment');
+        // 각 포스팅 댓글div
+        var comment_big_box = document.getElementsByClassName('comment_big_box');
+        // 홈화면으로 이동
+        var go_home = document.getElementsByClassName('go_home');
+
+        // 왼쪽 위 페이스북 로고 혹은 홈 div 를 클릭했을 경우 홈으로 감
+
+        for(let i = 0 ; i < go_home.length ; i ++) {
+            go_home[i].addEventListener('click',(e) => {
+                location.href = '/';
+            })
+        }
+
+
+        // 댓글 버튼을 눌렀을 때의 이벤트처리
+        for(let i = 0 ; i < mid_nav_desc_write_comment.length; i++) {
+            mid_nav_desc_write_comment[i].addEventListener('click',(e) => {
+                if(comment_big_box[i].style.display === 'block') {
+                    comment_big_box[i].style.display = 'none';
+                } else {
+                    comment_big_box[i].style.display = 'block';
+                }
+            })
+        }
 
         // 댓글작성 엔터누를경우 /comment 로 전송
         for(let i = 0 ; i < comment_chat_box_input.length ; i ++) {
-            comment_chat_box_input[i].addEventListener('keyup',(e) => {
+            comment_chat_box_input[i].addEventListener('keypress',(e) => {
                 if(e.code === 'Enter') {
+                    console.log('how entered');
                     comment_form[i].submit();
+                    var mid_nav_comment_box_eachbox = document.createElement('div');
+                    mid_nav_comment_box_eachbox.className = 'mid_nav_comment_box_eachbox';
+                    mid_nav_comment_box[i].appendChild(mid_nav_comment_box_eachbox);
+
+                    var mid_nav_comment_profile = document.createElement('div');
+                    mid_nav_comment_profile.className = 'mid_nav_comment_profile';
+                    mid_nav_comment_box_eachbox.appendChild(mid_nav_comment_profile);
+
+                    var mid_nav_comment_chatbox = document.createElement('div');
+                    mid_nav_comment_chatbox.className = 'mid_nav_comment_chatbox';
+                    mid_nav_comment_chatbox.classList.add('chat_box_margin_left');
+                    mid_nav_comment_box_eachbox.appendChild(mid_nav_comment_chatbox);
+
+                    var mid_nav_comment_chat = document.createElement('p');
+                    mid_nav_comment_chat.className = 'mid_nav_comment_chat';
+                    mid_nav_comment_chat.innerText = comment_chat_box_input[i].value;
+                    mid_nav_comment_chatbox.appendChild(mid_nav_comment_chat);
+
+                    comment_chat_box_input[i].value = '';
                 }
             })
         }
@@ -1718,9 +1804,5 @@
             no_space.style.transform = 'translateY(0px)';
         })
     </script>
-    <% if(comment_link) { %>
-        <% var mid_nav_desc2 = document.getElementsByClassName('mid_nav_desc') %>
-        <% mid_nav_desc2[comment_link-1].scrollIntoView() %>
-    <% } %>
 </body>
 </html>
