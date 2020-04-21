@@ -1461,20 +1461,29 @@
 
                         </div>
                         <div class="comment_chat_box">
-                            <input type="text" class="comment_chat_box_input" placeholder="댓글을 입력하세요...">
+                            <form class="comment_form" action="/comment" method="POST">
+                                <input autocomplete="off" name="writing_comment" type="text" class="comment_chat_box_input" placeholder="댓글을 입력하세요...">
+                                <input name="post_num" type="text" value="<%= post[i].id %>" style="display: none;">
+                                <input name="user_name" type="text" value="<%= user[0].first_name %><%= user[0].last_name %>" style="display: none;">
+                            </form>
                             <i class="comment_chat_box_icon far fa-smile"></i>
                             <i class="comment_chat_box_icon far fa-file-video"></i>
                             <i class="comment_chat_box_icon far fa-sticky-note"></i>
+                            <i class="comment_chat_box_icon fas fa-camera"></i>
                         </div>
                     </div>
-                    <div class="mid_nav_comment_box_eachbox">
-                        <div class="mid_nav_comment_profile">
+                    <% for(let c = 0 ; c < comment.length ; c ++) {%>
+                        <% if(comment[c].post_id === post[i].id) { %>
+                            <div class="mid_nav_comment_box_eachbox">
+                                <div class="mid_nav_comment_profile">
 
-                        </div>
-                        <div class="mid_nav_comment_chatbox">
-                            <p class="mid_nav_comment_chat">123</p>
-                        </div>
-                    </div>
+                                </div>
+                                <div class="mid_nav_comment_chatbox">
+                                    <p class="mid_nav_comment_chat"><%=comment[c].user_comment %></p>
+                                </div>
+                            </div>
+                        <% } %>
+                    <% } %>
                 </div>
             </nav>
             <div class="small_space"></div>
@@ -1577,6 +1586,7 @@
         const user_post = document.getElementById('user_post');
         const mid_nav_story = document.getElementsByClassName('mid_nav_story')[0];
         const mid_nav_desc = document.getElementsByClassName('mid_nav_desc')[0];
+        const mid_nav_descs = document.getElementsByClassName('mid_nav_desc');
         let time_now = new Date();
         const post1_date = new Date(`<%= post[1].date %>`);
         let comments = document.getElementsByClassName('mid_nav_desc_feeling_comment');
@@ -1590,7 +1600,19 @@
         var mid_nav_desc_feeling_thumb_count = document.getElementsByClassName('mid_nav_desc_feeling_thumb_count');
         // 좋아요 취소 form
         var un_like_count = document.getElementsByClassName('un_like_count');
+        // 댓글작성 input
+        var comment_chat_box_input = document.getElementsByClassName('comment_chat_box_input');
+        // 댓글작성 form
+        var comment_form = document.getElementsByClassName('comment_form');
 
+        // 댓글작성 엔터누를경우 /comment 로 전송
+        for(let i = 0 ; i < comment_chat_box_input.length ; i ++) {
+            comment_chat_box_input[i].addEventListener('keyup',(e) => {
+                if(e.code === 'Enter') {
+                    comment_form[i].submit();
+                }
+            })
+        }
 
         for(let i = 0 ; i < comments.length ; i ++) {
             comments[i].addEventListener('click',() => {
@@ -1696,5 +1718,9 @@
             no_space.style.transform = 'translateY(0px)';
         })
     </script>
+    <% if(comment_link) { %>
+        <% var mid_nav_desc2 = document.getElementsByClassName('mid_nav_desc') %>
+        <% mid_nav_desc2[comment_link-1].scrollIntoView() %>
+    <% } %>
 </body>
 </html>

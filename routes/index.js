@@ -16,19 +16,23 @@ connection.connect();
 /* GET home page. */
 router.get('/', function(req, res, next) {
   // 회원목록 가져오기
-  
-  connection.query('SELECT * FROM faceclone_recent_login ORDER BY date DESC LIMIT 3;',(err , rows , fields) => {
-    if(!err) {
-      res.render('login',{users:rows});
-    } else {
-      console.log(err);
-    }
-  })
+  if(req.session.user_session_id) {
+    res.redirect('/login');
+  } else {
+    req.session.comment_link = 1;
+    connection.query('SELECT * FROM faceclone_recent_login ORDER BY date DESC LIMIT 3;',(err , rows , fields) => {
+      if(!err) {
+        res.render('login',{users:rows});
+      } else {
+        console.log(err);
+      }
+    })
+  }
 });
 
 router.post('/login',(req,res) => {
   // 로그인처리
-  connection.query(`SELECT c.post_id , c.user_name, c.user_comment , c.user_date FROM  faceclone_comment AS c  LEFT JOIN faceclone_post AS p ON p.id = c.post_id;`,(error , row2 , field2) => {
+  connection.query(`SELECT c.post_id , c.user_name, c.user_comment , c.user_date FROM  faceclone_comment AS c  LEFT JOIN faceclone_post AS p ON p.id = c.post_id ORDER BY post_id DESC;`,(error , row2 , field2) => {
     connection.query(`SELECT * FROM faceclone_post ORDER BY id desc;`,(error , row1 , field1) => {
       connection.query(`SELECT * FROM faceclone_users WHERE phone_or_email = '${req.body.user_name}' AND pw = '${req.body.user_pw}';`,(err , rows, fields) => {
         if(!req.session.user_session_id) {
@@ -52,12 +56,15 @@ router.post('/login',(req,res) => {
 })
 
 router.get('/login',(req, res) => {
-  connection.query(`SELECT c.post_id , c.user_name, c.user_comment , c.user_date FROM  faceclone_comment AS c  LEFT JOIN faceclone_post AS p ON p.id = c.post_id;`,(error , row2 , field2) => {
-    
+  connection.query(`SELECT c.post_id , c.user_name, c.user_comment , c.user_date FROM  faceclone_comment AS c  LEFT JOIN faceclone_post AS p ON p.id = c.post_id ORDER BY post_id DESC;`,(error , row2 , field2) => {
     connection.query(`SELECT * FROM faceclone_post ORDER BY id desc;`,(error , row1 , field1) => {
       connection.query(`SELECT * FROM faceclone_users WHERE phone_or_email = '${req.session.user_session_id}';`,(err , rows, fields) => {
-        // 첫 로그인 외에 로그인이 되었을 때
-        res.render('home',{user:rows,post:row1,comment:row2});
+        if(req.session.comment_link) {
+          res.render('home',{user:rows,post:row1,comment:row2,comment_link:req.session.comment_link});
+        } else {
+          // 첫 로그인 외에 로그인이 되었을 때
+          res.render('home',{user:rows,post:row1,comment:row2,comment_link:0});
+        }
       });
     });
   });
@@ -89,26 +96,6 @@ router.post('/like',(req,res) => {
   connection.query(`UPDATE faceclone_post SET like_count = like_count + 1 WHERE id = ${req.body.posting_num};`,(err , rows , fields) => {
     console.log('좋아요 눌러줌');
   });
-  // // 그 사람이 해당 배열에 있는가? 없다면,
-  // if(like_array.includes(req.session.user_session_id) === false) {
-  //   // 배열에 추가하고,
-  //   like_array.push(req.session.user_session_id);
-  //   // 쿼리문으로 좋아요 추가
-  //   connection.query(`UPDATE faceclone_post SET like_count = like_count + 1 WHERE id = ${req.body.posting_num};`,(err , rows , fields) => {
-  //     console.log('좋아요 눌러줌');
-  //   });
-  //   // 그 사람이 배열에 있다면,
-  // } else {
-  //   // 좋아요 누른사람의 배열번째를 찾아내고,
-  //   var how_index = like_array.indexOf(req.session.user_session_id);
-  //   // 제거 한 후에,
-  //   like_array.remove(how_index,1);
-  //   // 쿼리문으로 좋아요 제거
-  //   connection.query(`UPDATE faceclone_post SET like_count = like_count - 1 WHERE id = ${req.body.posting_num};`,(err , rows , fields) => {
-  //     console.log('좋아요 해제됨');
-  //   });
-  // }
-  console.log(like_array);
 })
 
 // 게시글 좋아요 취소 처리
@@ -116,6 +103,14 @@ router.post('/unlike',(req,res) => {
   connection.query(`UPDATE faceclone_post SET like_count = like_count - 1 WHERE id = ${req.body.posting_num};`,(err , rows , fields) => {
     console.log('좋아요 취소 눌러줌');
   });
+})
+
+// 댓글 작성 처리
+router.post('/comment',(req,res) => {
+  connection.query(`INSERT INTO faceclone_comment (user_name,user_comment,post_id) VALUES ('${req.body.user_name}','${req.body.writing_comment}','${req.body.post_num}')`,(err , rows , fields) => {
+    req.session.comment_link = req.body.post_num;
+  });
+  res.redirect('/login');
 })
 
 module.exports = router;
