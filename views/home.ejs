@@ -1212,20 +1212,259 @@
             /* 친구 창 */
             .friend_div {
                 position: fixed;
-                border:1px solid black;
+                border:1px solid rgba(100, 100, 100, .4);
+                right:8%;
+                width:427px;
+                top:140%;
+                background-color: #ffffff;
+                display: none;
+                box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
             }
             /* 친구 창 상단 삼각형 */
             .friend_div_top_triangle {
                 width: 0px;
                 height: 0px;
                 border-top: 15px solid transparent;
-                border-right: 15px solid red;
+                border-right: 15px solid white;
                 transform: rotate(225deg);
+                left:0%;
+                top:114%;
+                left:13%;
+                position: fixed;
+                display: inline-block;
+                z-index: 5;
+                display: none;
             }
             /* 친구요청 라인div */
-            .friend_div_req {
+            .friend_div_header {
                 padding:8px 12px 6px;
-                width:430px;
+                padding-bottom: 2.0px;
+                background-color: #ffffff;
+            }
+            /* 친구요청 라인 a */
+            .friend_div_header_a {
+                color: #333333;
+                font-size: 12px;
+                font-family: Arial, Helvetica, sans-serif;
+                text-decoration: none;
+                font-weight: bold;
+                float: left;
+            }
+            .friend_div_header_find {
+                color: #385898;
+                font-size: 12px;
+                font-family: Arial, Helvetica, sans-serif;
+                text-decoration: none;
+                float: left;
+            }
+            .friend_div_header_span {
+                color: #90949C;
+                font-size: 12px;
+                font-family: Arial, Helvetica, sans-serif;
+                float: left;
+            }
+            .friend_div_header_left, .friend_div_header_right {
+                display: inline-block;
+            }
+            .friend_div_header_right {
+                float: right;
+            }
+            .friend_div_header_hr {
+                margin:0;
+                opacity: 0.5;
+            }
+            .friend_div_accept {
+                padding:8px 12px 6px;
+                padding-top: 4px;
+                padding-bottom: 4px;
+            }
+            .friend_div_accept_a {
+                text-decoration: none;
+                font-size: 12px;
+                font-family: Arial, Helvetica, sans-serif;
+                color: #333333;
+                font-weight: bold;
+                float:left;
+            }
+            .friend_div_accept_box {
+                display: inline-block;
+            }
+            .friend_div_see {
+                padding:4px 12px;
+                text-decoration: none;
+                text-align: center;
+                display: block;
+            }
+            .friend_div_all {
+                font-size: 12px;
+                font-family: Arial, Helvetica, sans-serif;
+                color: #385898;
+                font-weight: bolder;
+            }
+            /* 메신저 클릭 시 나오는 삼각형 */
+            .messenger_div_top_triangle {
+                width: 0px;
+                height: 0px;
+                border-top: 15px solid transparent;
+                border-right: 15px solid white;
+                transform: rotate(225deg);
+                left:0%;
+                top:114%;
+                left:44%;
+                position: fixed;
+                display: inline-block;
+                z-index: 5;
+                display: none;
+            }
+            /* 메신저 클릭시 나올 div */
+            .messenger_div {
+                position: fixed;
+                border:1px solid rgba(100, 100, 100, .4);
+                right:8%;
+                width:427px;
+                top:140%;
+                background-color: #ffffff;
+                box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+                border-radius: 3px;
+                display: none;
+            }
+            /* 메신저 최 상단 header */
+            .messenger_div_header {
+                padding:8px 12px 6px;
+                padding-bottom: 2.0px;
+                background-color: #ffffff;
+            }
+            /* 메신저 헤더 왼쪽부분 글씨 */
+            .messenger_div_header_a {
+                color: #333333;
+                font-size: 12px;
+                font-family: Arial, Helvetica, sans-serif;
+                text-decoration: none;
+                font-weight: bold;
+                float: left;
+            }
+            /* 메신저 헤더 좌측우측 정렬 */
+            .messenger_div_header_left, .messenger_div_header_right {
+                display: inline-block;
+            }
+            .messenger_div_header_right {
+                float:right;
+            }
+            /* 메신저 우측 위 새그룹, 새메시지 */
+            .messenger_div_header_find {
+                color: #385898;
+                font-size: 12px;
+                font-family: Arial, Helvetica, sans-serif;
+                text-decoration: none;
+                float: left;
+            }
+            /* 새 그룹,새 메시지 구분해주는 .  */
+            .messenger_div_header_span {
+                color: #90949C;
+                font-size: 12px;
+                font-family: Arial, Helvetica, sans-serif;
+                float: left;
+            } 
+            /* 메신저 부분 구분선 */
+            .messenger_div_header_hr {
+                margin:0;
+                opacity: 0.5;
+            }
+            /* 메시지 하단라인 */
+            .messenger_div_bottom {
+                padding:4px 12px;
+            }
+            /* 메시지 하단 a 버튼들 */
+            .messenger_div_bottom_see {
+                color:#385898;
+                text-decoration: none;
+                font-size: 12px;
+                font-family: Arial, Helvetica, sans-serif;
+                float: left;
+            }
+            .messenger_div_bottom_read {
+                color:#385898;
+                text-decoration: none;
+                font-size: 12px;
+                font-family: Arial, Helvetica, sans-serif;
+                float: left;
+            }
+            /* 메시지하단 a버튼 좌측 */
+            .messenger_div_bottom_left_div,.messenger_div_bottom_right_div {
+                display: inline-block;
+            }
+            /* 메시지 하단 a버튼 우측 */
+            .messenger_div_bottom_right_div {
+                float:right;
+            }
+            /* 벨 아이콘 클릭 삼각형 */
+            .bell_div_top_triangle {
+                width: 0px;
+                height: 0px;
+                border-top: 15px solid transparent;
+                border-right: 15px solid white;
+                transform: rotate(225deg);
+                left:0%;
+                top:114%;
+                left:74%;
+                position: fixed;
+                display: inline-block;
+                z-index: 5;
+                
+            }
+            /* 벨 아이콘 클릭시 div */
+            .bell_div {
+                position: fixed;
+                border:1px solid rgba(100, 100, 100, .4);
+                right:8%;
+                width:427px;
+                top:140%;
+                background-color: #ffffff;
+                box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+                border-radius: 3px;
+                
+            }
+            /* 벨 아이콘 클릭 div 중 최상단 */
+            .bell_div_header {
+                padding:8px 12px 6px;
+                padding-bottom: 2.0px;
+                padding-top: 6px;
+                background-color: #ffffff;
+            }
+            /* 벨 아이콘 클릭 div 왼쪽 상단 */
+            .bell_div_header_left, .bell_div_header_right {
+                display: inline-block;
+            }
+            /* 벨 아이콘 클릭 div 왼상단 p */
+            .bell_div_header_left_p {
+                color: #333333;
+                font-size: 12px;
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: bold;
+                float: left;
+                margin:0;
+            }
+            /* 벨 아이콘 클릭 div 오른 상단 */
+            .bell_div_header_right {
+                float:right;
+            }
+            /* 벨 아이콘 오른상단 a */
+            .bell_div_bottom_read {
+                color:#385898;
+                text-decoration: none;
+                font-size: 12px;
+                font-family: Arial, Helvetica, sans-serif;
+                float: left;
+            }
+            /* 벨 아이콘 오른상단 dot */
+            .bell_div_bottom_dot {
+                color:#90949c;
+                font-size: 12px;
+                font-family: Arial, Helvetica, sans-serif;
+                float:left;
+                transform: translateY(2px);
+                padding-left: 5px;
+                padding-right: 5px;
             }
         }
 
@@ -1259,16 +1498,81 @@
                 </div>
                 <div class="top_line_right_side_icons">
                     <i id="top_line_friend" class="fas fa-user-friends top_line_right_side_icons_friend"></i>
+                    <div class="friend_div_top_triangle">
+
+                    </div>
                     <div class="friend_div">
-                        <div class="friend_div_top_triangle">
-
+                        <div class="friend_div_header">
+                            <div class="friend_div_header_left">
+                                <a class="friend_div_header_a" href="">친구 요청</a>
+                            </div>
+                            <div class="friend_div_header_right">
+                                <a href="" class="friend_div_header_find">친구 찾기</a>
+                                <span class="friend_div_header_span" aria-hidden="true"> · </span>
+                                <a href="" class="friend_div_header_find">설정</a>
+                            </div>
                         </div>
-                        <div class="friend_div_req">
-
+                        <hr class="friend_div_header_hr">
+                        <div class="friend_div_accept">
+                            <div class="friend_div_accept_box">
+                                <a href="" class="friend_div_accept_a">승인된 요청</a>
+                            </div>
                         </div>
+                        <hr class="friend_div_header_hr">
+                        <div class="friend_div_accept">
+                            <div class="friend_div_accept_box">
+                                <a href="" class="friend_div_accept_a">알 수도 있는 사람</a>
+                            </div>
+                        </div>
+                        <hr class="friend_div_header_hr">
+                        <a href="" class="friend_div_see">
+                            <span class="friend_div_all">모두 보기</span>
+                        </a>
                     </div>
                     <i id="top_line_messenger" class="fab fa-facebook-messenger top_line_right_side_icons_messenger"></i>
+                    <div class="messenger_div_top_triangle">
+
+                    </div>
+                    <div class="messenger_div">
+                        <div class="messenger_div_header">
+                            <div class="messenger_div_header_left">
+                                <a class="messenger_div_header_a" style="margin-right: 10px;" href="">최근</a>
+                                <a class="messenger_div_header_a" href="">메시지 요청</a>
+                            </div>
+                            <div class="messenger_div_header_right">
+                                <a href="" class="messenger_div_header_find">새 그룹</a>
+                                <span class="messenger_div_header_span" aria-hidden="true"> · </span>
+                                <a href="" class="messenger_div_header_find">새 메시지</a>
+                            </div>
+                        </div>
+                        <hr class="messenger_div_header_hr">
+                        <div class="messenger_div_bottom">
+                            <div class="messenger_div_bottom_left_div">
+                                <a href="" class="messenger_div_bottom_see">Messenger에서 모두 보기</a>
+                            </div>
+                            <div class="messenger_div_bottom_right_div">
+                                <a href="" class="messenger_div_bottom_read">모두 읽은 상태로 표시</a>
+                            </div>
+                        </div>
+                    </div>
                     <i id="top_line_bell" class="fas fa-bell top_line_right_side_icons_bell"></i>
+                    <div class="bell_div_top_triangle">
+
+                    </div>
+                    <div class="bell_div">
+                        <div class="bell_div_header">
+                            <div class="bell_div_header_left">
+                                <p class="bell_div_header_left_p">알림</p>
+                            </div>
+                            <div class="bell_div_header_right">
+                                <a href="" class="bell_div_bottom_read">모두 읽은 상태로 표시</a>
+                                <span class="bell_div_bottom_dot"> · </span>
+                                <!-- 벨 아이콘 을 눌렀을 경우 -->
+
+                                <!--  -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="top_line_right_last_right">
                     <i id="top_line_question" class="fas fa-question-circle top_line_right_last_right_question"></i>
@@ -1650,6 +1954,16 @@
         var comment_big_box = document.getElementsByClassName('comment_big_box');
         // 홈화면으로 이동
         var go_home = document.getElementsByClassName('go_home');
+        // 상단 친구버튼을 눌렀을 경우
+        const friend_div = document.getElementsByClassName('friend_div')[0];
+        // 상단 친구버튼의 삼각형
+        const friend_div_top_triangle = document.getElementsByClassName('friend_div_top_triangle')[0];
+        // 상단 메신저 버튼을 눌렀을 경우
+        const messenger_div = document.getElementsByClassName('messenger_div')[0];
+        // 상단 메신저 버튼의 삼각형
+        const messenger_div_top_triangle = document.getElementsByClassName('messenger_div_top_triangle')[0];
+        // body 전체
+        var body = document.querySelector('body');
 
         // 왼쪽 위 페이스북 로고 혹은 홈 div 를 클릭했을 경우 홈으로 감
 
@@ -1759,12 +2073,77 @@
             }
         });
 
+        // body 클릭 전체관리
+
+        body.addEventListener('click' , ( e ) => {
+            var opend = false;
+            // 만약 상단 친구버튼의 활성화 시에,
+            if(top_line_friend.style.color === 'white') {
+                // 지금 클릭한 body 의 className 이 f 로 시작하지 않는경우
+                if(e.target.className[0] !== 'f') {
+                    // 비활성화 시킨다
+                    top_line_friend.style.color= 'black';
+                    // 상단의 친구 버튼을 눌렀을 경우
+                    friend_div.style.display = 'none';
+                    friend_div_top_triangle.style.display = 'none';
+                } else {
+                  
+                }
+            }
+            // console.log(e.target.className[0]);
+            // 만약 상단 메신저버튼의 활성화 시에,
+            if(top_line_messenger.style.color === 'white') {
+                // 지금 클릭한 body 의 className 이 f 로 시작하지 않는경우
+                if(e.target.className[0] !== 'f') {
+                    // 비활성화 시킨다
+                    top_line_messenger.style.color= 'black';
+                    // 상단의 친구 버튼을 눌렀을 경우
+                    messenger_div.style.display = 'none';
+                    messenger_div_top_triangle.style.display = 'none';
+                } else {
+
+                }
+            }
+        });
 
         top_line_friend.addEventListener('click',() => {
-            top_line_friend.style.color= 'white';
+            if(top_line_friend.style.color === 'white') {
+                top_line_friend.style.color= 'black';
+                // 상단의 친구 버튼을 눌렀을 경우
+                friend_div.style.display = 'none';
+                friend_div_top_triangle.style.display = 'none';
+            } else {
+                top_line_friend.style.color= 'white';
+                // 상단의 친구 버튼을 눌렀을 경우
+                friend_div.style.display = 'block';
+                friend_div_top_triangle.style.display = 'inline-block';
+                // 메신저 버튼의 display 를 다 없애기
+                top_line_messenger.style.color= 'black';
+                // 상단의 메신저 버튼을 눌렀을 경우
+                messenger_div.style.display = 'none';
+                messenger_div_top_triangle.style.display = 'none';
+            }
+            
         });
+
+        // 상단의 메신저 버튼을 누른경우,
         top_line_messenger.addEventListener('click',() => {
-            top_line_messenger.style.color= 'white';
+            if(top_line_messenger.style.color === 'white') {
+                top_line_messenger.style.color= 'black';
+                // 상단의 메신저 버튼을 눌렀을 경우
+                messenger_div.style.display = 'none';
+                messenger_div_top_triangle.style.display = 'none';
+            } else {
+                top_line_messenger.style.color= 'white';
+                // 상단의 메신저 버튼을 눌렀을 경우
+                messenger_div.style.display = 'block';
+                messenger_div_top_triangle.style.display = 'inline-block';
+                // 나머지 버튼의 display 를 안보이게 하기
+                top_line_friend.style.color= 'black';
+                // 상단의 친구 버튼을 눌렀을 경우
+                friend_div.style.display = 'none';
+                friend_div_top_triangle.style.display = 'none';
+            }
         });
         top_line_bell.addEventListener('click',() => {
             top_line_bell.style.color= 'white';
