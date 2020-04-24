@@ -148,7 +148,7 @@
             }
             .top_line_right_last_right_question {
                 font-size: 20px;
-                transform: translateX(-10px) translateY(4px);
+                transform: translateX(-10px) translateY(2px);
             }
             .top_line_right_last_right {
                 display: inline-block;
@@ -1410,7 +1410,7 @@
                 position: fixed;
                 display: inline-block;
                 z-index: 5;
-                
+                display: none;
             }
             /* 벨 아이콘 클릭시 div */
             .bell_div {
@@ -1422,7 +1422,7 @@
                 background-color: #ffffff;
                 box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
                 border-radius: 3px;
-                
+                display: none;
             }
             /* 벨 아이콘 클릭 div 중 최상단 */
             .bell_div_header {
@@ -1465,6 +1465,227 @@
                 transform: translateY(2px);
                 padding-left: 5px;
                 padding-right: 5px;
+            }
+            /* 벨 아이콘 헤더 밑줄 */
+            .bell_div_header_hr {
+                margin:0;
+                opacity: 0.5;
+            }
+            /* 벨 아이콘 중간지점 새 알림 */
+            .bell_new_alarm {
+                padding:5px 12px;
+                background-color: #f5f6f7;
+                font-size: 11px;
+                font-family: Arial, Helvetica, sans-serif;
+                color: #90949C;
+            }
+            /* 벨 최하단 모두보기 */
+            .bell_div_see {
+                padding:4px 12px;
+                text-decoration: none;
+                text-align: center;
+                display: block;
+            }
+            /* 벨 최하단 모두보기 글씨 */
+            .bell_div_all {
+                font-size: 12px;
+                font-family: Arial, Helvetica, sans-serif;
+                color: #385898;
+                font-weight: bolder;
+            }
+            /* ? 모양 삼각형 */
+            .question_div_top_triangle {
+                width: 0px;
+                height: 0px;
+                border-top: 15px solid transparent;
+                border-right: 15px solid white;
+                transform: rotate(225deg);
+                top:3.8%;
+                left:72.95%;
+                position: fixed;
+                display: inline-block;
+                z-index: 5;
+                display: none;
+            }
+            /* ? 모양 div */
+            .question_div {
+                background-color: #fff;
+                padding-top: 6px;
+                width:260px;
+                line-height: 1.34;
+                position: fixed;
+                top:4.5%;
+                right:24%;
+                border:1px solid rgba(100, 100, 100, .4);
+                box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+                border-radius: 3px;
+                display: none;
+            }
+            /* ? 모양 클릭 div 상단 */
+            .question_div_top {
+                line-height: 22px;
+                margin: 0px 12px 8px;
+                height:22px;
+            }
+            /* ? 상단 왼쪽글씨 */
+            .question_div_top_font {
+                color:#1c1e21;
+                float: left;
+                font-weight: 600;
+                font-size: 12px;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            /* ? 상단 오른쪽a */
+            .question_div_top_a {
+                color: #385898;
+                font-size: 12px;
+                font-family: Arial, Helvetica, sans-serif;
+                cursor: pointer;
+                text-decoration: none;
+                float: right;
+            }
+            /* ? 중간 무엇을 도와드릴까요 박스 */
+            .question_label_help {
+                height:32px;
+                padding:7px 8px 9px;
+                border:1px solid #dddfe2;
+                display: block;
+                margin:8px 12px 12px;
+                box-sizing: border-box;
+            }
+            /* 무엇을 도와드릴까요 input */
+            .question_help_input {
+                border:0;
+                float: left;
+                outline: none;
+            }
+            .question_help_input::placeholder {
+                font-size: 12px;
+                color:#90949C;
+            }
+            /* box */
+            .leftbox , .rightbox {
+                float:left;
+            }
+            /* 무엇을 도와드릴까요 icon */
+            .question_help_icon {
+                color:#90949C;
+                font-size: 13px;
+                float:right;
+                margin-top: 2px;
+            }
+            /* question 이 페이지 도움말 */
+            .question_this_page_help {
+                margin:0px 0px 6px 12px;
+                color:#8D949E;
+                font-size: 11px;
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: bold;
+            }
+            /* question 도움말 쪽 겉a */
+            .question_help_a {
+                padding: 6px 0px 6px 8px;
+                text-decoration: none;
+                display: block;
+            }
+            /* question 안쪽 div */
+            .question_help_a_div {
+                margin:0px 0px 0px 4px;
+                color:#4B4F56;
+                font-size: 12px;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            /* question help 라인 아랫 공간 */
+            .question_help_bottom_blank {
+                background-color: #f5f6f7;
+                border-bottom: 1px solid #dddfe2;
+                border-top:1px solid #dddfe2;
+                height:6px;
+                margin-top: -1px;
+            }
+            /* question 아랫라인 박스 */
+            .question_bottom_box {
+                padding: 12px 0px 10px;
+                border-bottom: 1px solid #dddfe2;
+                display: block;
+                text-decoration: none;
+            }
+            /* question 아랫라인 아이콘 */
+            .question_bottom_icon {
+                margin-left: 12px;
+                font-size: 16px;
+                color:black;
+                text-decoration: none;
+            }
+            /* question 아랫라인 글씨 */
+            .question_bottom_font {
+                color: #1c1e21;
+                padding-left: 8px;
+                display: inline-block;
+                text-decoration: none;
+                font-size: 12px;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            /* menu div */
+            .menu_div {
+                position: fixed;
+                top:5%;
+                right:24%;
+                border:1px solid rgba(100, 100, 100, .4);
+                box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+                border-radius: 3px;
+                background-color: #fff;
+                width:238px;
+                display: none;
+            }
+            /* menu div 윗 삼각형 */
+            .menu_div_top_triangle {
+                width: 0px;
+                height: 0px;
+                border-top: 12px solid transparent;
+                border-right: 12px solid white;
+                transform: rotate(225deg);
+                top:4.55%;
+                left:74.82%;
+                position: fixed;
+                display: inline-block;
+                z-index: 5;
+                display: none;
+            }
+            /* menu div ul */
+            .menu_div_ul {
+                padding:6px 0px;
+                margin:0;
+                list-style-type: none;
+            }
+            /* menu div li */
+            .menu_div_ul_li {
+                padding:0px 22px;
+                padding-top: 5px;
+                height:23px;
+            }
+            /* menu div a */
+            .menu_div_ul_li_a {
+                padding:0px 12px;
+                text-decoration: none;
+                float: left;
+            }
+            /* menu div span */
+            .menu_div_ul_li_a_span {
+                color: #1D2129;
+                font-size: 12px;
+                font-family: Arial, Helvetica, sans-serif;
+                float: left;
+            }
+            /* menu_div_line */
+            .menu_div_line {
+                color: #1D2129;
+                font-size: 12px;
+                font-family: Arial, Helvetica, sans-serif;
+                margin:5px 7px 6px;
+                padding:1px 0px 0px;
+                border-bottom: 1px solid #e9ebee;
+                height:1px;
             }
         }
 
@@ -1567,16 +1788,121 @@
                             <div class="bell_div_header_right">
                                 <a href="" class="bell_div_bottom_read">모두 읽은 상태로 표시</a>
                                 <span class="bell_div_bottom_dot"> · </span>
-                                <!-- 벨 아이콘 을 눌렀을 경우 -->
-
-                                <!--  -->
+                                <a href="" class="bell_div_bottom_read">알림 해제</a>
+                                <span class="bell_div_bottom_dot"> · </span>
+                                <a href="" class="bell_div_bottom_read">설정</a>
                             </div>
                         </div>
+                        <hr class="bell_div_header_hr">
+                        <div class="bell_new_alarm">
+                            새 알림
+                        </div>
+                        <hr class="bell_div_header_hr">
+                        <div class="bell_new_alarm">
+                            이전 알림
+                        </div>
+                        <hr class="bell_div_header_hr">
+                        <hr class="bell_div_header_hr">
+                        <a href="" class="bell_div_see">
+                            <span class="bell_div_all">모두 보기</span>
+                        </a>
                     </div>
                 </div>
                 <div class="top_line_right_last_right">
                     <i id="top_line_question" class="fas fa-question-circle top_line_right_last_right_question"></i>
                     <i id="top_line_menu" class="fas fa-caret-down top_line_right_last_right_menu"></i>
+                </div>
+                <div class="question_div_top_triangle">
+
+                </div>
+                <div class="question_div">
+                    <div class="question_div_top">
+                        <div class="question_div_top_font">빠른 도움말</div>
+                        <a href="" class="question_div_top_a">고객 센터</a>
+                    </div>
+                    <label class="question_label_help">
+                        <input class="question_help_input" type="text" placeholder="무엇을 도와드릴까요?"><i class="question_help_icon fas fa-search"></i>
+                    </label>
+                    <div class="question_this_page_help">이 페이지에 관한 도움말</div>
+                    <a href="" class="question_help_a">
+                        <div class="question_help_a_div">홈 페이지</div>
+                    </a>
+                    <a href="" class="question_help_a">
+                        <div class="question_help_a_div">타임라인</div>
+                    </a>
+                    <a href="" class="question_help_a">
+                        <div class="question_help_a_div">채팅 및 메시지</div>
+                    </a>
+                    <a href="" class="question_help_a">
+                        <div class="question_help_a_div">개정 보안</div>
+                    </a>
+                    <a href="" class="question_help_a">
+                        <div class="question_help_a_div">공개 범위</div>
+                    </a>
+                    <div class="question_help_bottom_blank"></div>
+                    <a href="" class="question_bottom_box">
+                        <i class="question_bottom_icon fas fa-lock"></i>
+                        <div class="question_bottom_font">공개 범위 확인</div>
+                    </a>
+                    <a href="" class="question_bottom_box">
+                        <i class="question_bottom_icon fas fa-cog"></i>
+                        <div class="question_bottom_font">공개 범위 설정 바로가기</div>
+                    </a>
+                    <div class="question_help_bottom_blank"></div>
+                    <a href="" class="question_bottom_box">
+                        <i class="question_bottom_icon fas fa-envelope"></i>
+                        <div class="question_bottom_font">새 지원 메시지</div>
+                    </a>
+                    <a href="" class="question_bottom_box">
+                        <i class="question_bottom_icon fas fa-exclamation-circle"></i>
+                        <div class="question_bottom_font">문제 신고</div>
+                    </a>
+                </div>
+                <div class="menu_div_top_triangle">
+
+                </div>
+                <div class="menu_div">
+                    <ul class="menu_div_ul">
+                        <li class="menu_div_ul_li">
+                            <a href="" class="menu_div_ul_li_a">
+                                <span class="menu_div_ul_li_a_span">내 그룹</span>
+                            </a>
+                        </li>
+                        <li class="menu_div_line"></li>
+                        <li class="menu_div_ul_li">
+                            <a href="" class="menu_div_ul_li_a">
+                                <span class="menu_div_ul_li_a_span">Facebook에서 광고하기</span>
+                            </a>
+                        </li>
+                        <li class="menu_div_line"></li>
+                        <li class="menu_div_ul_li">
+                            <a href="" class="menu_div_ul_li_a">
+                                <span class="menu_div_ul_li_a_span">활동 로그</span>
+                            </a>
+                        </li>
+                        <li class="menu_div_ul_li">
+                            <a href="" class="menu_div_ul_li_a">
+                                <span class="menu_div_ul_li_a_span">뉴스피드 기본 설정</span>
+                            </a>
+                        </li>
+                        <li class="menu_div_ul_li">
+                            <a href="" class="menu_div_ul_li_a">
+                                <span class="menu_div_ul_li_a_span">설정</span>
+                            </a>
+                        </li>
+                        <li class="menu_div_line"></li>
+                        <li class="menu_div_ul_li">
+                            <a href="" class="menu_div_ul_li_a">
+                                <span class="menu_div_ul_li_a_span">새로운 Facebook으로 전환하기</span>
+                            </a>
+                        </li>
+                        <li class="menu_div_line"></li>
+                        <li class="menu_div_ul_li">
+                            <a href="" class="menu_div_ul_li_a">
+                                <span class="menu_div_ul_li_a_span">로그아웃</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -1964,6 +2290,18 @@
         const messenger_div_top_triangle = document.getElementsByClassName('messenger_div_top_triangle')[0];
         // body 전체
         var body = document.querySelector('body');
+        // 상단 벨 아이콘 삼각형
+        const bell_div_top_triangle = document.getElementsByClassName('bell_div_top_triangle')[0];
+        // 상단 벨 버튼을 눌렀을 경우
+        const bell_div = document.getElementsByClassName('bell_div')[0];
+        // 문제점 div 클릭
+        const question_div = document.getElementsByClassName('question_div')[0];
+        // 문제점 삼각형
+        const question_div_top_triangle = document.getElementsByClassName('question_div_top_triangle')[0];
+        // 메뉴 div 클릭
+        const menu_div = document.getElementsByClassName('menu_div')[0];
+        // 메뉴 삼각형
+        const menu_div_top_triangle = document.getElementsByClassName('menu_div_top_triangle')[0];
 
         // 왼쪽 위 페이스북 로고 혹은 홈 div 를 클릭했을 경우 홈으로 감
 
@@ -2090,7 +2428,7 @@
                   
                 }
             }
-            // console.log(e.target.className[0]);
+            
             // 만약 상단 메신저버튼의 활성화 시에,
             if(top_line_messenger.style.color === 'white') {
                 // 지금 클릭한 body 의 className 이 f 로 시작하지 않는경우
@@ -2102,6 +2440,46 @@
                     messenger_div_top_triangle.style.display = 'none';
                 } else {
 
+                }
+            }
+
+            // 만약 상단 알림버튼의 활성화 시에,
+            if(top_line_bell.style.color === 'white') {
+                // 지금 클릭한 body 의 className 이 f 로 시작하지 않는경우
+                if(e.target.className[0] !== 'f') {
+                    // 비활성화 시킨다
+                    top_line_bell.style.color= 'black';
+                    // 상단의 친구 버튼을 눌렀을 경우
+                    bell_div.style.display = 'none';
+                    bell_div_top_triangle.style.display = 'none';
+                } else {
+
+                }
+            }
+
+            // 상단 옵션버튼
+            if(top_line_question.style.color === 'white') {
+                // 지금 클릭한 body 의 className 이 f 로 시작하지 않는경우
+                if(e.target.className[0] !== 'f') {
+                    // 비활성화 시킨다
+                    top_line_question.style.color= 'black';
+                    // 상단의 친구 버튼을 눌렀을 경우
+                    question_div.style.display = 'none';
+                    question_div_top_triangle.style.display = 'none';
+                } else {
+
+                }
+            }
+
+            // 상단 메뉴버튼이 활성화 되어있을 때 
+            if(top_line_menu.style.color === 'white') {
+                // 지금 클릭한 body 의 className 이 f 로 시작하지 않는경우
+                if(e.target.className[0] !== 'f') {
+                    // 비활성화 시킨다
+                    top_line_menu.style.color= 'black';
+                    // 상단의 친구 버튼을 눌렀을 경우
+                    menu_div.style.display = 'none';
+                    menu_div_top_triangle.style.display = 'none';
                 }
             }
         });
@@ -2122,6 +2500,16 @@
                 // 상단의 메신저 버튼을 눌렀을 경우
                 messenger_div.style.display = 'none';
                 messenger_div_top_triangle.style.display = 'none';
+                top_line_bell.style.color= 'black';
+                // 상단의 메신저 버튼을 눌렀을 경우
+                bell_div.style.display = 'none';
+                bell_div_top_triangle.style.display = 'none';
+                top_line_question.style.color = 'black';
+                question_div.style.display = 'none';
+                question_div_top_triangle.style.display = 'none';
+                menu_div_top_triangle.style.display = 'none';
+                top_line_menu.style.color = 'black';
+                menu_div.style.display = 'none';
             }
             
         });
@@ -2143,16 +2531,103 @@
                 // 상단의 친구 버튼을 눌렀을 경우
                 friend_div.style.display = 'none';
                 friend_div_top_triangle.style.display = 'none';
+                top_line_bell.style.color= 'black';
+                // 상단의 메신저 버튼을 눌렀을 경우
+                bell_div.style.display = 'none';
+                bell_div_top_triangle.style.display = 'none';
+                top_line_question.style.color = 'black';
+                question_div.style.display = 'none';
+                question_div_top_triangle.style.display = 'none';
+                menu_div_top_triangle.style.display = 'none';
+                top_line_menu.style.color = 'black';
+                menu_div.style.display = 'none';
             }
         });
+
+        // 상단의 벨 버튼을 누른경우,
         top_line_bell.addEventListener('click',() => {
-            top_line_bell.style.color= 'white';
+            if(top_line_bell.style.color === 'white') {
+                top_line_bell.style.color= 'black';
+                // 상단의 메신저 버튼을 눌렀을 경우
+                bell_div.style.display = 'none';
+                bell_div_top_triangle.style.display = 'none';
+            } else {
+                top_line_bell.style.color= 'white';
+                // 상단의 메신저 버튼을 눌렀을 경우
+                bell_div.style.display = 'block';
+                bell_div_top_triangle.style.display = 'inline-block';
+                // 나머지 버튼의 display 를 안보이게 하기
+                top_line_friend.style.color= 'black';
+                // 상단의 친구 버튼을 눌렀을 경우
+                friend_div.style.display = 'none';
+                friend_div_top_triangle.style.display = 'none';
+                top_line_messenger.style.color= 'black';
+                // 상단의 메신저 버튼을 눌렀을 경우
+                messenger_div.style.display = 'none';
+                messenger_div_top_triangle.style.display = 'none';
+                top_line_question.style.color = 'black';
+                question_div.style.display = 'none';
+                question_div_top_triangle.style.display = 'none';
+                menu_div_top_triangle.style.display = 'none';
+                top_line_menu.style.color = 'black';
+                menu_div.style.display = 'none';
+            }
         });
+
+        // question 버튼을 클릭할경우
         top_line_question.addEventListener('click',() => {
-            top_line_question.style.color= 'white';
+            if(top_line_question.style.color === 'white') {
+                top_line_question.style.color = 'black';
+                question_div.style.display = 'none';
+                question_div_top_triangle.style.display = 'none';
+                
+            } else {
+                top_line_question.style.color = 'white';
+                question_div.style.display = 'block';
+                question_div_top_triangle.style.display = 'inline-block';
+                top_line_friend.style.color= 'black';
+                // 상단의 친구 버튼을 눌렀을 경우
+                friend_div.style.display = 'none';
+                friend_div_top_triangle.style.display = 'none';
+                top_line_messenger.style.color= 'black';
+                // 상단의 메신저 버튼을 눌렀을 경우
+                messenger_div.style.display = 'none';
+                messenger_div_top_triangle.style.display = 'none';
+                top_line_bell.style.color = 'black';
+                bell_div.style.display = 'none';
+                bell_div_top_triangle.style.display = 'none';
+                menu_div_top_triangle.style.display = 'none';
+                top_line_menu.style.color = 'black';
+                menu_div.style.display = 'none';
+            }
+            
         });
+        // 상단의 메뉴버튼 누른경우
         top_line_menu.addEventListener('click',() => {
-            top_line_menu.style.color= 'white';
+            if(top_line_menu.style.color === 'white') {
+                top_line_menu.style.color= 'black';
+                menu_div.style.display='none';
+                menu_div_top_triangle.style.display='none'
+            } else {
+                top_line_menu.style.color= 'white';
+                menu_div.style.display='block';
+                menu_div_top_triangle.style.display='block'
+                top_line_friend.style.color= 'black';
+                // 상단의 친구 버튼을 눌렀을 경우
+                friend_div.style.display = 'none';
+                friend_div_top_triangle.style.display = 'none';
+                top_line_messenger.style.color= 'black';
+                // 상단의 메신저 버튼을 눌렀을 경우
+                messenger_div.style.display = 'none';
+                messenger_div_top_triangle.style.display = 'none';
+                top_line_bell.style.color = 'black';
+                bell_div.style.display = 'none';
+                bell_div_top_triangle.style.display = 'none';
+                question_div_top_triangle.style.display = 'none';
+                top_line_question.style.color = 'black';
+                question_div.style.display = 'none';
+            }
+            
         });
         left_nav_user.addEventListener('mouseover',() => {
             left_nav_user_menu.style.display='inline-block';
