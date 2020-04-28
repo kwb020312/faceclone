@@ -10,6 +10,7 @@
             padding:0;
             margin:0;
             background-color: rgba(233,235,238);
+            user-select: none;
         }
         @media all and (min-width: 1500px) {
             .top_line {
@@ -44,7 +45,7 @@
             }
             .top_line_left_search_image {
                 width:15px;
-
+                transition: all 0.3s;
             }
             .top_line_left_search_button {
                 position: fixed;
@@ -58,6 +59,7 @@
                 border: 0;
                 height:23.5px;
                 background-color: rgba(245,246,247);
+                transition: all 0.3s;
             }
             .top_line_right {
                 width:500px;
@@ -1687,6 +1689,59 @@
                 border-bottom: 1px solid #e9ebee;
                 height:1px;
             }
+            /* 상단의 검색바 투명해지게 */
+            .low_opacity::placeholder {
+                color:#c7c7c7;
+            }
+            /* 검색기록을 포함할 DIV */
+            .top_left_searchDiv {
+                width:441px;
+                border:1px solid #ccc;
+                border-color: rgba(0,0,0,.15);
+                border-radius: 2px;
+                box-shadow: 0 4px 6px 2px rgba(0, 0, 0, .10);
+                position: fixed;
+                left:24.8%;
+                top:3.5%;
+                display: none;
+            }
+            /* 검색 DIV 중 Header div */
+            .searchDiv_topOption {
+                padding:7px;
+                background-color: #f5f6f7;
+                height:16px;
+                border-bottom: 1px solid #e9eaed;
+                border-top:1px solid #e9eaed;
+            }
+            /* 검색 DIV 중 left */
+            .searchDiv_topOption_left {
+                float:left;
+                color:#90949C;
+                font-size: 11px;
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: bold;
+            }
+            /* 검색 DIV 중 right */
+            .searchDiv_topOption_right {
+                float:right;
+                color:#90949c;
+                font-size: 11px;
+                font-weight: bold;
+                text-decoration: none;
+            }
+            /* 사진 게시하기 */
+            #posting_pic {
+                display: none;
+                cursor: pointer;
+            }
+            /* 모든 label 태그에 대하여 */
+            label {
+                cursor: pointer;
+            }
+            /* 사진 미리보기가 들어갈 div */
+            .posting_input_think_div {
+                width:390px;
+            }
         }
 
     </style>
@@ -1698,7 +1753,15 @@
             <img class="top_line_left_logo go_home" src="/images/facebook.png" alt="">
             <div class="top_line_left_search">
                 <input placeholder="검색" style="outline: none;" class="top_line_left_recent_search" type="text">
-                <button class="top_line_left_search_button"><img class="top_line_left_search_image" src="/images/facebook_search.webp" alt="searching"></button>
+                <button class="top_line_left_search_button">
+                    <i class="top_line_left_search_image fas fa-search"></i>
+                </button>
+            </div>
+            <div class="top_left_searchDiv">
+                <div class="searchDiv_topOption">
+                    <div class="searchDiv_topOption_left">최근 검색</div>
+                    <a href="" class="searchDiv_topOption_right">수정</a>
+                </div>
             </div>
         </div>
         <div class="top_line_right">
@@ -1942,7 +2005,10 @@
             <hr class="mid_top_nav_hr">
             <div class="mid_top_nav_pic">
                 <i class="mid_top_nav_pic_icon fas fa-image"></i>
-                <p class="mid_top_nav_pic_p">사진/동영상</p>
+                <input type="file" id="posting_pic" accept="img/*">
+                <label for="posting_pic">
+                    <p class="mid_top_nav_pic_p">사진/동영상</p>
+                </label>
             </div>
             <div class="mid_top_nav_tagFriend">
                 <i class="mid_top_nav_tagFriend_icon fas fa-user-tag"></i>
@@ -1965,7 +2031,9 @@
             <% } else { %>
                 <img class="posting_input_img" src="/images/profile_woman.jpg" alt="Who is">
             <% } %>
-                <textarea name="desc" id="user_posting" class="posting_input_think" type="text" placeholder="<%= user[0].first_name %><%= user[0].last_name %>님, 무슨 생각을 하고 계신가요?"></textarea>
+                <div style="display: inline-block;" class="posting_input_think_div">
+                    <textarea name="desc" id="user_posting" class="posting_input_think" type="text" placeholder="<%= user[0].first_name %><%= user[0].last_name %>님, 무슨 생각을 하고 계신가요?"></textarea>
+                </div>
                 <i class="posting_close fas fa-times"></i>
                 <div class="posting_input_backcolor">
                     <i class="posting_input_backcolor_icon fas fa-palette"></i>
@@ -2302,6 +2370,67 @@
         const menu_div = document.getElementsByClassName('menu_div')[0];
         // 메뉴 삼각형
         const menu_div_top_triangle = document.getElementsByClassName('menu_div_top_triangle')[0];
+        // 상단 왼쪽 위 검색기록 바
+        const top_line_left_recent_search = document.getElementsByClassName('top_line_left_recent_search')[0];
+        // 검색기록 바 스위치
+        var search_button_switch = false;
+        // 상단 왼쪽 위 검색기록 버튼
+        const top_line_left_search_button = document.getElementsByClassName('top_line_left_search_button')[0];
+        // 상단 왼쪽 위 검색기록 아이콘
+        const top_line_left_search_image = document.getElementsByClassName('top_line_left_search_image')[0];
+        // 상단 왼쪽 위 검색기록 영역
+        const top_left_searchDiv = document.getElementsByClassName('top_left_searchDiv')[0];
+        // 사진 넣기 input 태그
+        const posting_pic = document.getElementById('posting_pic');
+        // 사진이 넣어질 div 
+        const posting_input_think_div = document.getElementsByClassName('posting_input_think_div')[0];
+        // 현재 image 정보
+        let image;
+
+        // 사진을 넣어서 미리보기 할 경우
+        posting_pic.addEventListener('change',(e) => {
+            var getfile = e.target.files[0];
+            image = document.createElement('img');
+            // 파일 경로를 읽어줄 객체 생성
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                image.src = e.target.result;
+            }
+
+            reader.readAsDataURL(getfile);
+
+            image.style.height = '50px';
+            image.style.width = '50px';
+            image.style.marginTop = '10px';
+            image.style.marginLeft = '19px';
+
+            mid_top_nav_input.click();
+            posting_input_think_div.appendChild(image);
+        });
+
+
+        // 검색기록 바 누를시의 처리
+        top_line_left_recent_search.addEventListener('click',(e) => {
+            // low_opacity 라는 클래스 추가
+            top_line_left_recent_search.classList.add('low_opacity');
+            search_button_switch = true;
+            top_line_left_search_button.style.backgroundColor = '#4080FF';
+            top_line_left_search_image.style.color = 'white';
+            top_left_searchDiv.style.display = 'block';
+        })
+
+        top_line_left_recent_search.addEventListener('blur',(e) => {
+            // 만약 상단 검색바 활성화 시에
+            if(search_button_switch === true) {
+                top_line_left_recent_search.classList.remove('low_opacity');
+                search_button_switch = false;
+                top_line_left_search_button.style.backgroundColor = 'rgba(245,246,247)';
+                top_line_left_search_image.style.color = 'black';
+                top_left_searchDiv.style.display = 'none';
+            }
+        })
+
 
         // 왼쪽 위 페이스북 로고 혹은 홈 div 를 클릭했을 경우 홈으로 감
 

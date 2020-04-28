@@ -1,6 +1,18 @@
 var express = require('express');
 var mysql = require('mysql');
 var router = express.Router();
+var multer = require('multer');
+const path = require('path');
+const upload = multer({
+  storage: multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads/');
+    },
+    filename: function (req, file, cb) {
+      cb(null, new Date().valueOf() + path.extname(file.originalname));
+    }
+  }),
+});
 var connection = mysql.createConnection({
   host : 'localhost',
   user : 'root',
@@ -111,5 +123,10 @@ router.post('/comment',(req,res) => {
   });
   res.redirect('/login');
 })
+
+// 상단에서 김우빈 프로필을 클릭한 경우
+router.post('/up', upload.single('img'), (req, res) => {
+  console.log(req.file); 
+});
 
 module.exports = router;
