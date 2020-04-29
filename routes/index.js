@@ -3,10 +3,11 @@ var mysql = require('mysql');
 var router = express.Router();
 var multer = require('multer');
 const path = require('path');
+
 const upload = multer({
   storage: multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, 'uploads/');
+      cb(null, 'public/uploads/');
     },
     filename: function (req, file, cb) {
       cb(null, new Date().valueOf() + path.extname(file.originalname));
@@ -94,12 +95,25 @@ router.post('/register',(req,res) => {
 })
 
 // 게시글 입력 처리
-router.post('/posting',(req,res) => {
-  connection.query(`INSERT INTO faceclone_post(user_name,description) VALUES ('${req.body.faceclone_user_name}','${req.body.desc}');`,(err , rows , fields) => {
-    if(!err) {
-      res.redirect('/login');
-    }
-  });
+router.post('/posting',upload.single('post_image'),(req,res) => {
+
+  // 만약 이미지 파일이 있는 게시글이라면,
+
+  if(req.file) {
+    console.log('이미지 있음!!');
+
+    connection.query(`INSERT INTO faceclone_post(user_name,description,desc_image) VALUES ('${req.body.faceclone_user_name}','${req.body.desc}','/uploads/${req.file.filename}');`,(err , rows , fields) => {
+      if(!err) {
+        res.redirect('/login');
+      }
+    });
+  } else {
+    connection.query(`INSERT INTO faceclone_post(user_name,description) VALUES ('${req.body.faceclone_user_name}','${req.body.desc}');`,(err , rows , fields) => {
+      if(!err) {
+        res.redirect('/login');
+      }
+    });
+  }
 })
 
 // 게시글 좋아요 처리

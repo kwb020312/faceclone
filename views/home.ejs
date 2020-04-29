@@ -818,6 +818,7 @@
             .mid_nav_desc_description {
                 margin-left: 15px;
                 margin-top: 0;
+                margin-bottom: 0;
             }
             .mid_nav_desc_feeling {
                 width:100%;
@@ -2003,13 +2004,14 @@
             <% } %>
             <input class="mid_top_nav_input" type="text" placeholder="<%= user[0].first_name %><%= user[0].last_name %>님, 무슨 생각을 하고 계신가요?">
             <hr class="mid_top_nav_hr">
-            <div class="mid_top_nav_pic">
-                <i class="mid_top_nav_pic_icon fas fa-image"></i>
-                <input type="file" id="posting_pic" accept="img/*">
-                <label for="posting_pic">
+            <input type="file" id="posting_pic" accept="img/*">
+            <label for="posting_pic">
+                <div class="mid_top_nav_pic">
+                    <i class="mid_top_nav_pic_icon fas fa-image"></i>
                     <p class="mid_top_nav_pic_p">사진/동영상</p>
-                </label>
-            </div>
+                </div>
+            </label>
+            
             <div class="mid_top_nav_tagFriend">
                 <i class="mid_top_nav_tagFriend_icon fas fa-user-tag"></i>
                 <p class="mid_top_nav_tagFriend_p">친구 태그하기</p>
@@ -2024,7 +2026,7 @@
         </nav>
         
         <div class="posting">
-            <form id="user_post" method="POST" action="/posting">
+            <form enctype="multipart/form-data" id="user_post" method="POST" action="/posting">
                 <input id="faceclone_user_name" type="text" name="faceclone_user_name" value="<%= user[0].first_name %><%= user[0].last_name %>"/>
             <% if(user[0].gender === 'man') { %>
                 <img class="posting_input_img" src="/images/profile_man.jpg" alt="Who is">
@@ -2044,7 +2046,10 @@
                 <div class="posting_mid_contents">
                     <div class="mid_top_nav_pic">
                         <i class="mid_top_nav_pic_icon fas fa-image"></i>
-                        <p class="mid_top_nav_pic_p">사진/동영상</p>
+                        <input type="file" style="display: none;" name="post_image" id="posting_pic2" accept="img/*">
+                        <label for="posting_pic2">
+                            <p class="mid_top_nav_pic_p">사진/동영상</p>
+                        </label>
                     </div>
                     <div class="mid_top_nav_tagFriend">
                         <i class="mid_top_nav_tagFriend_icon fas fa-user-tag"></i>
@@ -2149,7 +2154,12 @@
                     <p class="mid_nav_desc_time">방금 전</p>
                 <% } %>
                 <i class="mid_nav_desc_option fas fa-ellipsis-h"></i>
-                <p class="mid_nav_desc_description"><%= post[i].description %></p>
+                <% if(post[i].desc_image) { %>
+                    <img style="width: 99.8%;" src="<%= post[i].desc_image %>" alt="">
+                <% } %>
+                <p class="mid_nav_desc_description">
+                    <%= post[i].description %>
+                </p>
                 <div class="mid_nav_desc_feeling">
                     <i class="mid_nav_desc_feeling_thumbup far fa-thumbs-up"></i>
                     <p class="mid_nav_desc_feeling_thumb_count"><%= post[i].like_count %></p>
@@ -2382,13 +2392,23 @@
         const top_left_searchDiv = document.getElementsByClassName('top_left_searchDiv')[0];
         // 사진 넣기 input 태그
         const posting_pic = document.getElementById('posting_pic');
+        // 자세히보기 사진 넣기 input 태그
+        const posting_pic2 = document.getElementById('posting_pic2');
         // 사진이 넣어질 div 
         const posting_input_think_div = document.getElementsByClassName('posting_input_think_div')[0];
         // 현재 image 정보
         let image;
+        // 페이스북 메신저 만들기용 소켓
+        
 
         // 사진을 넣어서 미리보기 할 경우
-        posting_pic.addEventListener('change',(e) => {
+        posting_pic.addEventListener('click',(e) => {
+            e.preventDefault();
+            mid_top_nav_input.click();
+            posting_pic2.click();
+        });
+        // 자세히보기 쪽 사진넣기
+        posting_pic2.addEventListener('change',(e) => {
             var getfile = e.target.files[0];
             image = document.createElement('img');
             // 파일 경로를 읽어줄 객체 생성
@@ -2405,7 +2425,7 @@
             image.style.marginTop = '10px';
             image.style.marginLeft = '19px';
 
-            mid_top_nav_input.click();
+            
             posting_input_think_div.appendChild(image);
         });
 
