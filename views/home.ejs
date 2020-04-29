@@ -1743,6 +1743,76 @@
             .posting_input_think_div {
                 width:390px;
             }
+            /* 페메 div */
+            .chat_div {
+                width:284px;
+                height:351px;
+                box-shadow: 0 1px 4px rgba(0,0,0,.3);
+                border-radius: 8px 8px 0 0;
+                position: fixed;
+                bottom:0;
+            }
+            /* 페메 윗라인 */
+            .chat_top {
+                padding:10px 7px 6px 8px;
+                background:#FFDC2D;
+                border-radius: 8px 8px 0 0;
+                box-shadow: 0 2px 1px rgba(0,0,0,0.1);
+                height:28px;
+                cursor:pointer;
+            }
+            /* 페메 왼쪽 프로필div */
+            .chat_top_left {
+                width:28px;
+                height:28px;
+                border-radius: 50%;
+                overflow: hidden;
+                display: inline-block;
+            }
+            /* 프로필 사진 */
+            .chat_top_left_profileImage {
+                width:100%;
+            }
+            /* 프로필 현재활동중 표시 */
+            .chat_top_left_smallDiv {
+                height:7px;
+                width:7px;
+                background-color: #42b72a;
+                display: inline-block;
+                border:2px solid rgb(255, 220, 45);
+                border-radius: 50%;
+                position: fixed;
+                bottom:33.6%;
+                left:1.35%;
+            }
+            /* 채팅방 오른쪽 */
+            .chat_top_right {
+                cursor: pointer;
+                display: inline-block;
+                width:235px;
+            }
+            /* 채팅방 닉네임 */
+            .chat_top_nickname {
+                color:white;
+                font-weight: 600;
+                cursor:pointer;
+                float:left;
+                font-size: 13px;
+                font-family: Arial, Helvetica, sans-serif;
+                transform: translateY(-7px);
+            }
+            /* 채팅방 오른쪽 아이콘 */
+            .chat_top_icon {
+                color:white;
+            }
+            /* 아이콘박스 */
+            .chat_top_iconBox {
+                padding:0 6px 0;
+                cursor: pointer;
+                float:right;
+                line-height: 5px;
+                transform: translateY(-7px);
+            }
         }
 
     </style>
@@ -2306,6 +2376,32 @@
                 <a href="" id="right_select_black" class="right_select_others_menu">Facebook © 2020</a>
             </div>
         </nav>
+        <div class="chat_div">
+            <div class="chat_top">
+                <div class="chat_top_left">
+                    <img src="images/profile_man.jpg" alt="" class="chat_top_left_profileImage">
+                    <div class="chat_top_left_smallDiv">
+                    </div>
+                </div>
+                <div class="chat_top_right">
+                    <span class="chat_top_nickname">김우빈</span>
+                    <div class="chat_top_iconBox">
+                        <i class="chat_top_icon fas fa-times"></i>
+                    </div>
+                    <div class="chat_top_iconBox">
+                        <i class="chat_top_icon fas fa-cog"></i>
+                    </div>
+                    <div class="chat_top_iconBox">
+                        <i class="chat_top_icon fas fa-phone-alt"></i>
+                    </div>
+                    <div class="chat_top_iconBox">
+                        <i class="chat_top_icon fas fa-video"></i>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </div>
     </article>
     <script>
         var top_line_friend = document.getElementById('top_line_friend');
