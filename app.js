@@ -60,7 +60,6 @@ io.on('connection', (socket) => {
   });
 
   socket.on('send message', (text) => {
-    console.log(text);
     socket.broadcast.emit('answer', { name:socket.id , msg : text});
     text = '';
   })

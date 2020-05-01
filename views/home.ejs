@@ -1863,6 +1863,31 @@
             .chat_icon {
                 color:#90949C;
             }
+            /* 채팅div 상단 빈공간 */
+            .chat_high_blank {
+                width:100%;
+                height:15px;
+            }
+            /* 상대방이 보낸 채팅 */
+            .msg_other_p {
+                margin:0;
+                font-size: 13px;
+                font-family: Arial, Helvetica, sans-serif;
+                color:#444950;
+            }
+            /* 수신메시지 div */
+            .msg_other_div {
+                border-radius: 48px;
+                padding:6px 10px;
+                background-color: rgb(230, 230, 230);
+                display: inline-block;
+                margin-left: 10px;
+            }
+            /* 수신메시지 divBox */
+            .msg_other_divBox {
+                width:100%;
+                height:32px;
+            }
         }
 
     </style>
@@ -2450,7 +2475,7 @@
                 </div>
             </div>
             <div class="chat_desc">
-
+                <div class="chat_high_blank"></div>
             </div>
             <div class="chat_bottom_message">
                 <input type="text" class="chat_bottom_message_input" placeholder="메시지를 입력하세요...">
@@ -2494,6 +2519,10 @@
         chat_bottom_message_input.addEventListener('keypress',(e) => {
             if(e.code === 'Enter') {
                 once = true;
+                // 아무것도 입력하지 않은경우 리턴
+                if(chat_bottom_message_input.value === '') {
+                    return;
+                }
                 // 상대방에게 메시지를 보냄
                 socket.emit('send message', chat_bottom_message_input.value);
 
@@ -2518,6 +2547,7 @@
 
                 div_box.appendChild(div);
                 chat_desc.appendChild(div_box);
+                chat_desc.scrollTop = chat_desc.scrollHeight;
                 chat_bottom_message_input.value = '';
                 chat_bottom_message_input.focus();
             }
@@ -2525,10 +2555,21 @@
 
         // 상대방의 메시지를 받음
         socket.on('answer', inf => {
+            once = true;
             if(once === true) {
                 var p = document.createElement('p');
+                p.classList.add('msg_other_p');
                 p.innerText = inf.msg;
-                chat_desc.appendChild(p);
+
+                var div = document.createElement('div');
+                div.classList.add('msg_other_div');
+                div.appendChild(p);
+
+                var div_box = document.createElement('div');
+                div_box.classList.add('msg_other_divBox');
+                div_box.appendChild(div);
+                chat_desc.scrollTop = chat_desc.scrollHeight-100;
+                chat_desc.appendChild(div_box);
                 once = false;
             }
         });
