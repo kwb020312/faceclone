@@ -7,11 +7,12 @@ var favicon = require('serve-favicon')
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 
+var app = express();
+var http = require ( 'http' ) .createServer (app); 
+var io = require ( 'socket.io' ) (http);
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -49,6 +50,21 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+// 채팅기능 구현 연습
+io.on('connection', (socket) => {
+  console.log('유저가 연결됨 : ' , socket.id);
+  socket.emit('user',socket.id);
 
+  socket.on('disconnect',() => {
+    console.log('유저가 연결 해제됨 : ',socket.id);
+  });
 
+  socket.on('send message', (text) => {
+    console.log(text);
+    socket.broadcast.emit('answer', { name:socket.id , msg : text});
+    text = '';
+  })
+})
+
+http.listen ( 3000 , () => { console .log ( 'listening on * : 3000' ); });
 module.exports = app;

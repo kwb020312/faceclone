@@ -3,8 +3,10 @@ var mysql = require('mysql');
 var router = express.Router();
 var multer = require('multer');
 const path = require('path');
-var http = require('http').Server(router);
-var io = require('socket.io')(http);
+var app = require('../app');
+var http = require ( 'http' ) .createServer (app); 
+var io = require ( 'socket.io' ) (http);
+
 
 const upload = multer({
   storage: multer.diskStorage({
@@ -45,20 +47,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/login',(req,res) => {
-  // 채팅기능 구현 연습
-  io.on('connection', (socket) => {
-    console.log('유저가 연결됨 : ' , socket.id);
-
-    socket.on('disconnect',() => {
-      console.log('유저가 연결 해제됨 : ',socket.id);
-    });
-
-    socket.on('send message', (name , text) => {
-      var msg = name + ' : ' + text;
-      console.log(msg);
-      io.emit('메시지가 도착했습니다 : ',msg);
-    })
-  })
 
   // 로그인처리
   connection.query(`SELECT c.post_id , c.user_name, c.user_comment , c.user_date FROM  faceclone_comment AS c  LEFT JOIN faceclone_post AS p ON p.id = c.post_id ORDER BY post_id DESC;`,(error , row2 , field2) => {
@@ -85,20 +73,6 @@ router.post('/login',(req,res) => {
 })
 
 router.get('/login',(req, res) => {
-  // 채팅기능 구현 연습
-  io.on('connection', (socket) => {
-    console.log('유저가 연결됨 : ' , socket.id);
-
-    socket.on('disconnect',() => {
-      console.log('유저가 연결 해제됨 : ',socket.id);
-    });
-
-    socket.on('send message', (name , text) => {
-      var msg = name + ' : ' + text;
-      console.log(msg);
-      io.emit('메시지가 도착했습니다 : ',msg);
-    })
-  })
 
   connection.query(`SELECT c.post_id , c.user_name, c.user_comment , c.user_date FROM  faceclone_comment AS c  LEFT JOIN faceclone_post AS p ON p.id = c.post_id ORDER BY post_id DESC;`,(error , row2 , field2) => {
     connection.query(`SELECT * FROM faceclone_post ORDER BY id desc;`,(error , row1 , field1) => {
@@ -174,5 +148,6 @@ router.post('/comment',(req,res) => {
 router.post('/up', upload.single('img'), (req, res) => {
   console.log(req.file); 
 });
+
 
 module.exports = router;

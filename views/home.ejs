@@ -1758,8 +1758,10 @@
                 background:#FFDC2D;
                 border-radius: 8px 8px 0 0;
                 box-shadow: 0 2px 1px rgba(0,0,0,0.1);
+                border-bottom: 1px solid rgba(0, 0, 0, .1);
                 height:28px;
                 cursor:pointer;
+                z-index: 10;
             }
             /* 페메 왼쪽 프로필div */
             .chat_top_left {
@@ -1812,6 +1814,54 @@
                 float:right;
                 line-height: 5px;
                 transform: translateY(-7px);
+            }
+            /* 채팅 내용 div */
+            .chat_desc {
+                height:247px;
+                width:100%;
+                background-color: #fff;
+                border-bottom: 1px solid rgba(0, 0, 0, .1);
+                z-index: 0;
+                overflow-y: scroll;
+                overflow-x: hidden;
+            }
+            /* 채팅입력 div */
+            .chat_bottom_message {
+                border-top-width: 0;
+                cursor:text;
+                font-size: 13px;
+                padding: 10px 8px 6px;
+                line-height: 16px;
+                background-color: #fff;
+            }
+            /* 채팅입력 input */
+            .chat_bottom_message_input {
+                border:0;
+                width:100%;
+                height:100%;
+                outline: none;
+            } 
+            /* 채팅입력 input Placeholder */
+            .chat_bottom_message_input:focus::placeholder {
+                color: rgb(192, 193, 194);
+            }
+            /* 채팅하단 아이콘 */
+            .chat_bottom_icon {
+                background-color: #fff;
+                width:100%;
+                height:100%;
+            }
+            /* 채팅하단 아이콘 박스 */
+            .chat_icon_box {
+                float: left;
+                margin-left: 4px;
+                padding: 4px 4px 8px;
+                padding-top: 0px;
+                cursor:pointer;
+            }
+            /* 채팅하단 아이콘 */
+            .chat_icon {
+                color:#90949C;
             }
         }
 
@@ -2397,13 +2447,95 @@
                     <div class="chat_top_iconBox">
                         <i class="chat_top_icon fas fa-video"></i>
                     </div>
-                    
-                    
+                </div>
+            </div>
+            <div class="chat_desc">
+
+            </div>
+            <div class="chat_bottom_message">
+                <input type="text" class="chat_bottom_message_input" placeholder="메시지를 입력하세요...">
+            </div>
+            <div class="chat_bottom_icon">
+                <div class="chat_icon_box">
+                    <i class="far fa-images chat_icon"></i>
+                </div>
+                <div class="chat_icon_box">
+                    <i class="fas fa-sticky-note chat_icon"></i>
+                </div>
+                <div class="chat_icon_box">
+                    <i class="fas fa-smile chat_icon"></i>
+                </div>
+                <div class="chat_icon_box">
+                    <i class="fas fa-paperclip chat_icon"></i>
+                </div>
+                <div class="chat_icon_box">
+                    <i class="fas fa-camera chat_icon"></i>
+                </div>
+                <div class="chat_icon_box" style="float:right;">
+                    <i class="fas fa-paper-plane chat_icon" style="margin-right: 6px;"></i>
                 </div>
             </div>
         </div>
     </article>
+    <!-- 소켓을 연결함 -->
+    <script src="/socket.io/socket.io.js"></script>
     <script>
+        // 소켓을 가져옴
+        var socket = io();
+
+        // 자신의 아이디를 배정받음
+        socket.on('user',user => {
+            console.log(user);
+        });
+
+        // 페메 메시지 입력창
+        const chat_bottom_message_input = document.getElementsByClassName('chat_bottom_message_input')[0];
+        var once = true;
+        chat_bottom_message_input.addEventListener('keypress',(e) => {
+            if(e.code === 'Enter') {
+                once = true;
+                // 상대방에게 메시지를 보냄
+                socket.emit('send message', chat_bottom_message_input.value);
+
+                var p = document.createElement('p');
+                p.innerText = chat_bottom_message_input.value;
+                p.style.margin = '0px';
+                p.style.color = 'white';
+                p.style.fontSize = '13px';
+
+                var div = document.createElement('div');
+                div.style.padding = '6px 10px';
+                div.style.borderRadius = '48px';
+                div.style.backgroundColor = '#3578e5';
+                div.style.display = 'inline-block';
+                div.style.float = 'right';
+                div.style.margin = '0px 10px 0px 8px';
+                div.appendChild(p);
+
+                var div_box = document.createElement('div');
+                div_box.style.width = '100%';
+                div_box.style.height = '32px';
+
+                div_box.appendChild(div);
+                chat_desc.appendChild(div_box);
+                chat_bottom_message_input.value = '';
+                chat_bottom_message_input.focus();
+            }
+        });
+
+        // 상대방의 메시지를 받음
+        socket.on('answer', inf => {
+            if(once === true) {
+                var p = document.createElement('p');
+                p.innerText = inf.msg;
+                chat_desc.appendChild(p);
+                once = false;
+            }
+        });
+
+        // 채팅방 div
+        const chat_desc = document.getElementsByClassName('chat_desc')[0];
+
         var top_line_friend = document.getElementById('top_line_friend');
         var top_line_messenger = document.getElementById('top_line_messenger');
         var top_line_bell = document.getElementById('top_line_bell');
