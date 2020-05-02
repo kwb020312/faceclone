@@ -4,8 +4,6 @@ var router = express.Router();
 var multer = require('multer');
 const path = require('path');
 var app = require('../app');
-var http = require ( 'http' ) .createServer (app); 
-var io = require ( 'socket.io' ) (http);
 
 
 const upload = multer({
