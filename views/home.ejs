@@ -1746,11 +1746,12 @@
             /* 페메 div */
             .chat_div {
                 width:284px;
-                height:351px;
+                /* height:351px; */
                 box-shadow: 0 1px 4px rgba(0,0,0,.3);
                 border-radius: 8px 8px 0 0;
                 position: fixed;
                 bottom:0;
+                right:13%;
             }
             /* 페메 윗라인 */
             .chat_top {
@@ -1784,8 +1785,8 @@
                 border:2px solid rgb(255, 220, 45);
                 border-radius: 50%;
                 position: fixed;
-                bottom:33.6%;
-                left:1.35%;
+                bottom:0.8%;
+                right:26%;
             }
             /* 채팅방 오른쪽 */
             .chat_top_right {
@@ -1849,7 +1850,7 @@
             .chat_bottom_icon {
                 background-color: #fff;
                 width:100%;
-                height:100%;
+                height:29px;
             }
             /* 채팅하단 아이콘 박스 */
             .chat_icon_box {
@@ -1925,6 +1926,10 @@
             .chat_side_bar_icon {
                 color:rgb(94, 94, 94);
                 font-size: 15px;
+            }
+            /* 클릭전까지 보이지 않을 채팅영역 */
+            .chat_NotTop {
+                display: none;
             }
         }
 
@@ -2491,7 +2496,7 @@
         </nav>
         <a href="" class="chat_side_bar">
             <span class="chat_side_bar_leftSpan">
-                채팅(N개)
+                채팅(0개)
             </span>
             <div class="chat_side_bar_iconBox">
                 <i class="fas fa-cog chat_side_bar_icon"></i>
@@ -2526,32 +2531,35 @@
                     </div>
                 </div>
             </div>
-            <div class="chat_desc">
-                <div class="chat_high_blank"></div>
+            <div class="chat_NotTop">
+                <div class="chat_desc">
+                    <div class="chat_high_blank"></div>
+                </div>
+                <div class="chat_bottom_message">
+                    <input type="text" class="chat_bottom_message_input" placeholder="메시지를 입력하세요...">
+                </div>
+                <div class="chat_bottom_icon">
+                    <div class="chat_icon_box">
+                        <i class="far fa-images chat_icon"></i>
+                    </div>
+                    <div class="chat_icon_box">
+                        <i class="fas fa-sticky-note chat_icon"></i>
+                    </div>
+                    <div class="chat_icon_box">
+                        <i class="fas fa-smile chat_icon"></i>
+                    </div>
+                    <div class="chat_icon_box">
+                        <i class="fas fa-paperclip chat_icon"></i>
+                    </div>
+                    <div class="chat_icon_box">
+                        <i class="fas fa-camera chat_icon"></i>
+                    </div>
+                    <div class="chat_icon_box" style="float:right;">
+                        <i class="fas fa-paper-plane chat_icon" style="margin-right: 6px;"></i>
+                    </div>
+                </div>
             </div>
-            <div class="chat_bottom_message">
-                <input type="text" class="chat_bottom_message_input" placeholder="메시지를 입력하세요...">
-            </div>
-            <div class="chat_bottom_icon">
-                <div class="chat_icon_box">
-                    <i class="far fa-images chat_icon"></i>
-                </div>
-                <div class="chat_icon_box">
-                    <i class="fas fa-sticky-note chat_icon"></i>
-                </div>
-                <div class="chat_icon_box">
-                    <i class="fas fa-smile chat_icon"></i>
-                </div>
-                <div class="chat_icon_box">
-                    <i class="fas fa-paperclip chat_icon"></i>
-                </div>
-                <div class="chat_icon_box">
-                    <i class="fas fa-camera chat_icon"></i>
-                </div>
-                <div class="chat_icon_box" style="float:right;">
-                    <i class="fas fa-paper-plane chat_icon" style="margin-right: 6px;"></i>
-                </div>
-            </div>
+            
         </div>
     </article>
     <!-- 소켓을 연결함 -->
@@ -2565,6 +2573,8 @@
             console.log(user);
         });
 
+        const top_line_right_user_userProfile_username = document.getElementsByClassName('top_line_right_user_userProfile_username')[0];
+
         // 페메 메시지 입력창
         const chat_bottom_message_input = document.getElementsByClassName('chat_bottom_message_input')[0];
         var once = true;
@@ -2576,7 +2586,7 @@
                     return;
                 }
                 // 상대방에게 메시지를 보냄
-                socket.emit('send message', chat_bottom_message_input.value);
+                socket.emit('send message', {msg:chat_bottom_message_input.value, who:top_line_right_user_userProfile_username.innerText});
 
                 var p = document.createElement('p');
                 p.innerText = chat_bottom_message_input.value;
@@ -2605,10 +2615,43 @@
             }
         });
 
+        // 오른쪽 하단 확인하지않은 메시지개수 표시
+        const chat_side_bar_leftSpan = document.getElementsByClassName('chat_side_bar_leftSpan')[0];
+
+        // 채팅방 상단 (여러개일경우 배열사용)
+        let chat_top = document.getElementsByClassName('chat_top');
+
+        // 클릭전까지 보이지 않을 채팅영역 (여러개)
+        let chat_NotTop = document.getElementsByClassName('chat_NotTop');
+
+        // 현재활동중 div (여러개)
+        let chat_top_left_smallDiv = document.getElementsByClassName('chat_top_left_smallDiv');
+
+        // 반복문을 사용하여 전체 채팅방 상단 클릭 이벤트 생성
+        for(let i = 0 ; i < chat_top.length; i++) {
+            chat_top[i].addEventListener('click',e => {
+                if(chat_NotTop[i].style.display === 'block') {
+                    chat_NotTop[i].style.display = 'none';
+                    chat_top_left_smallDiv[i].style.bottom = '0.8%';
+                } else {
+                    chat_NotTop[i].style.display = 'block';
+                    chat_top_left_smallDiv[i].style.bottom = '33.6%';   
+                }
+            })
+        }
+
+        // 수신받은 메시지만 chat top 색들어오게,
+        // 자동으로 표시되도록 변경
+        // 바텀오른쪽 사이드바 클릭시 표시
+
         // 상대방의 메시지를 받음
         socket.on('answer', inf => {
             once = true;
             if(once === true) {
+                readNotMsg++;
+                // 수신하지않은 N개의 메시지 표시
+                chat_side_bar_leftSpan.innerText = `채팅(${readNotMsg}개)`;
+
                 var p = document.createElement('p');
                 p.classList.add('msg_other_p');
                 p.innerText = inf.msg;
@@ -2622,9 +2665,16 @@
                 div_box.appendChild(div);
                 chat_desc.scrollTop = chat_desc.scrollHeight-100;
                 chat_desc.appendChild(div_box);
+
+                console.log(inf.name)
+
                 once = false;
             }
         });
+
+
+        // 확인하지않은 수신메시지 개수
+        var readNotMsg = 0;
 
         // 채팅방 div
         const chat_desc = document.getElementsByClassName('chat_desc')[0];
@@ -2721,6 +2771,7 @@
         let image;
         // 페이스북 메신저 만들기용 소켓
         
+
 
         // 사진을 넣어서 미리보기 할 경우
         posting_pic.addEventListener('click',(e) => {
