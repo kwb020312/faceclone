@@ -1752,6 +1752,7 @@
                 position: fixed;
                 bottom:0;
                 right:13%;
+                display: none;
             }
             /* 페메 윗라인 */
             .chat_top {
@@ -1930,6 +1931,15 @@
             /* 클릭전까지 보이지 않을 채팅영역 */
             .chat_NotTop {
                 display: none;
+            }
+            /* 가장 오른쪽 사이드바 */
+            .sideBar {
+                position: fixed;
+                top:0%;
+                right:0%;
+                height:100vh;
+                width:180px;
+                border-left: 1px solid rgb(202, 202, 202);
             }
         }
 
@@ -2508,59 +2518,60 @@
                 <i class="fas fa-edit chat_side_bar_icon"></i>
             </div>
         </a>
-        <div class="chat_div">
-            <div class="chat_top">
-                <div class="chat_top_left">
-                    <img src="images/profile_man.jpg" alt="" class="chat_top_left_profileImage">
-                    <div class="chat_top_left_smallDiv">
+        <% for(let i = 0 ; i < 4 ; i ++) { %>
+            <div class="chat_div">
+                <div class="chat_top">
+                    <div class="chat_top_left">
+                        <img src="images/profile_man.jpg" alt="" class="chat_top_left_profileImage">
+                        <div class="chat_top_left_smallDiv">
+                        </div>
+                    </div>
+                    <div class="chat_top_right">
+                        <span class="chat_top_nickname"></span>
+                        <div class="chat_top_iconBox">
+                            <i class="chat_top_icon fas fa-times"></i>
+                        </div>
+                        <div class="chat_top_iconBox">
+                            <i class="chat_top_icon fas fa-cog"></i>
+                        </div>
+                        <div class="chat_top_iconBox">
+                            <i class="chat_top_icon fas fa-phone-alt"></i>
+                        </div>
+                        <div class="chat_top_iconBox">
+                            <i class="chat_top_icon fas fa-video"></i>
+                        </div>
                     </div>
                 </div>
-                <div class="chat_top_right">
-                    <span class="chat_top_nickname">김우빈</span>
-                    <div class="chat_top_iconBox">
-                        <i class="chat_top_icon fas fa-times"></i>
+                <div class="chat_NotTop">
+                    <div class="chat_desc">
+                        <div class="chat_high_blank"></div>
                     </div>
-                    <div class="chat_top_iconBox">
-                        <i class="chat_top_icon fas fa-cog"></i>
+                    <div class="chat_bottom_message">
+                        <input type="text" class="chat_bottom_message_input" placeholder="메시지를 입력하세요...">
                     </div>
-                    <div class="chat_top_iconBox">
-                        <i class="chat_top_icon fas fa-phone-alt"></i>
-                    </div>
-                    <div class="chat_top_iconBox">
-                        <i class="chat_top_icon fas fa-video"></i>
+                    <div class="chat_bottom_icon">
+                        <div class="chat_icon_box">
+                            <i class="far fa-images chat_icon"></i>
+                        </div>
+                        <div class="chat_icon_box">
+                            <i class="fas fa-sticky-note chat_icon"></i>
+                        </div>
+                        <div class="chat_icon_box">
+                            <i class="fas fa-smile chat_icon"></i>
+                        </div>
+                        <div class="chat_icon_box">
+                            <i class="fas fa-paperclip chat_icon"></i>
+                        </div>
+                        <div class="chat_icon_box">
+                            <i class="fas fa-camera chat_icon"></i>
+                        </div>
+                        <div class="chat_icon_box" style="float:right;">
+                            <i class="fas fa-paper-plane chat_icon" style="margin-right: 6px;"></i>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="chat_NotTop">
-                <div class="chat_desc">
-                    <div class="chat_high_blank"></div>
-                </div>
-                <div class="chat_bottom_message">
-                    <input type="text" class="chat_bottom_message_input" placeholder="메시지를 입력하세요...">
-                </div>
-                <div class="chat_bottom_icon">
-                    <div class="chat_icon_box">
-                        <i class="far fa-images chat_icon"></i>
-                    </div>
-                    <div class="chat_icon_box">
-                        <i class="fas fa-sticky-note chat_icon"></i>
-                    </div>
-                    <div class="chat_icon_box">
-                        <i class="fas fa-smile chat_icon"></i>
-                    </div>
-                    <div class="chat_icon_box">
-                        <i class="fas fa-paperclip chat_icon"></i>
-                    </div>
-                    <div class="chat_icon_box">
-                        <i class="fas fa-camera chat_icon"></i>
-                    </div>
-                    <div class="chat_icon_box" style="float:right;">
-                        <i class="fas fa-paper-plane chat_icon" style="margin-right: 6px;"></i>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
+        <% } %>
     </article>
     <!-- 소켓을 연결함 -->
     <script src="/socket.io/socket.io.js"></script>
@@ -2568,12 +2579,37 @@
         // 소켓을 가져옴
         var socket = io();
 
+        // 채팅방 전체 div(여러개)
+        let chat_div = document.getElementsByClassName('chat_div');
+
+        // 채팅방의 이름 (여러개)
+        let chat_top_nickname = document.getElementsByClassName('chat_top_nickname');
+
+        // 현재활동중 div (여러개)
+        let chat_top_left_smallDiv = document.getElementsByClassName('chat_top_left_smallDiv');
+
+        // 오른쪽 하단 사이드바
+        const chat_side_bar = document.getElementsByClassName('chat_side_bar')[0];
+
+        // 채팅방 간격 조정
+        for(let i = 0 ; i < chat_div.length ; i ++) {
+            chat_div[i].style.right = `${13+(16*i)}%`;
+            chat_top_left_smallDiv[i].style.right = `${26+(16*i)}%`;
+        }
+
+        // 상단 자신의 프로필이름
+        const top_line_right_user_userProfile_username = document.getElementsByClassName('top_line_right_user_userProfile_username')[0];
+
         // 자신의 아이디를 배정받음
         socket.on('user',user => {
-            console.log(user);
+            // 서버에게 나의 이름을 전송함
+            socket.emit('me',{socket_id: user,user_name: top_line_right_user_userProfile_username.innerText})
         });
 
-        const top_line_right_user_userProfile_username = document.getElementsByClassName('top_line_right_user_userProfile_username')[0];
+        // 다른사람들의 프로필을 받아옴
+        socket.on('others',data => {
+            console.log(data);
+        })
 
         // 페메 메시지 입력창
         const chat_bottom_message_input = document.getElementsByClassName('chat_bottom_message_input')[0];
@@ -2608,8 +2644,8 @@
                 div_box.style.height = '32px';
 
                 div_box.appendChild(div);
-                chat_desc.appendChild(div_box);
-                chat_desc.scrollTop = chat_desc.scrollHeight;
+                chat_desc[0].appendChild(div_box);
+                chat_desc[0].scrollTop = chat_desc[0].scrollHeight;
                 chat_bottom_message_input.value = '';
                 chat_bottom_message_input.focus();
             }
@@ -2623,9 +2659,6 @@
 
         // 클릭전까지 보이지 않을 채팅영역 (여러개)
         let chat_NotTop = document.getElementsByClassName('chat_NotTop');
-
-        // 현재활동중 div (여러개)
-        let chat_top_left_smallDiv = document.getElementsByClassName('chat_top_left_smallDiv');
 
         // 반복문을 사용하여 전체 채팅방 상단 클릭 이벤트 생성
         for(let i = 0 ; i < chat_top.length; i++) {
@@ -2648,6 +2681,40 @@
         socket.on('answer', inf => {
             once = true;
             if(once === true) {
+                // 채팅방 이름 지정
+                for(let i = 0 ; i < chat_top_nickname.length ; i ++) {
+                    // 만약 채팅창의 이름span 이 비어있다면?
+                    if(chat_top_nickname[i].innerText === '') {
+                        // 만약 이전 채팅방의 이름과 지금 들어온 정보의 이름이 같은사람이라면?
+                        if(i === 0) {
+                            // 해당 번째 닉네임  span 에 상대방의 이름을 넣음
+                            chat_top_nickname[i].innerText = inf.name;
+                            chat_div[i].style.display = 'inline-block';
+                            if(chat_desc[i].offsetHeight === 0) {
+                                chat_top[i].click();
+                            }
+                            break;
+                        } else {
+                            if(chat_top_nickname[i-1].innerText === inf.name) {
+                                break;
+                            } else {
+                                // 해당 번째 닉네임  span 에 상대방의 이름을 넣음
+                                chat_top_nickname[i].innerText = inf.name;
+                                chat_div[i].style.display = 'inline-block';
+                                if(chat_desc[i].offsetHeight === 0) {
+                                    chat_top[i].click();
+                                }
+                                break;
+                            }
+                        }
+                        
+                    }
+
+                    if(chat_desc[i].offsetHeight === 0 && inf.name === chat_top_nickname[i].innerText) {
+                        chat_top[i].click();
+                    }
+
+                }
                 readNotMsg++;
                 // 수신하지않은 N개의 메시지 표시
                 chat_side_bar_leftSpan.innerText = `채팅(${readNotMsg}개)`;
@@ -2663,8 +2730,15 @@
                 var div_box = document.createElement('div');
                 div_box.classList.add('msg_other_divBox');
                 div_box.appendChild(div);
-                chat_desc.scrollTop = chat_desc.scrollHeight-100;
-                chat_desc.appendChild(div_box);
+
+                for(let i = 0 ; i < chat_desc.length ; i++) {
+                    if(inf.name === chat_top_nickname[i].innerText) {
+                        chat_desc[i].scrollTop = chat_desc[i].scrollHeight-100;
+                        chat_desc[i].appendChild(div_box);
+                    }
+                }
+
+                
 
                 console.log(inf.name)
 
@@ -2677,7 +2751,7 @@
         var readNotMsg = 0;
 
         // 채팅방 div
-        const chat_desc = document.getElementsByClassName('chat_desc')[0];
+        const chat_desc = document.getElementsByClassName('chat_desc');
 
         var top_line_friend = document.getElementById('top_line_friend');
         var top_line_messenger = document.getElementById('top_line_messenger');
@@ -3185,6 +3259,16 @@
             mid_nav_desc.style.marginTop = '0px';
             no_space.style.transform = 'translateY(0px)';
         })
+
+        // 오른쪽 하단 사이드바 클릭시
+        chat_side_bar.addEventListener('click',e => {
+            e.preventDefault();
+            chat_side_bar.style.display = 'none';
+            
+            var div = document.createElement('div');
+            div.classList.add('sideBar');
+            body.appendChild(div);
+        }) 
     </script>
 </body>
 </html>

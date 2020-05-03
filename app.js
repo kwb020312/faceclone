@@ -52,8 +52,12 @@ app.use(function(err, req, res, next) {
 
 // 채팅기능 구현 연습
 io.on('connection', (socket) => {
-  console.log('유저가 연결됨 : ' , socket.id);
   socket.emit('user',socket.id);
+
+  // 나 이외의 사람들에게 나의 접속을 알림
+  socket.on('me',profile => {
+    socket.broadcast.emit('others',{socket_id : profile.socket_id , user_name : profile.user_name});
+  })
 
   socket.on('disconnect',() => {
     console.log('유저가 연결 해제됨 : ',socket.id);
