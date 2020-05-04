@@ -1950,6 +1950,7 @@
             }
             .sideBar_userBox:hover {
                 background-color: rgb(226, 226, 226);
+                cursor: pointer;
             }
             /* 오른쪽 사이드바 유저이미지 */
             .sideBar_userImage {
@@ -3341,11 +3342,46 @@
                     var online = document.createElement('div');
                     online.classList.add('sideBar_online');
                     userBox.appendChild(online);
+
+                    // 사이드바 유저 row (여러개)
+                    let sideBar_userBox = document.getElementsByClassName('sideBar_userBox')[0];
+
+                    // 사이드바 유저 닉네임 (여러개)
+                    let sideBar_userName = document.getElementsByClassName('sideBar_userName')[0];
+
+                    // 사이드바 유저 row 클릭시
+                    sideBar_userBox.addEventListener('click',e => {
+                        // 채팅방 개수만큼 반복
+                        for(let j = 0 ; j < chat_div.length; j++) {
+                            // 만약 반복을 시작하는 페이즈라면
+                            if(j === 0) {
+                                // 만약 채팅방의  j 번째 별명이 없다면
+                                if(chat_top_nickname[j].innerText.length === 0) {
+                                   chat_div[j].style.display = 'inline-block';
+                                   chat_top_nickname[j].innerText = sideBar_userName.innerText;
+                                   break;
+                                }
+                                // 만약 반복을 처음 시작하지 않는다면
+                            } else {
+                                // 현재 반복카운트 1칸 이전의 방 닉네임이 내가 선택한 사람의 이름과 다르다면
+                                if(chat_top_nickname[j-1].innerText !== sideBar_userName.innerText) {
+                                   chat_div[j].style.display = 'inline-block';
+                                   chat_top_nickname[j].innerText = sideBar_userName.innerText;
+                                   break;
+                                } else {
+                                    // 이미 다른배열에 해당사람의 이름으로 된 방이 있다면
+                                    break;
+                                }   
+                            }
+                            
+                        }
+                    })
                 }
             } else {
                 alert('현재 접속중인 유저가 없습니다!');
             }
         }) 
+        
     </script>
 </body>
 </html>
