@@ -1982,6 +1982,40 @@
                 margin-top: 10px;
                 margin-right: 9px;
             }
+            /* 사이드바 아랫라인 div */
+            .sideBar_bottom {
+                position: fixed;
+                bottom:0%;
+                height:31px;
+                width:205px;
+                background-color: rgb(253, 253, 253);
+            }
+            /* 사이드바 아랫라인 돋보기 */
+            .sideBar_btIcon {
+                font-size: 15px;
+                color:#90949C;
+                padding:9px 8px 10px 8px;
+                float:left;
+            }
+            /* 사이드바 하단 검색 input */
+            .sideBar_btinput {
+                float:left;
+                position: fixed;
+                bottom:0%;
+                width:85px;
+                border: none;
+                outline: none;
+                padding: 9px 0px 7px 0px;
+            }
+            .sideBar_btinput::placeholder {
+                color:#90949C;
+            }
+            /* 사이드바 하단 우측 아이콘 */
+            .sideBar_btnRight_Icon {
+                position: fixed;
+                bottom: 0.85%;
+                color:#90949C;
+            }
         }
 
     </style>
@@ -3342,6 +3376,50 @@
                     var online = document.createElement('div');
                     online.classList.add('sideBar_online');
                     userBox.appendChild(online);
+
+                    // 사이드바 하단 div
+                    var sideBar_bottom = document.createElement('div');
+                    sideBar_bottom.classList.add('sideBar_bottom');
+                    div.appendChild(sideBar_bottom);
+
+                    // 사이드바 하단 돋보기 아이콘
+                    var sideBar_btIcon = document.createElement('i');
+                    sideBar_btIcon.classList.add('sideBar_btIcon');
+                    sideBar_btIcon.classList.add('fas');
+                    sideBar_btIcon.classList.add('fa-search');
+                    sideBar_bottom.appendChild(sideBar_btIcon);
+
+                    // 사이드바 하단 검색 input
+                    var sideBar_btinput = document.createElement('input');
+                    sideBar_btinput.placeholder = '검색';
+                    sideBar_btinput.classList.add('sideBar_btinput');
+                    sideBar_bottom.appendChild(sideBar_btinput);
+
+                    // 사이드바 하단 기어 아이콘
+                    var sideBar_btnGear = document.createElement('i');
+                    sideBar_btnGear.classList.add('fas');
+                    sideBar_btnGear.classList.add('fa-cog');
+                    sideBar_btnGear.classList.add('sideBar_btnRight_Icon');
+                    sideBar_btnGear.style.right = '2.6%';
+                    sideBar_bottom.appendChild(sideBar_btnGear);
+
+                    // 사이드바 하단 에딧 아이콘
+                    var sideBar_btnEdit = document.createElement('i');
+                    sideBar_btnEdit.classList.add('fas');
+                    sideBar_btnEdit.classList.add('fa-edit');
+                    sideBar_btnEdit.classList.add('sideBar_btnRight_Icon');
+                    sideBar_btnEdit.style.right = '1.4%';
+                    sideBar_btnEdit.style.fontSize = '14px';
+                    sideBar_btnEdit.style.paddingBottom = '0.6px';
+                    sideBar_bottom.appendChild(sideBar_btnEdit);
+
+                    // 사이드바 하단 친구추가 아이콘
+                    var sideBar_btnAddFriends = document.createElement('i');
+                    sideBar_btnAddFriends.classList.add('fas');
+                    sideBar_btnAddFriends.classList.add('fa-user-friends');
+                    sideBar_btnAddFriends.classList.add('sideBar_btnRight_Icon');
+                    sideBar_btnAddFriends.style.right = '0.1%';
+                    sideBar_bottom.appendChild(sideBar_btnAddFriends);
 
                     // 사이드바 유저 row (여러개)
                     let sideBar_userBox = document.getElementsByClassName('sideBar_userBox')[0];
