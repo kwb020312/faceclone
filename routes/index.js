@@ -50,21 +50,23 @@ router.post('/login',(req,res) => {
   connection.query(`SELECT c.post_id , c.user_name, c.user_comment , c.user_date FROM  faceclone_comment AS c  LEFT JOIN faceclone_post AS p ON p.id = c.post_id ORDER BY post_id DESC;`,(error , row2 , field2) => {
     connection.query(`SELECT * FROM faceclone_post ORDER BY id desc;`,(error , row1 , field1) => {
       connection.query(`SELECT * FROM faceclone_users WHERE phone_or_email = '${req.body.user_name}' AND pw = '${req.body.user_pw}';`,(err , rows, fields) => {
-        if(!req.session.user_session_id) {
-          if(rows.length > 0) {
-            req.session.user_session_id = rows[0].phone_or_email;
-            connection.query(`INSERT INTO faceclone_recent_login(name,recent_id,gender) VALUES ('${rows[0].first_name}${rows[0].last_name}','${rows[0].id}','${rows[0].gender}');`,(err , rows, fields) => {
-              if(err) {
-                return;
-              }
-            });
-          
-            res.render('home',{user:rows,post:row1,comment:row2});} else {
-            res.render('location');
+        connection.query(`SELECT * FROM faceclone_story ORDER BY id DESC LIMIT 3;`,(err , story_rows , story_fields) => {
+          if(!req.session.user_session_id) {
+            if(rows.length > 0) {
+              req.session.user_session_id = rows[0].phone_or_email;
+              connection.query(`INSERT INTO faceclone_recent_login(name,recent_id,gender) VALUES ('${rows[0].first_name}${rows[0].last_name}','${rows[0].id}','${rows[0].gender}');`,(err , rows, fields) => {
+                if(err) {
+                  return;
+                }
+              });
+            
+              res.render('home',{user:rows,post:row1,comment:row2,story:story_rows});} else {
+              res.render('location');
+            }
+          } else {
+            res.render('home',{user:rows,post:row1,comment:row2,story:story_rows});
           }
-        } else {
-          res.render('home',{user:rows,post:row1,comment:row2});
-        }
+        })
       })
     })
   });
@@ -75,12 +77,14 @@ router.get('/login',(req, res) => {
   connection.query(`SELECT c.post_id , c.user_name, c.user_comment , c.user_date FROM  faceclone_comment AS c  LEFT JOIN faceclone_post AS p ON p.id = c.post_id ORDER BY post_id DESC;`,(error , row2 , field2) => {
     connection.query(`SELECT * FROM faceclone_post ORDER BY id desc;`,(error , row1 , field1) => {
       connection.query(`SELECT * FROM faceclone_users WHERE phone_or_email = '${req.session.user_session_id}';`,(err , rows, fields) => {
-        if(req.session.comment_link) {
-          res.render('home',{user:rows,post:row1,comment:row2,comment_link:req.session.comment_link});
-        } else {
-          // 첫 로그인 외에 로그인이 되었을 때
-          res.render('home',{user:rows,post:row1,comment:row2,comment_link:0});
-        }
+        connection.query(`SELECT * FROM faceclone_story ORDER BY id DESC LIMIT 3;`,(err , story_rows , story_fields) => {
+          if(req.session.comment_link) {
+            res.render('home',{user:rows,post:row1,comment:row2,comment_link:req.session.comment_link,story:story_rows});
+          } else {
+            // 첫 로그인 외에 로그인이 되었을 때
+            res.render('home',{user:rows,post:row1,comment:row2,comment_link:0,story:story_rows});
+          }
+        });
       });
     });
   });
@@ -145,6 +149,19 @@ router.post('/comment',(req,res) => {
 // 상단에서 김우빈 프로필을 클릭한 경우
 router.post('/up', upload.single('img'), (req, res) => {
   console.log(req.file); 
+});
+
+// 상단에서 스토리에 게시를 체크한 경우
+router.post('/story',upload.single('story_image') ,(req,res) => {
+  if(req.file) {
+    connection.query(`INSERT INTO faceclone_story (description,user_name) VALUES ('/uploads/${req.file.filename}','${req.body.korea_name}')`,(err, rows , fields) => {
+
+    });
+    res.redirect('/login');
+  } else {
+    res.send('파일 안들어옴');
+  }
+  
 });
 
 

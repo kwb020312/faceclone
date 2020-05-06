@@ -409,28 +409,37 @@
                 border-bottom-right-radius: 5px;
                 border-bottom-left-radius: 5px;
                 border:0.5px solid rgb(218, 218, 218);
+                display: inline-block;
             }
             .mid_nav_title {
-                display: inline-block;
                 font-size: 13px;
-                color:rgb(0, 0, 61);
+                color:#65676b;
+                font-family: Arial, Helvetica, sans-serif;
                 transform: translateX(11px) translateY(7px);
                 font-weight: bold;
                 padding:0;
                 margin:0;
+                float:left;
+                position: fixed;
+                top:1.5%;
             }
             .mid_nav_title:hover {
                 border-bottom:0.1px solid black ;
                 cursor: pointer;
             }
             .mid_nav_all {
-                display: inline-block;
+                float: right;
                 font-size: 12px;
-                color: rgb(1, 59, 82);
-                transform: translateX(390px) translateY(7px);
+                color: #385898;
                 padding:0;
                 margin:0;
-                letter-spacing: 0px;
+                margin-right: 9px;
+                margin-top: 7px;
+                letter-spacing: -0.4px;
+                position: fixed;
+                right:0.8%;
+                top:1.8%;
+
             }
             .mid_nav_all:hover {
                 border-bottom:0.1px solid rgb(1, 59, 82);
@@ -439,7 +448,7 @@
             .mid_nav_story_firstStory {
                 width:115px;
                 height:200px;
-                transform: translateX(10px) translateY(20px);
+                transform: translateX(12px) translateY(40px);
                 border-top-left-radius: 10px;
                 border-top-right-radius: 10px;
                 border-bottom-left-radius: 10px;
@@ -448,6 +457,7 @@
                 background-position: center center;
                 z-index: 0;
                 overflow: hidden;
+                display: inline-block;
             }
             .mid_nav_story_firstStory_gradient {
                 width:115px;
@@ -2298,7 +2308,13 @@
             </div>
         </nav>
         
-        <div class="posting">
+        <div class="posting"> 
+            <!-- 스토리 폼 -->
+            <form style="display: none;" enctype="multipart/form-data" id="user_story" method="POST" action="/story">
+                <input type="text" name="korea_name" style="display: none;" id="korea_name" value="">
+                <input type="file" style="display: none;" name="story_image" id="story_pic" accept="img/*">
+            </form>
+            <!-- 뉴스피드 폼 -->
             <form enctype="multipart/form-data" id="user_post" method="POST" action="/posting">
                 <input id="faceclone_user_name" type="text" name="faceclone_user_name" value="<%= user[0].first_name %><%= user[0].last_name %>"/>
             <% if(user[0].gender === 'man') { %>
@@ -2320,7 +2336,7 @@
                     <div class="mid_top_nav_pic">
                         <i class="mid_top_nav_pic_icon fas fa-image"></i>
                         <input type="file" style="display: none;" name="post_image" id="posting_pic2" accept="img/*">
-                        <label for="posting_pic2">
+                        <label id="post_or_story_img" for="posting_pic2">
                             <p class="mid_top_nav_pic_p">사진/동영상</p>
                         </label>
                     </div>
@@ -2362,7 +2378,7 @@
                             <div id="displaying_checkbox2" class="circle_no_check">
                                 <div class="checking"></div>
                             </div>
-                            <input id="newspeed_checkbox" class="posting_bottom_newspeed_checkbox" type="checkbox">
+                            <input id="newspeed_checkbox2" class="posting_bottom_newspeed_checkbox" type="checkbox">
                             <div id="mystory_icon_box" class="posting_bottom_newspeed_icon_box">
                                 <% if(user[0].gender === 'man') { %>
                                     <img id="posting" class="posting_input_img" src="/images/profile_man.jpg" alt="Who is">
@@ -2393,6 +2409,7 @@
         <nav class="mid_nav_story">
             <p class="mid_nav_title">스토리</p>
             <p class="mid_nav_all">모두 보기</p>
+            <!-- 기존에 있어야하는 스토리 추가 스토리 -->
             <div id="first_story" class="mid_nav_story_firstStory">
                 <div class="mid_nav_story_firstStory_image" ></div>
                 <div class="mid_nav_story_firstStory_gradient"></div>
@@ -2402,6 +2419,14 @@
                 <p class="mid_nav_story_firstStory_name">스토리에 추가</p>
                 <div class="darkness"></div>
             </div>
+            <!-- DB 에서 불러오는 스토리 -->
+            <% for(let i = 0 ; i < story.length ; i ++) { %>
+                <div id="first_story" class="mid_nav_story_firstStory">
+                    <div class="mid_nav_story_firstStory_image" style="background-image: url('<%= story[i].description %>');"></div>
+                    <p class="mid_nav_story_firstStory_name" style="transform: translateX(8px) translateY(-45px);"><%= story[i].user_name %></p>
+                    <div class="darkness" style="transform: translateY(-247px);"></div>
+                </div>
+            <% } %>
         </nav>
         <div class="no_space"></div>
         <iframe name="iframe_posting_num" style="display: none;"></iframe>
@@ -2651,6 +2676,10 @@
     <!-- 소켓을 연결함 -->
     <script src="/socket.io/socket.io.js"></script>
     <script>
+
+        // 스토리 연결 input 태그
+        let user_story = document.getElementById('user_story');
+
         // 소켓을 가져옴
         var socket = io();
 
@@ -2852,8 +2881,8 @@
         var left_nav_user = document.getElementsByClassName('left_nav_user')[0];
         var left_nav_user_menu = document.getElementById('left_nav_user_menu');
         const first_story = document.getElementById('first_story');
-        const darkness = document.getElementsByClassName('darkness')[0];
-        const mid_nav_story_firstStory_image = document.getElementsByClassName('mid_nav_story_firstStory_image')[0];
+        const darkness = document.getElementsByClassName('darkness');
+        const mid_nav_story_firstStory_image = document.getElementsByClassName('mid_nav_story_firstStory_image');
         const mid_top_nav_input = document.getElementsByClassName('mid_top_nav_input')[0];
         const body_black = document.getElementsByClassName('body_black')[0];
         const posting = document.getElementsByClassName('posting')[0];
@@ -2935,6 +2964,9 @@
         // 현재 image 정보
         let image;
         // 페이스북 메신저 만들기용 소켓
+
+        // 스토리 file 태그
+        let story_pic = document.getElementById('story_pic');
         
 
 
@@ -2962,9 +2994,31 @@
             image.style.marginTop = '10px';
             image.style.marginLeft = '19px';
 
-            
+            image.classList.add('user_IMG');
             posting_input_think_div.appendChild(image);
         });
+
+        // 스토리쪽 자세히보기 사진넣기
+        story_pic.addEventListener('change', e => {
+            var getfile = e.target.files[0];
+            image = document.createElement('img');
+            // 파일 경로를 읽어줄 객체 생성
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                image.src = e.target.result;
+            }
+
+            reader.readAsDataURL(getfile);
+
+            image.style.height = '50px';
+            image.style.width = '50px';
+            image.style.marginTop = '10px';
+            image.style.marginLeft = '19px';
+
+            image.classList.add('user_IMG');
+            posting_input_think_div.appendChild(image);
+        })
 
 
         // 검색기록 바 누를시의 처리
@@ -3064,9 +3118,20 @@
             });
         }
 
+        let post_or_story_img = document.getElementById('post_or_story_img');
 
+        // 유저가 포스팅을 하는 이벤트
         posting_admit.addEventListener('click',() => {
-            user_post.submit();
+            // 스토리에 추가 버튼에 체크를 한 경우
+            if(displaying_checkbox2.className === 'circle_check') {
+
+                user_story.submit();
+                
+
+                // 스토리에는 추가하지 않겠다고 한 경우
+            } else {
+                user_post.submit();
+            }
         })
 
         user_posting.addEventListener('keyup',(e) => {
@@ -3321,21 +3386,19 @@
         left_nav_user.addEventListener('mouseout',() => {
             left_nav_user_menu.style.display='none';
         })
-        first_story.addEventListener('mouseover',() => {
-            darkness.style.opacity = '0.1';
-            mid_nav_story_firstStory_image.style.transform = 'scale(1.05)';
-        });
-        first_story.addEventListener('mouseout',() => {
-            darkness.style.opacity = '0';
-            mid_nav_story_firstStory_image.style.transform = 'scale(1)';
-        });
-
-        // 스토리 추가 관련 스크립트
-        darkness.addEventListener('click', e => {
-            mid_top_nav_input.click();
-            displaying_checkbox2.click();
-        })
-
+        
+        for(let i = 0 ; i < mid_nav_story_firstStory_image.length; i ++) {
+            // 스토리 이미지에 마우스 오버 이벤트
+            darkness[i].addEventListener('mouseover',() => {
+                darkness[i].style.opacity = '0.1';
+                mid_nav_story_firstStory_image[i].style.transform = 'scale(1.05)';
+            });
+            darkness[i].addEventListener('mouseout',() => {
+                darkness[i].style.opacity = '0';
+                mid_nav_story_firstStory_image[i].style.transform = 'scale(1)';
+            });
+        }
+        
         mid_top_nav_input.addEventListener('click',() => {
             body_black.style.display = 'block';
             posting.style.display = 'block';
@@ -3477,6 +3540,22 @@
                 alert('현재 접속중인 유저가 없습니다!');
             }
         }) 
+
+        var mystory_left = document.getElementById('mystory_left');
+        // 내 스토리 div 체크를 누른 경우
+        mystory_left.addEventListener('click',(e) => {
+            // 만약 내 스토리 체크박스가 활성화 되어 있다면
+            if(displaying_checkbox2.className === 'circle_no_check') {
+                // 사진이 저장되는 input 태그의 경로를 바꿔준다
+                post_or_story_img.setAttribute('for','story_pic');
+                // 현재 미리보기로 저장되어있던 사진 삭제
+                var user_IMG = document.getElementsByClassName('user_IMG')[0];
+                user_IMG.remove();
+            }
+        })
+
+        const korea_name = document.getElementById('korea_name');
+        korea_name.value = top_line_right_user_userProfile_username.innerText;
         
     </script>
 </body>
