@@ -522,6 +522,7 @@
                 transform: translateY(-403px);
                 opacity: 0;
                 transition: all 0.5s;
+                cursor:pointer;
             }
             .mid_nav_desc {
                 width:500px;
@@ -2421,6 +2422,9 @@
             </div>
             <!-- DB 에서 불러오는 스토리 -->
             <% for(let i = 0 ; i < story.length ; i ++) { %>
+                <form style="display: none;" action="/story_home" method="POST" class="stories">
+                    <!-- 전송할 내용 -->
+                </form>
                 <div id="first_story" class="mid_nav_story_firstStory">
                     <div class="mid_nav_story_firstStory_image" style="background-image: url('<%= story[i].description %>');"></div>
                     <p class="mid_nav_story_firstStory_name" style="transform: translateX(8px) translateY(-45px);"><%= story[i].user_name %></p>
@@ -3386,18 +3390,37 @@
         left_nav_user.addEventListener('mouseout',() => {
             left_nav_user_menu.style.display='none';
         })
+
+        let stories = document.getElementsByClassName('stories');
         
+        // 스토리에 배열만큼 반복해주기
         for(let i = 0 ; i < mid_nav_story_firstStory_image.length; i ++) {
             // 스토리 이미지에 마우스 오버 이벤트
             darkness[i].addEventListener('mouseover',() => {
                 darkness[i].style.opacity = '0.1';
                 mid_nav_story_firstStory_image[i].style.transform = 'scale(1.05)';
             });
+            // 마우스 아웃 이벤트
             darkness[i].addEventListener('mouseout',() => {
                 darkness[i].style.opacity = '0';
                 mid_nav_story_firstStory_image[i].style.transform = 'scale(1)';
             });
+            // 가장 왼쪽 스토리라면
+            if(i === 0) {
+                // 스토리 게시하기 (가장 왼쪽 스토리)
+                darkness[i].addEventListener('click', e => {
+                    mid_top_nav_input.click();
+                    displaying_checkbox2.click();
+                });
+            } else {
+                // 가장 왼쪽 외의 스토리라면
+                darkness[i].addEventListener('click', e => {
+                    stories[i-1].submit();
+                });
+            }
         }
+
+   
         
         mid_top_nav_input.addEventListener('click',() => {
             body_black.style.display = 'block';
@@ -3550,13 +3573,16 @@
                 post_or_story_img.setAttribute('for','story_pic');
                 // 현재 미리보기로 저장되어있던 사진 삭제
                 var user_IMG = document.getElementsByClassName('user_IMG')[0];
-                user_IMG.remove();
+                if(user_IMG) {
+                    user_IMG.remove();
+                }
             }
         })
 
         const korea_name = document.getElementById('korea_name');
         korea_name.value = top_line_right_user_userProfile_username.innerText;
         
+
     </script>
 </body>
 </html>
