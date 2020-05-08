@@ -166,7 +166,9 @@ router.post('/story',upload.single('story_image') ,(req,res) => {
 
 // 스토리를 누른 경우
 router.post('/story_home', (req,res) => {
-  res.render('story');
+  connection.query(`SELECT * FROM faceclone_story` , (err , row , fields) => {
+    res.render('story',{story:row});
+  });
 })
 
 

@@ -4,16 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/b0389b4cac.js" crossorigin="anonymous"></script>
-    <title>Facebook</title>
+    <title>Stories</title>
     <style>
         body {
             margin:0;
             padding:0;
+            user-select: none;
         }
         /* 최상단 라인 */
         .faceline {
             background-color: #4267b2;
             height:42.5px;
+            position: fixed;
+            z-index: 3;
+            width:100%;
         }
         /* 페이스북 아이콘 */
         .faceline_icon {
@@ -214,9 +218,211 @@
             margin-bottom: 5px;
             transform: translateY(-1px);
         }
+        /* 왼쪽 영역div */
+        .left {
+            width:343px;
+            background-color: #fafafa;
+            float:left;
+            height:894px;
+            overflow: hidden;
+            z-index: 3;
+            position: fixed;
+            top:4.6%;
+        }
+        /* 왼쪽 상단 div */
+        .left_top {
+            width:311px;
+            height:32px;
+            margin:12px 16px;
+            margin-top: 9px;
+        }
+        /* 왼쪽 상단 titleSpan */
+        .left_top_titleSpan {
+            font-size: 24px;
+            font-weight: bolder;
+            color:#050505;
+            font-family: Arial, Helvetica, sans-serif;
+            float: left;
+        }
+        /* 왼쪽 오른쪽 div */
+        .left_top_right {
+            width:150px;
+            height:22px;
+            float:right;
+            margin-top: 9px;
+            text-align: center;
+            margin-right: 3px;
+        }
+        /* 보관된 스토리 글씨 */
+        .left_top_right_saveStory {
+            color:#1876F2;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        /* 상단 우측 중간분리 도트 */
+        .left_top_right_dot {
+            color:#1876F2;
+            font-size: 8px;
+            cursor: pointer;
+        }
+        /* 내 스토리 영역 */
+        .left_myStory {
+            height:auto;
+            float:left;
+            width:100%;
+        }
+        /* 내 스토리 글씨 */
+        .left_myStory_my {
+            color:#050505;
+            font-size: 17px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bolder;
+            float: left;
+            margin-left: 16px;
+        }
+        /* 스토리에 추가 영역 */
+        .left_myStory_addStory {
+            width:311px;
+            float:left;
+            margin:2px 4px;
+            padding:8px 12px;
+            margin-top: 9px;
+            cursor: pointer;
+        }
+        /* 스토리 추가 버튼 영역 */
+        .left_myStory_addStory_addButton {
+            width:60px;
+            height:60px;
+            border-radius: 50%;
+            background-color: #f1f1f1;
+            float: left;
+            text-align: center;
+            margin-right: 12px;
+        }
+        /* 추가 + 버튼 */
+        .left_myStory_addStory_addButton_plus {
+            line-height: 53px;
+            color:rgb(37, 131, 255);
+            font-weight: 400;
+            font-size: 33px;
+        }
+        /* 스토리에 추가 글씨 */
+        .left_myStory_addStory_add {
+            color:#050505;
+            font-size: 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bolder;
+            float: left;
+            margin-top: 2px;
+            width:235px;
+        }
+        /* 스토리에 추가 내용 */
+        .left_myStory_addStory_desc {
+            font-size: 13px;
+            color:#65676B;
+            font-family: Arial, Helvetica, sans-serif;
+            float: left;
+            width:235px;
+            margin-top: 2px;
+        }
+        /* 모든 스토리 영역 */
+        .left_allStory {
+            height:100%;
+            float:left;
+            width:343px;
+        }
+        /* 모든 스토리 글씨 */
+        .left_allStory_topSpan {
+            color:#050505;
+            font-size: 17px;
+            font-weight: bold;
+            float: left;
+            width:311px;
+            height:20px;
+            margin:13px 0px 0px 15px;
+        }
+        /* 스토리 화면 영역 */
+        .mid {
+            position: fixed;
+            left:18%;
+            width:82%;
+            height:100vh;
+            background-size: cover;
+            background-position: center center;
+            z-index: 1;
+            filter: blur(8px);
+            transform: scale(1.02);
+            overflow: hidden;
+        }
+        /* 스토리 프로필 */
+        .left_allStory_profile {
+            float:left;
+            width:311px;
+            height:60px;
+            margin:0px 8px;
+            padding:8px;
+            border-radius: 6px;
+        }
+        .left_allStory_profile:hover {
+            background-color: rgb(235, 235, 235);
+        }
+        /* 스토리 상태 영역 */
+        .left_allStory_profile_state {
+            float:left;
+            height:48px;
+            width:48px;
+            padding:3px;
+            border-radius: 50%;
+            border:3px solid rgb(204, 204, 204);
+        }
+        /* 유저 프로필 사진 */
+        .left_allStory_profile_state_img {
+            width:48px;
+            height:48px;
+            border-radius: 50%;
+            background-image: url('images/profile_man.JPG');
+            background-size: cover;
+            background-position: center center;
+        }
+        /* 유저 이름 */
+        .left_allStory_profile_state_name {
+            float: left;
+            font-size: 15px;
+            color:#050505;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            margin:10px 0px 0px 12px;
+            width:239px;
+            height:19px;
+        }
+        /* 스토리의 생성시간 확인 */
+        .left_allStory_profile_state_date {
+            float:left;
+            width:239px;
+            height:19px;
+            color:#65676B;
+            font-size: 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            margin-left: 12px;
+        }
+        /* 사잇공간 */
+        .blank {
+            float: left;
+            width:100%;
+            height:11px;
+        }
+        /* 스토리 화면 어둡게하기 */
+        .mid_brightLow {
+            position: fixed;
+            width:100%;
+            height:100vh;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 2;
+        }
     </style>
 </head>
-<body>
+<body >
+    <!-- 최상단 faceline -->
     <div class="faceline">
         <i class="faceline_icon fab fa-facebook-square"></i>
         <div class="faceline_search">
@@ -251,5 +457,80 @@
             <i class="faceline_icons_menu fas fa-caret-down"></i>
         </div>
     </div>
+    <!-- 왼쪽 스토리 목록 및 프로필 -->
+    <div class="left">
+        <!-- 스토리 및 설정 div -->
+        <div class="left_top">
+            <!-- 스토리 span -->
+            <span class="left_top_titleSpan">스토리</span>
+            <!-- 오른쪽 파란글씨 div -->
+            <div class="left_top_right">
+                <!-- 보관된 스토리 글씨 -->
+                <span class="left_top_right_saveStory">보관된 스토리</span>
+                <span class="left_top_right_dot">·</span>
+                <span class="left_top_right_saveStory">설정</span>
+            </div>
+        </div>
+        <!-- 내스토리 -->
+        <div class="left_myStory">
+            <!-- 내스토리 글씨 -->
+            <div class="left_myStory_my">내 스토리</div>
+            <!-- 스토리에 추가 영역 -->
+            <div class="left_myStory_addStory">
+                <!-- 스토리 추가 버튼 영역 -->
+                <div class="left_myStory_addStory_addButton">
+                    <!-- 영역 안 쪽 + span -->
+                    <span class="left_myStory_addStory_addButton_plus">+</span>
+                </div>
+                <!-- 스토리에 추가 글씨 -->
+                <span class="left_myStory_addStory_add">스토리에 추가</span>
+                <!-- 스토리 내용 -->
+                <span class="left_myStory_addStory_desc">사진, 동영상을 공유하거나 글을 남겨보세요</span>
+            </div>
+        </div>
+        <!-- 모든 스토리 영역 -->
+        <div class="left_allStory">
+            <!-- 모든 스토리 글씨 -->
+            <div class="left_allStory_topSpan">모든 스토리</div>
+            <!-- 사이 공간 (11px) -->
+            <div class="blank"></div>
+            <!-- 스토리 프로필 -->
+            <% for(let i = 0 ; i < story.length ; i ++) { %>
+                <div onclick="mid.style.backgroundImage = `url('<%= story[i].description %>')`" data-num="<%= i %>" class="left_allStory_profile">
+                    <!-- 스토리 상태 영역 -->
+                    <div class="left_allStory_profile_state">
+                        <!-- 유저 프로필사진 영역 -->
+                        <div class="left_allStory_profile_state_img"></div>
+                    </div>
+                    <!-- 유저 이름 -->
+                    <span class="left_allStory_profile_state_name"><%= story[i].user_name %></span>
+                    <!-- 얼마나 이전의 스토리인가? -->
+                    <% var now_date = new Date(); %>
+                    <% if(now_date.getFullYear() > new Date(story[i].how_old).getFullYear()) { %>
+                        <span class="left_allStory_profile_state_date"><%= now_date.getFullYear() - new Date(story[i].how_old).getFullYear() %>년</span>
+                    <% } else if(now_date.getMonth() > new Date(story[i].how_old).getMonth()) {%>
+                        <span class="left_allStory_profile_state_date"><%= now_date.getMonth() - new Date(story[i].how_old).getMonth() %>달</span>
+                    <% } else if(now_date.getDate() > new Date(story[i].how_old).getDate()) {%>
+                        <span class="left_allStory_profile_state_date"><%= now_date.getDate() - new Date(story[i].how_old).getDate() %>일</span>
+                    <% } else if(now_date.getHours() > new Date(story[i].how_old).getHours()) {%>
+                        <span class="left_allStory_profile_state_date"><%= now_date.getHours() - new Date(story[i].how_old).getHours() %>시간</span>
+                    <% } else if(now_date.getMinutes() > new Date(story[i].how_old).getMinutes()) { %>
+                        <span class="left_allStory_profile_state_date"><%= now_date.getMinutes() - new Date(story[i].how_old).getMinutes() %>분</span>
+                    <% } else {%>
+                        <span class="left_allStory_profile_state_date">방금 전</p>
+                    <% } %>
+                </div>
+            <% } %>
+        </div>
+    </div>
+    <!-- 스토리 화면 -->
+    <div class="mid">
+        <!-- 스토리 어둡게 보이기 하기 -->
+        <div class="mid_brightLow"></div>
+    </div>
+    <!-- 스크립트 시작 -->
+    <script>
+        var mid = document.getElementsByClassName('mid')[0];
+    </script>
 </body>
 </html>
