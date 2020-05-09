@@ -488,6 +488,8 @@
             left:47.45%;
             top:6%;
             border-radius: 7px;
+            background-size: cover;
+            background-position: center center;
         }
     </style>
 </head>
@@ -566,7 +568,7 @@
             <div class="blank"></div>
             <!-- 스토리 프로필 -->
             <% for(let i = 0 ; i < story.length ; i ++) { %>
-                <div onclick="mid_back.style.backgroundImage = `url('<%= story[i].description %>')`" data-num="<%= i %>" class="left_allStory_profile">
+                <div onclick="mid_image.style.backgroundImage = `url('<%= story[i].description %>')`;mid_back.style.backgroundImage = `url('<%= story[i].description %>')`;" data-num="<%= i %>" class="left_allStory_profile">
                     <!-- 스토리 상태 영역 -->
                     <div class="left_allStory_profile_state">
                         <!-- 유저 프로필사진 영역 -->
@@ -624,7 +626,10 @@
     </div>
     <!-- 스크립트 시작 -->
     <script>
-        var mid_back = document.getElementsByClassName('mid_back')[0];
+        // 중앙 스토리 뒷배경
+        const mid_back = document.getElementsByClassName('mid_back')[0];
+        // 스토리 배경
+        const mid_image = document.getElementsByClassName('mid_image')[0];
     </script>
 </body>
 </html>
