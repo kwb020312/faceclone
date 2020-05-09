@@ -440,7 +440,7 @@
         .mid_leftDiv_Circle {
             width:48px;
             height:48px;
-            background-color: rgb(185, 185, 185);
+            background-color: rgb(165, 165, 165);
             border-radius: 50%;
             margin:395px 0px 0px 480px;
             display: inline-block;
@@ -465,7 +465,7 @@
         .mid_rightDiv_Circle {
             width:48px;
             height:48px;
-            background-color: rgb(185, 185, 185);
+            background-color: rgb(165, 165, 165);
             border-radius: 50%;
             margin:395px 0px 0px 277px;
             display: inline-block;
@@ -490,6 +490,29 @@
             border-radius: 7px;
             background-size: cover;
             background-position: center center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
+        /* 스토리 상단 검은부분 */
+        .mid_image_dark {
+            position: fixed;
+            top:6%;
+            width:23.85%;
+            height:10vh;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            background:linear-gradient(to bottom , rgba(0,0,0,0.5) , rgba(0,0,0,0.1));
+            filter: blur(15px);
+            transform: scale(1.05);
+        }
+        /* 상단 Progress Bar */
+        .mid_image_dark_bodyBar {
+            width:434px;
+            height:4px;
+            background-color: rgba(255,255,255,0.4);
+            display: inline-block;
+            margin:10px 15px 2px 12px;
+            border-radius: 3px;
         }
     </style>
 </head>
@@ -613,7 +636,14 @@
         </div>
         <!-- 본 스토리 내용 영역 -->
         <div class="mid_image">
+            <!-- 본 스토리 상단 검은부분 -->
+            <div class="mid_image_dark">
+                
+            </div>
+            <!-- 상단 Progress Bar -->
+            <div class="mid_image_dark_bodyBar">
 
+            </div>
         </div>
         <!-- 다음 스토리로 이동 영역 -->
         <div class="mid_rightDiv">
