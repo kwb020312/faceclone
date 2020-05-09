@@ -344,14 +344,22 @@
         /* 스토리 화면 영역 */
         .mid {
             position: fixed;
-            left:18%;
-            width:82%;
+            left:343px;
+            width:83%;
             height:100vh;
+            top:4.6%;
+        }
+        .mid_back {
+            position: fixed;
+            left:343px;
+            width:83%;
+            height:100vh;
+            top:4.6%;
             background-size: cover;
             background-position: center center;
             z-index: 1;
             filter: blur(8px);
-            transform: scale(1.02);
+            transform: scale(1.05);
             overflow: hidden;
         }
         /* 스토리 프로필 */
@@ -418,6 +426,68 @@
             height:100vh;
             background-color: rgba(0,0,0,0.5);
             z-index: 2;
+        }
+        /* 이전 스토리 보기 */
+        .mid_leftDiv {
+            width:41.068%;
+            height:90vh;
+            position: fixed;
+            background-color: rgba(0,0,0,0.3);
+            z-index: 4;
+            float: left;
+        }
+        /* 이전 스토리 보기 원 */
+        .mid_leftDiv_Circle {
+            width:48px;
+            height:48px;
+            background-color: rgb(185, 185, 185);
+            border-radius: 50%;
+            margin:395px 0px 0px 480px;
+            display: inline-block;
+            text-align: center;
+        }
+        /* 이전 스토리 가기 span */
+        .mid_leftDiv_Circle_span {
+            color:rgb(92, 92, 92);
+            font-size: 35px;
+            line-height: 38px;
+        }
+        /* 다음 스토리 가기 영역 */
+        .mid_rightDiv {
+            width:41.068%;
+            height:90vh;
+            position: fixed;
+            background-color: rgba(0,0,0,0.3);
+            z-index: 4;
+            right:0%;
+        }
+        /* 다음 스토리 가기 원 */
+        .mid_rightDiv_Circle {
+            width:48px;
+            height:48px;
+            background-color: rgb(185, 185, 185);
+            border-radius: 50%;
+            margin:395px 0px 0px 277px;
+            display: inline-block;
+            text-align: center;
+        }
+        /* 다음 스토리 가기 span */
+        .mid_rightDiv_Circle_span {
+            color:rgb(92, 92, 92);
+            font-size: 35px;
+            line-height: 38px;
+        }
+        /* 스토리 중앙 이미지 */
+        .mid_image {
+            z-index: 5;
+            width:458px;
+            height:814px;
+            background-color: white;
+            display: inline-block;
+            position: fixed;
+            left:47.45%;
+            top:6%;
+            border-radius: 7px;
         }
     </style>
 </head>
@@ -496,7 +566,7 @@
             <div class="blank"></div>
             <!-- 스토리 프로필 -->
             <% for(let i = 0 ; i < story.length ; i ++) { %>
-                <div onclick="mid.style.backgroundImage = `url('<%= story[i].description %>')`" data-num="<%= i %>" class="left_allStory_profile">
+                <div onclick="mid_back.style.backgroundImage = `url('<%= story[i].description %>')`" data-num="<%= i %>" class="left_allStory_profile">
                     <!-- 스토리 상태 영역 -->
                     <div class="left_allStory_profile_state">
                         <!-- 유저 프로필사진 영역 -->
@@ -525,12 +595,36 @@
     </div>
     <!-- 스토리 화면 -->
     <div class="mid">
+        <div class="mid_back">
+
+        </div>
+        
         <!-- 스토리 어둡게 보이기 하기 -->
         <div class="mid_brightLow"></div>
+        <!-- 이전 스토리로 이동 영역 -->
+        <div class="mid_leftDiv">
+            <!-- 이전 스토리로 이동 원 영역 -->
+            <div class="mid_leftDiv_Circle">
+                <!-- 이전 스토리로 이동 span -->
+                <span class="mid_leftDiv_Circle_span"><</span>
+            </div>
+        </div>
+        <!-- 본 스토리 내용 영역 -->
+        <div class="mid_image">
+
+        </div>
+        <!-- 다음 스토리로 이동 영역 -->
+        <div class="mid_rightDiv">
+            <!-- 다음 스토리로 이동 영역 -->
+            <div class="mid_rightDiv_Circle">
+                <!-- 다음 스토리로 이동 span -->
+                <span class="mid_rightDiv_Circle_span">></span>
+            </div>
+        </div>
     </div>
     <!-- 스크립트 시작 -->
     <script>
-        var mid = document.getElementsByClassName('mid')[0];
+        var mid_back = document.getElementsByClassName('mid_back')[0];
     </script>
 </body>
 </html>
