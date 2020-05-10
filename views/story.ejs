@@ -501,7 +501,7 @@
             height:10vh;
             border-top-left-radius: 5px;
             border-top-right-radius: 5px;
-            background:linear-gradient(to bottom , rgba(0,0,0,0.5) , rgba(0,0,0,0.1));
+            background:linear-gradient(to bottom , rgba(0,0,0,1) , rgba(0,0,0,0.3));
             filter: blur(15px);
             transform: scale(1.05);
         }
@@ -511,8 +511,20 @@
             height:4px;
             background-color: rgba(255,255,255,0.4);
             display: inline-block;
-            margin:10px 15px 2px 12px;
+            margin:11px 15px 0px 12px;
             border-radius: 3px;
+            z-index: 5;
+            position: fixed;
+        }
+        /* 상단 innerBar */
+        .mid_image_dark_bodyBar_innerBar {
+            width:0px;
+            height: 4px;
+            background-color: rgba(255,255,255,0.8);
+            border-radius: 3px;
+            z-index: 5;
+            position: fixed;
+            transition: all 0.1s ease-in-out;
         }
     </style>
 </head>
@@ -642,7 +654,8 @@
             </div>
             <!-- 상단 Progress Bar -->
             <div class="mid_image_dark_bodyBar">
-
+                <!-- Progress Bar 안쪽 바 -->
+                <div class="mid_image_dark_bodyBar_innerBar"></div>
             </div>
         </div>
         <!-- 다음 스토리로 이동 영역 -->
@@ -660,6 +673,19 @@
         const mid_back = document.getElementsByClassName('mid_back')[0];
         // 스토리 배경
         const mid_image = document.getElementsByClassName('mid_image')[0];
+        // 스토리 상단 시간바(inner)
+        const innerBar = document.getElementsByClassName('mid_image_dark_bodyBar_innerBar')[0];
+        // 상단 바 시간이 지날수록 점점 width 값 증폭
+        let incBarNum = 0;
+        const increaseBar = () => {
+            innerBar.style.width = incBarNum+'px';
+            incBarNum+=8;
+            if(incBarNum > 434) {
+                innerBar.style.width = '434px';
+                clearInterval(Bartimer);
+            }
+        }
+        const Bartimer = setInterval(increaseBar,100);
     </script>
 </body>
 </html>
