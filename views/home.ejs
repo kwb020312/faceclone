@@ -2423,6 +2423,7 @@
             <!-- DB 에서 불러오는 스토리 -->
             <% for(let i = 0 ; i < story.length ; i ++) { %>
                 <form style="display: none;" action="/story_home" method="POST" class="stories">
+                    <input type="text" style="display:none;" name="story_num" value="<%= story[i].id %>">
                     <!-- 전송할 내용 -->
                 </form>
                 <div id="first_story" class="mid_nav_story_firstStory">

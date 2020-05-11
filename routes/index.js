@@ -166,8 +166,13 @@ router.post('/story',upload.single('story_image') ,(req,res) => {
 
 // 스토리를 누른 경우
 router.post('/story_home', (req,res) => {
+  // 전체 스토리 목록 읽어오기
   connection.query(`SELECT * FROM faceclone_story` , (err , row , fields) => {
-    res.render('story',{story:row});
+    // 내가 누른 스토리 읽어오기
+    connection.query(`SELECT * FROM faceclone_story WHERE id = '${req.body.story_num}';` , (err1 , row1 , fields1) => {
+      res.render('story',{story:row , story_num:row1});
+    })
+    
   });
 })
 
