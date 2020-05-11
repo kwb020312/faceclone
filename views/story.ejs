@@ -564,6 +564,32 @@
             font-family: Arial, Helvetica, sans-serif;
             margin-left: 13px;
         }
+        /* 스토리 상단 아이콘들 */
+        .mid_image_topRIght {
+            width:125px;
+            height:25px;
+            float:right;
+            margin-top: 37px;
+            position: fixed;
+            margin-left:348px;
+        }
+        /* 스토리 재생 아이콘 */
+        .mid_image_topRIght_play {
+            font-size: 17px;
+            color:white;
+        }
+        /* 스토리 소리 아이콘 */
+        .mid_image_topRIght_speaker {
+            font-size: 20px;
+            color:white;
+            margin-left: 13px;
+        }
+        /* 스토리 메뉴 아이콘 */
+        .mid_image_topRIght_menu {
+            font-size: 20px;
+            color:white;
+            margin-left: 13px;
+        }
     </style>
 </head>
 <body >
@@ -703,6 +729,15 @@
                 <span class="mid_image_Profile_name"><%= story[0].user_name %></span>
                 <!-- 스토리 게시 경과 시간 -->
                 <span class="mid_image_Profile_age"></span>
+            </div>
+            <!-- 스토리 상단 오른쪽 아이콘들 -->
+            <div class="mid_image_topRIght">
+                <!-- 스토리 재생 아이콘 -->
+                <i class="mid_image_topRIght_play fas fa-play"></i>
+                <!-- 스토리 소리 아이콘 -->
+                <i class="mid_image_topRIght_speaker fas fa-volume-up"></i>
+                <!-- 스토리 메뉴 아이콘 -->
+                <i class="mid_image_topRIght_menu fas fa-ellipsis-h"></i>
             </div>
 
         </div>
