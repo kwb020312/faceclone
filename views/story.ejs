@@ -501,7 +501,7 @@
             height:10vh;
             border-top-left-radius: 5px;
             border-top-right-radius: 5px;
-            background:linear-gradient(to bottom , rgba(0,0,0,1) , rgba(0,0,0,0.3));
+            background:linear-gradient(to bottom , rgba(0,0,0,0.5) , rgba(0,0,0,0.1));
             filter: blur(15px);
             transform: scale(1.05);
         }
@@ -525,6 +525,44 @@
             z-index: 5;
             position: fixed;
             transition: all 0.1s ease-in-out;
+        }
+        /* 스토리 안쪽 프로필 */
+        .mid_image_Profile {
+            display: inline-block;
+            width: 263px;
+            height:40px;
+            margin:27px 0px 0px 11px;
+            position: fixed;
+        }
+        /* 안쪽 프로필 사진 */
+        .mid_image_Profile_img {
+            width:40px;
+            height:40px;
+            border-radius: 50%;
+            background-image: url('images/profile_man.JPG');
+            background-size: cover;
+            background-position: center center;
+            float: left;
+        }
+        /* 스토리 주인 이름 */
+        .mid_image_Profile_name {
+            color:white;
+            font-size: 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            margin:1px 0px 0px 12px;
+            width:200px;
+            float:left;
+        }
+        /* 메인 스토리 게시 경과 시간 */
+        .mid_image_Profile_age {
+            float: left;
+            color:white;
+            width:200px;
+            font-weight: bold;
+            font-size: 13px;
+            font-family: Arial, Helvetica, sans-serif;
+            margin-left: 13px;
         }
     </style>
 </head>
@@ -657,6 +695,16 @@
                 <!-- Progress Bar 안쪽 바 -->
                 <div class="mid_image_dark_bodyBar_innerBar"></div>
             </div>
+            <!-- 스토리 안쪽 프로필 영역 -->
+            <div class="mid_image_Profile">
+                <!-- 프로필 영역 사진 -->
+                <div class="mid_image_Profile_img"></div>
+                <!-- 스토리 주인 이름 -->
+                <span class="mid_image_Profile_name"><%= story[0].user_name %></span>
+                <!-- 스토리 게시 경과 시간 -->
+                <span class="mid_image_Profile_age"></span>
+            </div>
+
         </div>
         <!-- 다음 스토리로 이동 영역 -->
         <div class="mid_rightDiv">
@@ -686,6 +734,11 @@
             }
         }
         const Bartimer = setInterval(increaseBar,100);
+        // 좌측 프로필 확인 스토리 게시 경과 시간
+        let left_allStory_profile_state_date = document.getElementsByClassName('left_allStory_profile_state_date')[0];
+        // 스토리 게시 경과 시간
+        let mid_image_Profile_age = document.getElementsByClassName('mid_image_Profile_age')[0];
+        mid_image_Profile_age.innerText = left_allStory_profile_state_date.innerText;
     </script>
 </body>
 </html>
