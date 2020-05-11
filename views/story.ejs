@@ -629,6 +629,117 @@
             color:white;
             font-size: 16px;
         }
+        /* 감정표현 들 영역 */
+        .mid_bottom_feels {
+            width:312px;
+            height:62px;
+            display: inline-block;
+            margin-top: 4px;
+            margin-left: 12px;
+        }
+        /* 좋아요 아이콘 박스 */
+        .mid_bottom_feels_thumbsBox {
+            width:39px;
+            height:39px;
+            float:left;
+            border-radius: 50%;
+            background:linear-gradient(to top,blue,rgb(6, 93, 255));
+            text-align: center;
+        }
+        /* 좋아요 아이콘 */
+        .mid_bottom_feels_thumbs {
+            color:white;
+            font-size: 22px;
+            line-height: 39px;
+        }
+        /* 최고에요 아이콘 박스 */
+        .mid_bottom_feels_bestBox {
+            width:39px;
+            height:39px;
+            float:left;
+            border-radius: 50%;
+            background:linear-gradient(to top,red,rgb(253, 133, 133));
+            text-align: center;
+            margin-left: 10px;
+        }
+        /* 최고에요 아이콘 */
+        .mid_bottom_feels_best {
+            color:white;
+            font-size: 21px;
+            line-height: 39px;
+        }
+        /* 웃겨요 아이콘 박스 */
+        .mid_bottom_feels_smileBox {
+            width:39px;
+            height:39px;
+            float:left;
+            border-radius: 50%;
+            text-align: center;
+            margin-left: 8px;
+        }
+        /* 웃겨요 아이콘 */
+        .mid_bottom_feels_smile {
+            background:linear-gradient(to top , orange , yellow);
+            font-size: 41px;
+            line-height: 39px;
+            border-radius: 50%;
+            color:rgba(0,0,0,0.3);
+            background-clip: text;
+        }
+        /* 놀라워요 아이콘 박스 */
+        .mid_bottom_feels_surpBox {
+            width:39px;
+            height:39px;
+            float:left;
+            border-radius: 50%;
+            text-align: center;
+            margin-left: 8px;
+        }
+        /* 놀라워요 아이콘 */
+        .mid_bottom_feels_surp {
+            background:linear-gradient(to top , orange , yellow);
+            font-size: 41px;
+            line-height: 39px;
+            border-radius: 50%;
+            color:rgba(0,0,0,0.3);
+            background-clip: text;
+        }
+        /* 슬퍼요 아이콘 박스 */
+        .mid_bottom_feels_sadBox {
+            width:39px;
+            height:39px;
+            float:left;
+            border-radius: 50%;
+            text-align: center;
+            margin-left: 10px;
+        }
+        /* 슬퍼요 아이콘 */
+        .mid_bottom_feels_sad {
+            background:linear-gradient(to top , orange , yellow);
+            font-size: 41px;
+            line-height: 39px;
+            border-radius: 50%;
+            color:rgba(0,0,0,0.3);
+            background-clip: text;
+        }
+        /* 화나요 아이콘 박스 */
+        .mid_bottom_feels_angryBox {
+            width:39px;
+            height:39px;
+            float:left;
+            border-radius: 50%;
+            text-align: center;
+            margin-left: 8px;
+        }
+        /* 화나요 아이콘 */
+        .mid_bottom_feels_angry {
+            background:linear-gradient(to bottom , red , orange);
+            font-size: 41px;
+            line-height: 39px;
+            border-radius: 50%;
+            color:rgba(0,0,0,0.3);
+            background-clip: text;
+        }
     </style>
 </head>
 <body >
@@ -796,6 +907,39 @@
             <div class="mid_bottom_msgDiv">
                 <!-- 메시지 입력 창 -->
                 <input placeholder="답장하기..." type="text" class="mid_bottom_msgDiv_input">
+            </div>
+            <!-- 다이렉트 감정표현 -->
+            <div class="mid_bottom_feels">
+                <!-- 좋아요 아이콘 박스 -->
+                <div class="mid_bottom_feels_thumbsBox">
+                    <!-- 좋아요 -->
+                    <i class="mid_bottom_feels_thumbs fas fa-thumbs-up"></i>
+                </div>
+                <!-- 최고에요 아이콘 박스 -->
+                <div class="mid_bottom_feels_bestBox">
+                    <!-- 최고에요 -->
+                    <i class="mid_bottom_feels_best fas fa-heart"></i>
+                </div>
+                <!-- 웃겨요 아이콘 박스 -->
+                <div class="mid_bottom_feels_smileBox">
+                    <!-- 웃겨요 -->
+                    <i class="mid_bottom_feels_smile far fa-grin-squint"></i>
+                </div>
+                <!-- 놀라워요 아이콘 박스 -->
+                <div class="mid_bottom_feels_surpBox">
+                    <!-- 놀라워요 -->
+                    <i class="mid_bottom_feels_surp far fa-surprise"></i>
+                </div>
+                <!-- 슬퍼요 아이콘 박스 -->
+                <div class="mid_bottom_feels_sadBox">
+                    <!-- 슬퍼요 -->
+                    <i class="mid_bottom_feels_sad far fa-sad-tear"></i>
+                </div>
+                <!-- 화나요 아이콘 박스 -->
+                <div class="mid_bottom_feels_angryBox">
+                    <!-- 화나요 -->
+                    <i class="mid_bottom_feels_angry far fa-angry"></i>
+                </div>
             </div>
         </div>
     </div>
