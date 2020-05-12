@@ -869,7 +869,7 @@
     <!-- 스토리 화면 -->
     <div class="mid">
         <div class="mid_back" style="background-image: url('<%= story_num[0].description %>');">
-
+            
         </div>
         
         <!-- 스토리 어둡게 보이기 하기 -->
@@ -884,6 +884,8 @@
         </div>
         <!-- 본 스토리 내용 영역 -->
         <div class="mid_image" style="background-image: url('<%= story_num[0].description %>');">
+            <!-- 몇번째 프로필의 스토리인지 알려줄 input -->
+            <input id="who_start" type="text" value="<%= story_num[0].user_name %>" style="display: none;">
             <!-- 본 스토리 상단 검은부분 -->
             <div class="mid_image_dark">
                 
@@ -904,8 +906,8 @@
             </div>
             <!-- 스토리 상단 오른쪽 아이콘들 -->
             <div class="mid_image_topRIght">
-                <!-- 스토리 재생 아이콘 -->
-                <i class="mid_image_topRIght_play fas fa-play"></i>
+                <!-- 스토리 재생/중단 아이콘 -->
+                <i class="mid_image_topRIght_play fas fa-pause"></i>
                 <!-- 스토리 소리 아이콘 -->
                 <i class="mid_image_topRIght_speaker fas fa-volume-up"></i>
                 <!-- 스토리 메뉴 아이콘 -->
@@ -973,17 +975,6 @@
         const mid_image = document.getElementsByClassName('mid_image')[0];
         // 스토리 상단 시간바(inner)
         const innerBar = document.getElementsByClassName('mid_image_dark_bodyBar_innerBar')[0];
-        // 상단 바 시간이 지날수록 점점 width 값 증폭
-        let incBarNum = 0;
-        const increaseBar = () => {
-            innerBar.style.width = incBarNum+'px';
-            incBarNum+=8;
-            if(incBarNum > 434) {
-                innerBar.style.width = '434px';
-                clearInterval(Bartimer);
-            }
-        }
-        const Bartimer = setInterval(increaseBar,100);
         // 좌측 프로필 확인 스토리 게시 경과 시간
         let left_allStory_profile_state_date = document.getElementsByClassName('left_allStory_profile_state_date')[0];
         // 스토리 게시 경과 시간
@@ -999,6 +990,8 @@
         let send_icon = document.createElement('i');
         // 이모티콘 전송 아이콘
         let smile_icon = document.createElement('i');
+        // 스토리 자동넘김 바
+        let incBarNum = 0;
         // 메시지 input 클릭이벤트 리스너
         mid_bottom_msgDiv_input.addEventListener('focus' , e => {
             if(mid_bottom_msgDiv.style.width === '688px') {
@@ -1059,6 +1052,8 @@
             mid_rightDiv_Circle.style.backgroundColor='rgb(165, 165, 165)';
             mid_rightDiv_Circle.style.transform = 'translateX(0px)'
         })
+        // 누가 스토리의 시작인가??
+        const who_start = document.getElementById('who_start');
         // 왼쪽 부분 프로필 클릭시 보고있는 색 변경
         var wathcing_story = [];
         // 스토리 배열
@@ -1068,6 +1063,7 @@
         for(let i = 0 ; i < left_allStory_profile.length ; i ++) {
             all_stories.push(Number(left_allStory_profile[i].dataset.num));
             left_allStory_profile[i].addEventListener('click', e => {
+                incBarNum = 0;
                 left_allStory_profile[i].style.backgroundColor = 'rgba(0,0,0,0.1)';
                 if(wathcing_story.length !== 0) {
                     left_allStory_profile[wathcing_story[0]].style.backgroundColor = '';
@@ -1087,9 +1083,40 @@
                     wathcing_story.push(i);
                 }
             });
+            // 처음 진입할 때 클릭될 프로필
+            if(who_start.value === left_allStory_profile[i].children[1].innerText) {
+                left_allStory_profile[i].click();
+            }
         }
-        
-
+        // 스토리 부분 오른쪽 클릭시 이벤트
+        mid_rightDiv.addEventListener('click' , e => {
+            if((wathcing_story[0]+1) < left_allStory_profile.length) {
+                left_allStory_profile[wathcing_story[0]+1].click();
+                incBarNum = 0;
+            }
+        });
+        // 스토리 부분 왼쪽 클릭시 이벤트
+        mid_leftDiv.addEventListener('click' , e => {
+            if((wathcing_story[0]-1) > -1) {
+                left_allStory_profile[wathcing_story[0]-1].click();
+                incBarNum = 0;
+            }
+        });
+        // 상단 바 시간이 지날수록 점점 width 값 증폭
+        const increaseBar = () => {
+            innerBar.style.width = incBarNum+'px';
+            incBarNum+=8;
+            if(incBarNum > 434) {
+                innerBar.style.width = '434px';
+                if((wathcing_story[0]+1) < left_allStory_profile.length) {
+                    left_allStory_profile[wathcing_story[0]+1].click();
+                    incBarNum = 0;
+                } else {
+                    clearInterval(Bartimer);
+                }
+            }
+        }
+        const Bartimer = setInterval(increaseBar,100);
     </script>
 </body>
 </html>
