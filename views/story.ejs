@@ -612,6 +612,7 @@
             float: left;
             margin-left: 501px;
             margin-top: 2px;
+            transition: all 0.5s;
         }
         /* 메시지 입력 창 */
         .mid_bottom_msgDiv_input {
@@ -967,6 +968,21 @@
         // 스토리 게시 경과 시간
         let mid_image_Profile_age = document.getElementsByClassName('mid_image_Profile_age')[0];
         mid_image_Profile_age.innerText = left_allStory_profile_state_date.innerText;
+        // 스토리 다이렉트 메시지 클릭경우
+        const mid_bottom_msgDiv = document.getElementsByClassName('mid_bottom_msgDiv')[0];
+        // 메시지 input
+        const mid_bottom_msgDiv_input = document.getElementsByClassName('mid_bottom_msgDiv_input')[0];
+        // 하단 감정표현들
+        const mid_bottom_feels = document.getElementsByClassName('mid_bottom_feels')[0];
+        // 메시지 input 클릭이벤트 리스너
+        mid_bottom_msgDiv_input.addEventListener('click' , e => {
+            mid_bottom_msgDiv.style.width = '688px';
+            mid_bottom_msgDiv.style.marginLeft = '452px';
+            mid_bottom_msgDiv_input.placeholder = '김우빈님에게 답장하기...';
+            mid_bottom_feels.style.display= 'none';
+            mid_bottom_msgDiv_input.style.width = '472px';
+            console.log('clicked!');
+        });
     </script>
 </body>
 </html>
