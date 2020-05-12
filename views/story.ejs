@@ -741,6 +741,22 @@
             color:rgba(0,0,0,0.3);
             background-clip: text;
         }
+        /* 스토리 다이렉트 메시지 보내기 아이콘 */
+        .send_message {
+            color:white;
+            float:right;
+            font-size: 18px;
+            margin-top: 10px;
+            margin-right: 15px;
+        }
+        /* 스토리 감정표현 보내기 아이콘 */
+        .smile_message {
+            color:white;
+            float:right;
+            font-size: 18px;
+            margin-top: 9px;
+            margin-right: 12px;
+        }
     </style>
 </head>
 <body >
@@ -980,8 +996,17 @@
             mid_bottom_msgDiv.style.marginLeft = '452px';
             mid_bottom_msgDiv_input.placeholder = '김우빈님에게 답장하기...';
             mid_bottom_feels.style.display= 'none';
-            mid_bottom_msgDiv_input.style.width = '472px';
-            console.log('clicked!');
+            mid_bottom_msgDiv_input.style.width = '500px';
+            let send_icon = document.createElement('i');
+            send_icon.classList.add('fa-paper-plane');
+            send_icon.classList.add('fas');
+            send_icon.classList.add('send_message');
+            mid_bottom_msgDiv.appendChild(send_icon);
+            let smile_icon = document.createElement('i');
+            smile_icon.classList.add('fa-smile');
+            smile_icon.classList.add('fas');
+            smile_icon.classList.add('smile_message');
+            mid_bottom_msgDiv.appendChild(smile_icon);
         });
     </script>
 </body>
