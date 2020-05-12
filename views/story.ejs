@@ -373,6 +373,7 @@
         }
         .left_allStory_profile:hover {
             background-color: rgb(235, 235, 235);
+            cursor:pointer;
         }
         /* 스토리 상태 영역 */
         .left_allStory_profile_state {
@@ -435,6 +436,7 @@
             background-color: rgba(0,0,0,0.3);
             z-index: 4;
             float: left;
+            cursor:pointer;
         }
         /* 이전 스토리 보기 원 */
         .mid_leftDiv_Circle {
@@ -445,6 +447,7 @@
             margin:395px 0px 0px 480px;
             display: inline-block;
             text-align: center;
+            transition: all 0.5s;
         }
         /* 이전 스토리 가기 span */
         .mid_leftDiv_Circle_span {
@@ -460,6 +463,7 @@
             background-color: rgba(0,0,0,0.3);
             z-index: 4;
             right:0%;
+            cursor:pointer;
         }
         /* 다음 스토리 가기 원 */
         .mid_rightDiv_Circle {
@@ -469,6 +473,7 @@
             border-radius: 50%;
             margin:395px 0px 0px 277px;
             display: inline-block;
+            transition: all 0.5s;
             text-align: center;
         }
         /* 다음 스토리 가기 span */
@@ -990,24 +995,101 @@
         const mid_bottom_msgDiv_input = document.getElementsByClassName('mid_bottom_msgDiv_input')[0];
         // 하단 감정표현들
         const mid_bottom_feels = document.getElementsByClassName('mid_bottom_feels')[0];
+        // 메시지 전송 아이콘
+        let send_icon = document.createElement('i');
+        // 이모티콘 전송 아이콘
+        let smile_icon = document.createElement('i');
         // 메시지 input 클릭이벤트 리스너
-        mid_bottom_msgDiv_input.addEventListener('click' , e => {
-            mid_bottom_msgDiv.style.width = '688px';
-            mid_bottom_msgDiv.style.marginLeft = '452px';
-            mid_bottom_msgDiv_input.placeholder = '김우빈님에게 답장하기...';
-            mid_bottom_feels.style.display= 'none';
-            mid_bottom_msgDiv_input.style.width = '500px';
-            let send_icon = document.createElement('i');
-            send_icon.classList.add('fa-paper-plane');
-            send_icon.classList.add('fas');
-            send_icon.classList.add('send_message');
-            mid_bottom_msgDiv.appendChild(send_icon);
-            let smile_icon = document.createElement('i');
-            smile_icon.classList.add('fa-smile');
-            smile_icon.classList.add('fas');
-            smile_icon.classList.add('smile_message');
-            mid_bottom_msgDiv.appendChild(smile_icon);
+        mid_bottom_msgDiv_input.addEventListener('focus' , e => {
+            if(mid_bottom_msgDiv.style.width === '688px') {
+                return
+            } else {
+                mid_bottom_msgDiv.style.width = '688px';
+                mid_bottom_msgDiv.style.marginLeft = '452px';
+                mid_bottom_msgDiv_input.placeholder = '김우빈님에게 답장하기...';
+                mid_bottom_feels.style.display= 'none';
+                mid_bottom_msgDiv_input.style.width = '500px';
+                send_icon.classList.add('fa-paper-plane');
+                send_icon.classList.add('fas');
+                send_icon.classList.add('send_message');
+                mid_bottom_msgDiv.appendChild(send_icon);
+                smile_icon.classList.add('fa-smile');
+                smile_icon.classList.add('fas');
+                smile_icon.classList.add('smile_message');
+                mid_bottom_msgDiv.appendChild(smile_icon);
+            }
         });
+        // 메시지 input 포커스 아웃 이벤트 리스너
+        mid_bottom_msgDiv_input.addEventListener('blur' , e => {
+            if(mid_bottom_msgDiv.style.width === '688px') {
+                mid_bottom_msgDiv.style.width = '296px';
+                mid_bottom_msgDiv.style.marginLeft = '501px';
+                mid_bottom_msgDiv_input.placeholder = '답장하기...';
+                mid_bottom_feels.style.display= 'inline-block';
+                mid_bottom_msgDiv_input.style.width = '268px';
+                mid_bottom_msgDiv.removeChild(send_icon);
+                mid_bottom_msgDiv.removeChild(smile_icon);
+            }
+        });
+        // 스토리부분 왼쪽
+        const mid_leftDiv = document.getElementsByClassName('mid_leftDiv')[0];
+        // 이전 스토리로 이동 원
+        const mid_leftDiv_Circle = document.getElementsByClassName('mid_leftDiv_Circle')[0];
+        // 스토리부분 오른쪽
+        const mid_rightDiv = document.getElementsByClassName('mid_rightDiv')[0];
+        // 다음 스토리로 이동 원
+        const mid_rightDiv_Circle = document.getElementsByClassName('mid_rightDiv_Circle')[0];
+        // 스토리 부분 왼쪽 마우스오버
+        mid_leftDiv.addEventListener('mouseover' , e => {
+            mid_leftDiv_Circle.style.backgroundColor='white';
+            mid_leftDiv_Circle.style.transform = 'translateX(-7px)'
+        })
+        // 스토리 부분 왼쪽 마우스아웃
+        mid_leftDiv.addEventListener('mouseout' , e => {
+            mid_leftDiv_Circle.style.backgroundColor='rgb(165, 165, 165)';
+            mid_leftDiv_Circle.style.transform = 'translateX(0px)'
+        })
+        // 스토리 부분 오른쪽 마우스오버
+        mid_rightDiv.addEventListener('mouseover' , e => {
+            mid_rightDiv_Circle.style.backgroundColor='white';
+            mid_rightDiv_Circle.style.transform = 'translateX(7px)'
+        })
+        // 스토리 부분 오른쪽 마우스아웃
+        mid_rightDiv.addEventListener('mouseout' , e => {
+            mid_rightDiv_Circle.style.backgroundColor='rgb(165, 165, 165)';
+            mid_rightDiv_Circle.style.transform = 'translateX(0px)'
+        })
+        // 왼쪽 부분 프로필 클릭시 보고있는 색 변경
+        var wathcing_story = [];
+        // 스토리 배열
+        let all_stories = [];
+        // 왼쪽 부분 프로필
+        let left_allStory_profile = document.getElementsByClassName('left_allStory_profile');
+        for(let i = 0 ; i < left_allStory_profile.length ; i ++) {
+            all_stories.push(Number(left_allStory_profile[i].dataset.num));
+            left_allStory_profile[i].addEventListener('click', e => {
+                left_allStory_profile[i].style.backgroundColor = 'rgba(0,0,0,0.1)';
+                if(wathcing_story.length !== 0) {
+                    left_allStory_profile[wathcing_story[0]].style.backgroundColor = '';
+                    wathcing_story = [];
+                    wathcing_story.push(i);
+                    if(wathcing_story[0] === 0) {
+                        mid_leftDiv_Circle.style.display = 'none';
+                    } else {
+                        mid_leftDiv_Circle.style.display = 'inline-block';
+                    }
+                    if(wathcing_story[0] === all_stories.length-1) {
+                        mid_rightDiv_Circle.style.display = 'none';
+                    } else {
+                        mid_rightDiv_Circle.style.display = 'inline-block';
+                    }
+                } else {
+                    wathcing_story.push(i);
+                }
+            });
+        }
+        
+
     </script>
 </body>
 </html>
