@@ -582,6 +582,7 @@
         .mid_image_topRIght_play {
             font-size: 17px;
             color:white;
+            cursor: pointer;
         }
         /* 스토리 소리 아이콘 */
         .mid_image_topRIght_speaker {
@@ -992,6 +993,8 @@
         let smile_icon = document.createElement('i');
         // 스토리 자동넘김 바
         let incBarNum = 0;
+        // 스토리 재생/중단 아이콘
+        let mid_image_topRIght_play = document.getElementsByClassName('mid_image_topRIght_play')[0];
         // 메시지 input 클릭이벤트 리스너
         mid_bottom_msgDiv_input.addEventListener('focus' , e => {
             if(mid_bottom_msgDiv.style.width === '688px') {
@@ -1112,11 +1115,21 @@
                     left_allStory_profile[wathcing_story[0]+1].click();
                     incBarNum = 0;
                 } else {
-                    clearInterval(Bartimer);
+                    
                 }
             }
         }
-        const Bartimer = setInterval(increaseBar,100);
+        let Bartimer = setInterval(increaseBar,100);
+        // 스토리 재생 중단 버튼을 누른경우
+        mid_image_topRIght_play.addEventListener('click' , e => {
+            if(mid_image_topRIght_play.className !== 'mid_image_topRIght_play fas fa-play') {
+                clearInterval(Bartimer);
+                mid_image_topRIght_play.className = 'mid_image_topRIght_play fas fa-play';
+            } else {
+                Bartimer = setInterval(increaseBar,100);
+                mid_image_topRIght_play.className = 'mid_image_topRIght_play fas fa-pause';
+            }
+        });
     </script>
 </body>
 </html>
