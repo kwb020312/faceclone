@@ -5,6 +5,10 @@
   "scripts": {
     "start": "node app.js"
   },
+  "engines": {
+    "node": "12.17.0",
+    "npm" : "6.14.4"
+  },
   "dependencies": {
     "connect": "^3.7.0",
     "cookie-parser": "~1.4.4",
